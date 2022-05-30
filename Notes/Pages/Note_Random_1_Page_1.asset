@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd853a210fd65048a0716d1d9cf91fa, type: 3}
+  m_Name: Note_Random_1_Page_1
+  m_EditorClassIdentifier: 
+  type: 0
+  text: "\tPhysically, Paul is in pretty good shape. He is very short with bronze
+    skin, brown hair and eyes. He grew up in an upper class neighborhood. Having
+    never really known his parents, he was raised in a series of foster homes. He
+    is currently single. Paul's closest friends are called Alex Norfolk and Gabriel
+    <Nume>. They get on well most of the time and enjoy spending time together, eating
+    and going to the cinema."
+  texture: {fileID: 0}
+  useSubscript: 1
+  displayLines: 1
+  narration: {fileID: 0}
+  narration_PlayOnce: 0
+  narrationPlayed: 0

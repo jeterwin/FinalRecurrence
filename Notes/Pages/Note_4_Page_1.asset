@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd853a210fd65048a0716d1d9cf91fa, type: 3}
+  m_Name: Note_4_Page_1
+  m_EditorClassIdentifier: 
+  type: 0
+  text: "\tDuring his childhood, being raised by some teenagers with no sense of
+    responsibility, made him suffer alone, in silence. The constant seek of attention
+    from people he saw as parents figures was often recognised by his neighbours.
+    Everyday, after coming home from kindergarden, you could find him playing in
+    the park with his 2 best friends. Time flew by, it was already evening. He usually
+    wandered the streets alone, looking at the shiny lights coming from the neighbours'
+    houses. Their shadows were mimicking happiness, fun family gatherings and long
+    talks, these were all things that fascinated - and made him wander what living
+    as someone else felt like. One sunny day, the postman rang the bell which immediately
+    alarmed -. He rushed eagerly to the door just to be dissappointed. What was laying
+    on the floor was a letter from an unknown sender, with little to no text written
+    on it: \"Why would anyone build a tyrolean on their roof?..\""
+  texture: {fileID: 0}
+  useSubscript: 1
+  displayLines: 1
+  narration: {fileID: 0}
+  narration_PlayOnce: 0
+  narrationPlayed: 0
