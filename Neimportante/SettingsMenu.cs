@@ -55,7 +55,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 0;
                     //PlayerPrefs.SetInt("shadows", 0);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 150, 3, 0); // Low
+                    ChangeShadows(ShadowmaskMode.Shadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0); // Low
                     QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
                 }
                 break;
@@ -71,7 +71,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 1;
                     //PlayerPrefs.SetInt("shadows", 1);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 150, 3, 0); // Low
+                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0); // Low
                     QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
                 }
                 break;
@@ -87,7 +87,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 2;
                     //PlayerPrefs.SetInt("shadows", 2);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 150, 3, 2); // Low
+                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 100, 3, 2); // Low
                     QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
                 }
                 break;
@@ -103,7 +103,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 3;
                     //PlayerPrefs.SetInt("shadows", 3);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 150, 3, 2); // Low
+                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 100, 3, 2); // Low
                     QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
                 }
                 break;
@@ -119,7 +119,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 4;
                     //PlayerPrefs.SetInt("shadows", 4);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 150, 3, 4); // Low
+                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 100, 3, 4); // Low
 
                     QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
                 }
@@ -267,28 +267,28 @@ public class SettingsMenu : MonoBehaviour
         {
             if(PlayerPrefs.GetInt("shadows") == 0)
             {
-                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 150, 3, 0);
+                ChangeShadows(ShadowmaskMode.Shadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0);
                 shadowsDropdown.value = 0;
             }
             else if(PlayerPrefs.GetInt("shadows") == 1)
             {
-                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 150, 3, 2);
+                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 2);
                 shadowsDropdown.value = 1;
             }
             
             else if(PlayerPrefs.GetInt("shadows") == 2)
             {
-                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 150, 3, 2);
+                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 100, 3, 2);
                 shadowsDropdown.value = 2;
             }  
             else if(PlayerPrefs.GetInt("shadows") == 3)
             {
-                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 150, 3, 2);
+                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 100, 3, 2);
                 shadowsDropdown.value = 3;
             }
             else
             {
-                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 150, 3, 4);
+                ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 100, 3, 4);
                 shadowsDropdown.value = 4;
             }
         }
@@ -319,8 +319,12 @@ public class SettingsMenu : MonoBehaviour
         for(int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
+            if(resolutions[i].height >= 720 && resolutions[i].height != 990)
+            {
             options.Add(option);
             countRes++;
+            }
+
         }
         for(int i = countRes - 1; i >= 0; i--)
         {
@@ -384,7 +388,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 0;
                     PlayerPrefs.SetInt("shadows", 0);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 150, 3, 0); // Low
+                    ChangeShadows(ShadowmaskMode.Shadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0); // Low
 
                 }
                 break;
@@ -401,7 +405,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 1;
                     PlayerPrefs.SetInt("shadows", 1);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 150, 3, 0); // Low
+                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0); // Low
 
                 }
                 break;
@@ -418,7 +422,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 2;
                     PlayerPrefs.SetInt("shadows", 2);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 150, 3, 2); // Low
+                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 100, 3, 2); // Low
 
                 }
                 break;
@@ -435,7 +439,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 3;
                     PlayerPrefs.SetInt("shadows", 3);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 150, 3, 2); // Low
+                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 100, 3, 2); // Low
 
 
                 }
@@ -453,7 +457,7 @@ public class SettingsMenu : MonoBehaviour
 
                     shadowsDropdown.value = 4;
                     PlayerPrefs.SetInt("shadows", 4);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 150, 3, 4); // Low
+                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 100, 3, 4); // Low
                 }
                 break;
         }
@@ -499,29 +503,29 @@ public class SettingsMenu : MonoBehaviour
     {
         if(index1 == 0)
         {
-            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 150, 3, 0);
+            ChangeShadows(ShadowmaskMode.Shadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0);
             PlayerPrefs.SetInt("shadows", 0);
         }
         else if(index1 == 1)
         {
-            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 150, 3, 0);
+            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0);
             PlayerPrefs.SetInt("shadows", 1);
         }
            
         else if(index1 == 2)
         {
-            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 150, 3, 2);
+            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 100, 3, 2);
             PlayerPrefs.SetInt("shadows", 2);
         }
             
         else if(index1 == 3)
         {
-            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 150, 3, 2);
+            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 100, 3, 2);
             PlayerPrefs.SetInt("shadows", 3);
         }  
         else
         {
-            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 150, 3, 4);
+            ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 100, 3, 4);
             PlayerPrefs.SetInt("shadows", 4);
         }
         PlayerPrefs.Save();

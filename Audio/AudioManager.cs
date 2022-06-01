@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     //public AudioClip defaultAmbience;
     public AudioSource defaultAmbience;
     public AudioSource defaultAmbience1;
+    public float volume;
 
     //private AudioSource track01, track02;
     private bool isPlayingTrack01;
@@ -52,8 +53,8 @@ public class AudioManager : MonoBehaviour
 
             while(timeElapsed < timeToFade)
             {
-                defaultAmbience.volume = Mathf.Lerp(0, 0.5f, timeElapsed / timeToFade);
-                defaultAmbience1.volume = Mathf.Lerp(0.5f, 0, timeElapsed / timeToFade);
+                defaultAmbience.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
+                defaultAmbience1.volume = Mathf.Lerp(volume, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
@@ -67,8 +68,8 @@ public class AudioManager : MonoBehaviour
 
             while(timeElapsed < timeToFade)
             {
-                defaultAmbience1.volume = Mathf.Lerp(0, 0.5f, timeElapsed / timeToFade);
-                defaultAmbience.volume = Mathf.Lerp(0.5f, 0, timeElapsed / timeToFade);
+                defaultAmbience1.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
+                defaultAmbience.volume = Mathf.Lerp(volume, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }

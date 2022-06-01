@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.Events;
 public class EnemyAiTutorial : MonoBehaviour
 {
     public NavMeshAgent agent;
@@ -36,6 +37,7 @@ public class EnemyAiTutorial : MonoBehaviour
     public AudioSource Audio;
     public Animator AttackAnimatiomPlay;
     public string AttackAnimationName;
+    public UnityEvent @event;
     private void Update()
     {
         //Check for sight and attack range
@@ -46,11 +48,12 @@ public class EnemyAiTutorial : MonoBehaviour
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange)
         {
-
+            @event.Invoke();
             AttackImg.gameObject.SetActive(true);
             Invoke("RespawnPlayerM", 1.5f);
             Audio.enabled = true;
             AttackAnimatiomPlay.Play(AttackAnimationName);
+           
         }
 
     }

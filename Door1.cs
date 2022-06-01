@@ -107,7 +107,6 @@ public class Door1 : MonoBehaviour
                 {
                     //Debug.Log("Pull Down(PULL TOWARDS)");
                     lastRot = yRot;
-                    Debug.Log(yRot);
                     //yRot = Mathf.Clamp(yRot, -frontOpenPosLimit, 0);
                     yRot += -Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
                     yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);

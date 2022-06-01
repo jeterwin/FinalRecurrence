@@ -42,7 +42,10 @@ public class LevelLoader : MonoBehaviour
     {
         StartCoroutine(LoadAsynchronously(sceneIndex));
     }
-
+    public void LoadedLevel1(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
     private void Awake()
     {
         instance = this;

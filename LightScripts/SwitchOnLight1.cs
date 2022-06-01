@@ -16,14 +16,16 @@ public class SwitchOnLight1 : MonoBehaviour
         {
             light1.SetActive(true);
             on = true;
-            switch1.transform.rotation = Quaternion.Euler(new Vector3(-65, 90f,0f));
+            //switch1.transform.rotation = Quaternion.Euler(new Vector3(-65, 90f,0f));
+            switch1.transform.rotation = Quaternion.Euler(new Vector3(0, 90f, 0f));
             onSound.Play();
         }
         else
         {
             light1.SetActive(false);
             on = false;
-            switch1.transform.rotation = Quaternion.Euler(new Vector3(0,90f,0f));
+            switch1.transform.rotation = Quaternion.Euler(new Vector3(-65, 90f, 0f));
+            //switch1.transform.rotation = Quaternion.Euler(new Vector3(0,90f,0f));
             offSound.Play();
         }
     }
