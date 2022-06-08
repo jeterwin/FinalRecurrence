@@ -6,6 +6,7 @@ public class Checkpoint5 : MonoBehaviour
 {
     public SaveData activeSave;
     public GameObject saveGame;
+    bool hasPlayed = false;
     private void Start()
     {
         if (SaveManager.instance.hasLoaded)
@@ -20,7 +21,7 @@ public class Checkpoint5 : MonoBehaviour
     {
         if (other != null && other.tag != null)
         {
-            if (other.tag == "Player")
+            if (other.tag == "Player" && hasPlayed == false)
             {
                 GameManager.instance.respawnPoint = other.transform.position;
 

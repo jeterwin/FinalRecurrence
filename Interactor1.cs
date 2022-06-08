@@ -30,7 +30,7 @@ public class Interactor1 : MonoBehaviour
         {
             if(hit.collider.GetComponent<Interactable>() != false)
             {
-                if(interactable == null || interactable.ID != hit.collider.GetComponent<Interactable>().ID)
+                if(interactable == null)
                 {
                     interactable = hit.collider.GetComponent<Interactable>();
                 }
@@ -72,6 +72,7 @@ public class Interactor1 : MonoBehaviour
                     crosshair.enabled = false;
                     crosshairSmall.enabled = true;
                     crosshair.color = new Color32(0,0,0,0);
+                    interactable = null;
                 }
 
             }
@@ -80,6 +81,7 @@ public class Interactor1 : MonoBehaviour
                 crosshair.enabled = false;
                 crosshairSmall.enabled = true;
                 crosshair.color = new Color32(0,0,0,0);
+                interactable = null;
             }
         }
     }

@@ -16,13 +16,10 @@ public class Rotate : MonoBehaviour
         coroutineAllowed = true;
         numberShown = 0;
     }
-
-    private void OnMouseDown()
+    public void Rotate1()
     {
-        if (coroutineAllowed)
-        {
-            StartCoroutine("RotateWheel");
-        }
+        if(coroutineAllowed)
+        StartCoroutine(RotateWheel());
     }
 
     private IEnumerator RotateWheel()

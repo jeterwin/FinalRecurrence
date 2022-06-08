@@ -20,6 +20,8 @@ using Cinemachine;
         public float height;
         public bool isRunning = false;
         [Header("Crouch Parameters")]
+        [SerializeField] private float footstepHeightCrouched;
+        [SerializeField] private float footstepHeightStanding;
         [SerializeField] private float crouchHeight = 2.5f;
         [SerializeField] private float standingHeight = 2.5f;
         [SerializeField] private float timeToCrouch = 0.35f;
@@ -112,7 +114,7 @@ using Cinemachine;
             if (isCrouching && Physics.Raycast(playerCamera.transform.position, above, out hit, 3f))
                 yield break;
 
-            GetComponent<CharacterFootsteps>().groundCheckHeight = isCrouching ? -4.17f : 1f;
+            GetComponent<CharacterFootsteps>().groundCheckHeight = isCrouching ? footstepHeightStanding : footstepHeightCrouched;
             float timeElapsed = 0;
             float targetHeight = isCrouching ? standingHeight : crouchHeight;
             float currentHeight = characterController.height;

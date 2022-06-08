@@ -37,6 +37,11 @@ public class GamePlayTriger : MonoBehaviour
             ExitEvent.Invoke();
         }
     }
+    public void Quit()
+    {
+        ExitGamePlay();
+        ExitEvent.Invoke();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")

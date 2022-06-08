@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+using UnityEngine.Playables;
+using Cinemachine;
 public class Interactable : MonoBehaviour
 {
     public static Interactable instance;
@@ -10,6 +11,8 @@ public class Interactable : MonoBehaviour
     public UnityEvent pressQ;
     public UnityEvent mouseClick;
     public Sprite interactIcon;
+    public PlayableDirector director;
+    public CinemachineVirtualCamera vcam;
     public int ID;
     public bool canInteract = true;
 
@@ -55,17 +58,20 @@ public class Interactable : MonoBehaviour
    }
     IEnumerator leaveLevel()
     {
-        GameObject.Find("LeaveDoor").GetComponent<Interactable>().enabled = false;
-        crosshair.SetActive(false);
-        crosshair1.SetActive(false);
-        Fps_Script.instance.canMove = false;
-        Fps_Script.instance.canRotate = false;
+        director.Play();
+        vcam.Priority = 12;
+        Fps_Script.instance.enabled = false;
+        //GameObject.Find("LeaveDoor").GetComponent<Interactable>().enabled = false;
+        //crosshair.SetActive(false);
+        //crosshair1.SetActive(false);
+        //Fps_Script.instance.canMove = false;
+        //Fps_Script.instance.canRotate = false;
         //animator.Play(animationName);
         //yield return new WaitForSeconds(2f);
-        PauseMenu.instance.canPause = false;
-        SaveManager.instance.activeSave.hasFlashlight = false;
+        //PauseMenu.instance.canPause = false;
+        //SaveManager.instance.activeSave.hasFlashlight = false;
         //SaveManager.instance.activeSave.level = 3;
-        InGameLevelLoader.instance.LoadLevelWithoutAudio(3);
+        //InGameLevelLoader.instance.LoadLevelWithoutAudio(3);
         yield return null;
     }
     IEnumerator animationLMFAO()

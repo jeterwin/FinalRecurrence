@@ -6,6 +6,8 @@ public class SwitchOnLight2 : MonoBehaviour
 {
     public GameObject light2;
     public GameObject switch2;
+    public GameObject chandelier;
+    public Material materialOn, materialOff;
     //default pos x = -65
     private bool on = false;
     public AudioSource onSound;
@@ -15,6 +17,8 @@ public class SwitchOnLight2 : MonoBehaviour
         if(on == false)
         {
             light2.SetActive(true);
+            if (chandelier)
+                chandelier.GetComponent<MeshRenderer>().material = materialOn;
             on = true;
             switch2.transform.rotation = Quaternion.Euler(new Vector3(0f,-90f,0f));
             onSound.Play();
@@ -22,6 +26,8 @@ public class SwitchOnLight2 : MonoBehaviour
         else
         {
             light2.SetActive(false);
+            if (chandelier)
+                chandelier.GetComponent<MeshRenderer>().material = materialOff;
             on = false;
             switch2.transform.rotation = Quaternion.Euler(new Vector3(-65f, -90f, 0f));
             offSound.Play();

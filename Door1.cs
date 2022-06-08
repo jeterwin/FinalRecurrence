@@ -137,7 +137,18 @@ public class Door1 : MonoBehaviour
         }
 
     }
-
+    IEnumerator LerpFunction(Quaternion endValue, float duration)
+    {
+        float time = 0;
+        Quaternion startValue = transform.rotation;
+        while (time < duration * 2)
+        {
+            transform.rotation = Quaternion.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        transform.rotation = endValue;
+    }
 
     enum DoorCollision
     {

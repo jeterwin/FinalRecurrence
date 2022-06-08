@@ -33,7 +33,7 @@ public class Stamina : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Se pot schimba valorile pt sprint
         if(currentStamina > 0)

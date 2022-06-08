@@ -63,11 +63,16 @@ public class NoteSystem : MonoBehaviour
 
     [SerializeField] private AudioSource[] sources = null;
     [Space]
-    [SerializeField] private AudioClip openNoteSFX = null;
-    [SerializeField] private AudioClip closeNoteSFX = null;
+    [SerializeField] private AudioClip[] openNoteSFX = null;
+    [SerializeField] private AudioClip[] closeNoteSFX = null;
     [Space]
     [SerializeField] private AudioClip[] turnPageSFXs = null;
-
+    [Space]
+    [SerializeField] AudioSource openTabSound;
+    [SerializeField] AudioClip[] openTabSounds;
+    [Space]
+    [SerializeField] AudioSource closeTabSound;
+    [SerializeField] AudioClip[] closeTabSounds;
     #endregion
 
     #region Properties and Private
@@ -111,9 +116,13 @@ public class NoteSystem : MonoBehaviour
             {
                 case true:
                     Open();
+                    openTabSound.clip = openTabSounds[UnityEngine.Random.Range(0, openTabSounds.Length)];
+                    openTabSound.Play();
                     break;
                 case false:
                     Close(activeNote != null);
+                    closeTabSound.clip = closeTabSounds[UnityEngine.Random.Range(0, closeTabSounds.Length)];
+                    closeTabSound.Play();
                     break;
             }
         }
@@ -167,7 +176,7 @@ public class NoteSystem : MonoBehaviour
 
         SwitchGameControls(false);
 
-        PlaySound(openNoteSFX);
+        PlaySound(openNoteSFX[UnityEngine.Random.Range(0, openNoteSFX.Length)]);
 
         UpdateCanvasGroup(true, UI.NoteCanvasGroup);
         activeNote = note;
@@ -256,7 +265,7 @@ public class NoteSystem : MonoBehaviour
     {
         if(playSFX)
         {
-            PlaySound(closeNoteSFX);
+            PlaySound(closeNoteSFX[UnityEngine.Random.Range(0, closeNoteSFX.Length)]);
         }
 
         UpdateCanvasGroup(false, UI.NoteCanvasGroup);

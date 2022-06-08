@@ -9,7 +9,7 @@ public class CemeterySpawn : MonoBehaviour
     public int TimeToEnable = 5;
     public GameObject Image;
     public AudioSource HeartBeat;
-    public Animator animator;
+    public GameObject letter;
     IEnumerator EnablePerson()
     {
         Hello();
@@ -39,7 +39,7 @@ public class CemeterySpawn : MonoBehaviour
         {
             Image.SetActive(false);
             HeartBeat.Stop();
-            animator.Play("GateCimitirOn");
+            letter.SetActive(true);
         }
     }
 

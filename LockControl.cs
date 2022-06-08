@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class LockControl : MonoBehaviour
 {
     private int[] result, correctCombination;
     private bool isOpened;
+    public UnityEvent Event;
     private void Start()
     {
         result = new int[]{0,0,0,0};
-        correctCombination = new int[] {6,7,8,4};
+        correctCombination = new int[] {2,9,8,4};
         isOpened = false;
         Rotate.Rotated += CheckResults;
     }
@@ -40,6 +41,7 @@ public class LockControl : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
             isOpened = true;
+            Event.Invoke();
         }
     }
 
