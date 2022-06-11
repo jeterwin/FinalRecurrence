@@ -25,7 +25,7 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 1.7f, interactableLayermask))
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 2.5f, interactableLayermask))
         {
             if (hit.collider.GetComponent<Interactable>() != false)
             {
@@ -57,7 +57,7 @@ public class Interactor : MonoBehaviour
         else
         {
             Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, 1f))
+            if (Physics.Raycast(ray.origin, ray.direction, out hit, 2.5f))
             {
                 if (hit.collider.gameObject.name == "Back" || hit.collider.gameObject.name == "Front")
                 {

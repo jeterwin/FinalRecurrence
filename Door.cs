@@ -12,13 +12,18 @@ public class Door : MonoBehaviour
     public GameObject frontDoorCollider;
     public GameObject backDoorCollider;
     public Camera mainCamera;
+    float yRot = 0;
+    float lastRot = 0;
+    DoorCollision doorCollision = DoorCollision.NONE;
+    public Image crosshair;
     //Vector3 pos = new Vector3(-100, -100, 0);
-
+    [Space]
+    [Header("Audio")]
     bool moveDoor = false;
     public AudioSource closeDoor;
-    DoorCollision doorCollision = DoorCollision.NONE;
+    public AudioClip openDoorSFX;
+    bool isPlaying = false;
 
-    public Image crosshair;
 
     // Use this for initialization
     void Awake()
@@ -29,20 +34,6 @@ public class Door : MonoBehaviour
     void Update()
     {
         Ray ray =  mainCamera.ViewportPointToRay(new Vector3(0.5f,0.5f,0f));
-        //RaycastHit hit;
-/*        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 1f))
-            {
-                if (hit.collider.gameObject == frontDoorCollider || hit.collider.gameObject == backDoorCollider)
-                {
-                    crosshair.sprite = interactIcon;
-                    crosshair.color = new Color32(255,255,255,255);
-                }
-                else
-                {
-                    crosshair.color = new Color32(0,0,0,0);
-
-                }
-            }*/
  
         if (Input.GetMouseButtonDown(0))
         {
@@ -50,7 +41,7 @@ public class Door : MonoBehaviour
                 return;
             //Debug.Log("Mouse down");
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo, 1f))
+            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo, 2.5f))
             {
                 if (hitInfo.collider.gameObject == frontDoorCollider)
                 {
@@ -58,8 +49,9 @@ public class Door : MonoBehaviour
                     //Debug.Log("Front door hit");
                     doorCollision = DoorCollision.FRONT;
                     Fps_Script.instance.canRotate = false;
-                    Fps_Script.instance.walkingSpeed = 1.5f;
-                    Fps_Script.instance.runningSpeed = 2f;
+                    Fps_Script.instance.walkingSpeed = 1f;
+                    Fps_Script.instance.runningSpeed = 1.5f;
+                    closeDoor.PlayOneShot(openDoorSFX);
                 }
                 else if (hitInfo.collider.gameObject == backDoorCollider)
                 {
@@ -67,8 +59,9 @@ public class Door : MonoBehaviour
                     //Debug.Log("Back door hit");
                     doorCollision = DoorCollision.BACK;
                     Fps_Script.instance.canRotate = false;
-                    Fps_Script.instance.walkingSpeed = 1.5f;
-                    Fps_Script.instance.runningSpeed = 2f;
+                    Fps_Script.instance.walkingSpeed = 1f;
+                    Fps_Script.instance.runningSpeed = 1.5f;
+                    closeDoor.PlayOneShot(openDoorSFX);
                 }
                 else
                 {
@@ -90,31 +83,32 @@ public class Door : MonoBehaviour
     IEnumerator doorMover()
     {
         bool stoppedBefore = false;
-        float yRot = 0;
-        float lastRot = 0;
         while (true)
         {
             if (moveDoor)
             {
                 stoppedBefore = false;
                 //Debug.Log("Moving Door");
-
-                yRot += Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
-
+                //yRot += Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
                 //Check if this is front door or back
                 if (doorCollision == DoorCollision.FRONT)
                 {
                     //Debug.Log("Pull Down(PULL TOWARDS)");
-                    yRot = Mathf.Clamp(yRot, -frontOpenPosLimit, 0);
+                    yRot += -Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
+                    yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
+                    //yRot = Mathf.Clamp(yRot, -frontOpenPosLimit, 0);
                     //Debug.Log(yRot);
-                    transform.localEulerAngles = new Vector3(0, -yRot, 0);
+                    transform.localEulerAngles = new Vector3(0, yRot, 0);
+                    //transform.localEulerAngles = new Vector3(0, -yRot, 0);
                 }
                 else if (doorCollision == DoorCollision.BACK)
                 {
                     //Debug.Log("Pull Up(PUSH AWAY)");
-                    lastRot = yRot;
-                    yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
+                    //yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
                     //Debug.Log(yRot);
+                    //transform.localEulerAngles = new Vector3(0, yRot, 0);
+                    yRot += Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
+                    yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
                     transform.localEulerAngles = new Vector3(0, yRot, 0);
                 }
             }
@@ -122,18 +116,28 @@ public class Door : MonoBehaviour
             {
                 if (!stoppedBefore)
                 {
-                    if(yRot == 0 && lastRot != yRot)
+                    lastRot = yRot;
+                    if (yRot == 0 && lastRot != yRot)
                         closeDoor.Play();
                     stoppedBefore = true;
                     //Debug.Log("Stopped Moving Door");
                 }
+                if (lastRot != yRot && isPlaying == false)
+                    StartCoroutine(PlayAudio());
             }
 
             yield return null;
         }
 
     }
-
+    IEnumerator PlayAudio()
+    {
+        float i = Mathf.InverseLerp(0, frontOpenPosLimit, yRot);
+        closeDoor.Play();
+        closeDoor.time = i;
+        isPlaying = true;
+        yield return null;
+    }
 
     enum DoorCollision
     {

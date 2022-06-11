@@ -47,9 +47,10 @@ public class MicrophoneInput : MonoBehaviour
 			micDropdownValueChangedHandler(micDropdown);
 		});
 
-		thresholdSlider.onValueChanged.AddListener(delegate {
-			thresholdValueChangedHandler(thresholdSlider);
-		});
+		//thresholdSlider.onValueChanged.AddListener(delegate {
+			//thresholdValueChangedHandler(thresholdSlider);
+		//});
+		//Sterge astea 3 ^ cand ii pt jumpscare
 		//initialize input with default mic
 		UpdateMicrophone();
 	}
@@ -85,7 +86,7 @@ public class MicrophoneInput : MonoBehaviour
 
     private void Update()
     {
-		GetAveragedVolume();
+		//GetAveragedVolume();
 
 	}
     public void micDropdownValueChangedHandler(Dropdown mic)

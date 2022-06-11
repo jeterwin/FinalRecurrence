@@ -14,13 +14,17 @@ public class Door1 : MonoBehaviour
     [SerializeField]
     private Camera mainCamera;
     float yRot = 0;
+    float lastRot = 0;
+    DoorCollision doorCollision = DoorCollision.NONE;
+    public Image crosshair;
     //Vector3 pos = new Vector3(-100, -100, 0);
-
+    [Space]
+    [Header("Audio")]
     bool moveDoor = false;
     public AudioSource closeDoor;
-    DoorCollision doorCollision = DoorCollision.NONE;
+    public AudioClip openDoorSFX;
+    bool isPlaying = false;
 
-    public Image crosshair;
 
     // Use this for initialization
     void Awake()
@@ -62,6 +66,7 @@ public class Door1 : MonoBehaviour
                     Fps_Script.instance.canRotate = false;
                     Fps_Script.instance.walkingSpeed = 1f;
                     Fps_Script.instance.runningSpeed = 1f;
+                    closeDoor.PlayOneShot(openDoorSFX);
                 }
                 else if (hitInfo.collider.gameObject == backDoorCollider)
                 {
@@ -71,6 +76,7 @@ public class Door1 : MonoBehaviour
                     Fps_Script.instance.canRotate = false;
                     Fps_Script.instance.walkingSpeed = 1f;
                     Fps_Script.instance.runningSpeed = 1f;
+                    closeDoor.PlayOneShot(openDoorSFX);
                 }
                 else
                 {
@@ -92,21 +98,18 @@ public class Door1 : MonoBehaviour
     IEnumerator doorMover()
     {
         bool stoppedBefore = false;
-        float lastRot = 0;
         while (true)
         {
             if (moveDoor)
             {
                 stoppedBefore = false;
                 //Debug.Log("Moving Door");
-                
                 //yRot += Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
                 //yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
-                //Check if this is front door or back
                 if (doorCollision == DoorCollision.FRONT)
                 {
                     //Debug.Log("Pull Down(PULL TOWARDS)");
-                    lastRot = yRot;
+                    //lastRot = yRot;
                     //yRot = Mathf.Clamp(yRot, -frontOpenPosLimit, 0);
                     yRot += -Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
                     yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
@@ -115,7 +118,7 @@ public class Door1 : MonoBehaviour
                 else if (doorCollision == DoorCollision.BACK)
                 {
                     //Debug.Log("Pull Up(PUSH AWAY)");
-                    lastRot = yRot;
+                    //lastRot = yRot;
                     //yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
                     yRot += Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
                     yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
@@ -126,28 +129,27 @@ public class Door1 : MonoBehaviour
             {
                 if (!stoppedBefore)
                 {
+                    lastRot = yRot;
                     if (yRot == 0 && lastRot != yRot)
                         closeDoor.Play();
                     stoppedBefore = true;
+                    isPlaying = false;
                     //Debug.Log("Stopped Moving Door");
                 }
             }
-
+            if (lastRot != yRot && isPlaying == false)
+                StartCoroutine(PlayAudio());
             yield return null;
         }
 
     }
-    IEnumerator LerpFunction(Quaternion endValue, float duration)
+    IEnumerator PlayAudio()
     {
-        float time = 0;
-        Quaternion startValue = transform.rotation;
-        while (time < duration * 2)
-        {
-            transform.rotation = Quaternion.Lerp(startValue, endValue, time / duration);
-            time += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        transform.rotation = endValue;
+        float i = Mathf.InverseLerp(0, frontOpenPosLimit, yRot);
+        closeDoor.Play();
+        closeDoor.time = i;
+        isPlaying = true;
+        yield return null;
     }
 
     enum DoorCollision

@@ -7,24 +7,34 @@ using UnityEngine.Rendering.PostProcessing;
 public class SettingsMenu : MonoBehaviour
 {
     public static SettingsMenu instance;
-    public AudioMixer audiomixer;
+    List<string> options = new List<string>();
+    private Dictionary<int, Resolution> _resolutions = new Dictionary<int, Resolution>();
     //public AudioMixer sfxmixer;
     //public AudioMixerGroup dialogue;
+    [Space]
+    [Header("Audio")]
+    public AudioMixer audiomixer;
     public Slider musicSlider;
     public Slider SFXSlider;
     public Slider Sensitivity;
+    [Space]
+    [Header("Graphics")]
     public Dropdown graphics;
     public Dropdown resolutionDropdown;
     public Dropdown antialiasingDropdown;
     public Dropdown shadowsDropdown;
     public Dropdown textureDropdown;
-
     public Toggle fullscreen;
     public Toggle subtitles;
+    [Space]
+    [Header("FX")]
     public Toggle vignetteToggle;
     public Toggle motionBlurToggle;
     public Toggle grainToggle;
     public Toggle vsyncToggle;
+    public Toggle bloomToggle;
+    [Space]
+
 
     private int countRes = 0;
 
@@ -32,6 +42,7 @@ public class SettingsMenu : MonoBehaviour
     private Vignette vignette;
     private MotionBlur motionBlur;
     private Grain grain;
+    private Bloom bloom;
     public bool subDec = true;
     Resolution[] resolutions;
 
@@ -129,18 +140,15 @@ public class SettingsMenu : MonoBehaviour
             graphics.value = PlayerPrefs.GetInt("qualityLevel");
         }
         //Subtitles
-        if(PlayerPrefs.HasKey("subtitles"))
+        if(PlayerPrefs.GetInt("subtitles", 1) != 0)
         {
-            if(PlayerPrefs.GetInt("subtitles", 1) != 0)
-            {
-                subtitles.isOn = true;
-                subDec = true;
-            }
-            else
-            {
-                subtitles.isOn = false;
-                subDec = false;
-            }
+            subtitles.isOn = true;
+            subDec = true;
+        }
+        else
+        {
+            subtitles.isOn = false;
+            subDec = false;
         }
         //Sensitivity
         Sensitivity.value = PlayerPrefs.GetFloat("sens", 1f);
@@ -163,8 +171,18 @@ public class SettingsMenu : MonoBehaviour
             vignette.intensity.value = 0f;
             }
         }
+
+        //Bloom
+        if (PlayerPrefs.HasKey("isBloom"))
+        {
+            bloom = profile.GetSetting<Bloom>();
+            if (PlayerPrefs.GetInt("isBloom") == 1)
+                bloom.enabled.value = true;
+            else
+                bloom.enabled.value = false;
+        }
         //Motion blur
-        if(PlayerPrefs.HasKey("motionBlurOn"))
+        if (PlayerPrefs.HasKey("motionBlurOn"))
         {
             if (PlayerPrefs.GetInt("motionBlurOn") == 1)
             {
@@ -314,21 +332,24 @@ public class SettingsMenu : MonoBehaviour
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
+        //List<string> options = new List<string>();
         int currentResolutionIndex = 0;
-        for(int i = 0; i < resolutions.Length; i++)
+        for(int i = resolutions.Length - 1; i > 0; i--)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
             if(resolutions[i].height >= 720 && resolutions[i].height != 990)
             {
-            options.Add(option);
-            countRes++;
+                options.Add(option);
+                _resolutions.Add(options.Count - 1, resolutions[i]);
+                countRes++;
             }
-
         }
-        for(int i = countRes - 1; i >= 0; i--)
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = options.FindIndex(c => c.Contains(Screen.currentResolution.height.ToString()) && c.Contains(Screen.currentResolution.width.ToString()) && c.Contains(Screen.currentResolution.refreshRate.ToString()));
+        for (int i = countRes - 1; i >= 0; i--)
         {
-            resolutionDropdown.options.Add(new Dropdown.OptionData(options[i]));
+            //resolutionDropdown.options.Add(new Dropdown.OptionData(options[i]));
+            //resolutionDropdown.AddOptions(options);
             if (resolutions[i].width == Screen.currentResolution.width &&
     resolutions[i].height == Screen.currentResolution.height)
             {
@@ -340,21 +361,21 @@ public class SettingsMenu : MonoBehaviour
         if(PlayerPrefs.HasKey("resolution"))
         {
             resolutionDropdown.value = PlayerPrefs.GetInt("resolution");
-            Resolution resolution = resolutions[countRes - PlayerPrefs.GetInt("resolution") - 1];
+            Resolution resolution = _resolutions[PlayerPrefs.GetInt("resolution")];
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         }
         else
         {
-        resolutionDropdown.value = countRes;
-        Resolution resolution = resolutions[countRes - currentResolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        resolutionDropdown.value = currentResolutionIndex;
+        Resolution resolution = _resolutions[currentResolutionIndex];
+            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         }
         resolutionDropdown.RefreshShownValue();
     }
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[countRes - resolutionIndex - 1];
+        Resolution resolution = _resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         PlayerPrefs.SetInt("resolution", resolutionIndex);
         PlayerPrefs.Save();
@@ -554,7 +575,22 @@ public class SettingsMenu : MonoBehaviour
             PlayerPrefs.SetFloat("isVignette", 0f);
         }
         PlayerPrefs.Save();
-    }    
+    }
+    public void SetBloom(bool isBloomOn)
+    {
+        bloom = profile.GetSetting<Bloom>();
+        if (isBloomOn == true)
+        {
+            bloom.enabled.value = true;
+            PlayerPrefs.SetInt("isBloom", 1);
+        }
+        else
+        {
+            bloom.enabled.value = false;
+            PlayerPrefs.SetInt("isBloom", 0);
+        }
+        PlayerPrefs.Save();
+    }
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;

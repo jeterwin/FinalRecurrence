@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlayerInput : MonoBehaviour {
 
@@ -23,5 +24,10 @@ public class PlayerInput : MonoBehaviour {
     void Shoot()
     {
         Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+    }
+
+    internal void SwitchCurrentActionMap(string v)
+    {
+        throw new NotImplementedException();
     }
 }

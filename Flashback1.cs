@@ -8,11 +8,11 @@ public class Flashback1 : MonoBehaviour
 {
     public TextMeshProUGUI textBox;
     public PlayableDirector director;
-    /*    private void Start()
+        private void Start()
         {
-            if (SaveManager.instance.activeSave.monologue7 == true)
+            if (SaveManager.instance.activeSave.flashback1 == true)
                 this.gameObject.SetActive(false);
-        }*/
+        }
     private void Update()
     {
         if (SettingsMenu.instance.subDec == true)
@@ -22,14 +22,14 @@ public class Flashback1 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //if (GameManager.instance.activeSave.monologue7 == false)
-        //{
+        if (GameManager.instance.activeSave.flashback1 == false)
+        {
             if (other.gameObject.tag == "Player")
             {
                 StartCoroutine(Sequence1());
-                //GameManager.instance.activeSave.monologue7 = true;
+                GameManager.instance.activeSave.flashback1 = true;
             }
-        //}
+        }
     }
 
     IEnumerator Sequence1()

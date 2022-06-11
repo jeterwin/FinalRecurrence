@@ -39,7 +39,6 @@ public class SaveManager : MonoBehaviour
 
         if (System.IO.File.Exists(dataPath + "/" + activeSave.saveName + ".save"))
         {
-            Debug.Log("Este");
             var serializer = new XmlSerializer(typeof(SaveData));
             var stream = new FileStream(dataPath + "/" + activeSave.saveName + ".save", FileMode.Open);
 
@@ -139,6 +138,12 @@ public class SaveData
     public bool jumpscare3;
     public bool jumpscare4;
     public bool jumpscare5;
+
+    public bool flashback1;
+    public bool flashback2;
+    public bool flashback3;
+    public bool flashback4;
+    public bool flashback5;
     //Objectivele incep sa fie numarate din level 2
     public bool objective1;
     public bool objective2;

@@ -1,11 +1,10 @@
-﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
-public class MenuScript : MonoBehaviour {
-
-	PlayerInputActions m_Action; // Reference to an action to rebind.
+public class MenuMenuScript : MonoBehaviour
+{
 	Transform menuPanel;
 	Event keyEvent;
 	Text buttonText;
@@ -13,13 +12,6 @@ public class MenuScript : MonoBehaviour {
 
 	bool waitingForKey;
 
-    private void Awake()
-    {
-		if (Fps_Script.instance != null)
-			m_Action = Fps_Script.instance.playerInputActions;
-		else
-			m_Action = new PlayerInputActions();
-	}
     void Start ()
 	{
 		//Assign menuPanel to the Panel object in our Canvas
@@ -37,13 +29,13 @@ public class MenuScript : MonoBehaviour {
 		for(int i = 0; i < menuPanel.childCount; i++)
 		{
 			if(menuPanel.GetChild(i).name == "ForwardKey")
-				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = m_Action.Player.Movement.GetBindingDisplayString(1);
+				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = PlayerPrefs.GetString("WKey", "W");
 			else if(menuPanel.GetChild(i).name == "BackwardKey")
-				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = m_Action.Player.Movement.GetBindingDisplayString(2);
+				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = PlayerPrefs.GetString("SKey", "S");
 			else if(menuPanel.GetChild(i).name == "LeftKey")
-				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = m_Action.Player.Movement.GetBindingDisplayString(3);
+				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = PlayerPrefs.GetString("AKey", "A");
 			else if(menuPanel.GetChild(i).name == "RightKey")
-				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = m_Action.Player.Movement.GetBindingDisplayString(4);
+				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = PlayerPrefs.GetString("DKey", "D");
 			else if(menuPanel.GetChild(i).name == "JumpKey")
 				menuPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.instance.jump.ToString();
 			else if (menuPanel.GetChild(i).name == "CrouchKey")
@@ -78,6 +70,7 @@ public class MenuScript : MonoBehaviour {
 	{
 		if(!waitingForKey)
 			StartCoroutine(AssignKey(keyName));
+		buttonText.text = "Press any key";
 	}
 	//Assigns buttonText to the text component of
 	//the button that was pressed

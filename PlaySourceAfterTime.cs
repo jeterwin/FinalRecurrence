@@ -8,7 +8,7 @@ public class PlaySourceAfterTime : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        InvokeRepeating("Play", 2f, audioSource.clip.length * 3);
+        InvokeRepeating("Play", 2f, audioSource.clip.length * Random.Range(10, 20));
     }
     public void Play()
     {

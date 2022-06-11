@@ -3,21 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 public class FadeAudioSource : MonoBehaviour
 {
+    [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip clip;
-    public float durationOut, durationIn, TargetVolumeOut, TargetVolumeIn;
-    public bool fadeOut = false, playingAudio = false;
+    public AudioClip[] differentWhispers;
+    [Space]
+    [Header("Parameters")]
+    public float durationOut, durationIn, TargetVolumeOut, TargetVolumeIn, timeToRepeat;
+    public bool fadedOut = false, playingAudio = false;
+    [SerializeField] public bool randomSound;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player" && fadedOut == false)
+        {
+            AudioSourceFadeOut();
+        }
+    }
+    private void Start()
+    {
+        if (randomSound == true)
+            PlayRandomClip();
+    }
+    void toBeInvoked()
+    {
+        Invoke("PlayRandomClip", timeToRepeat);
+    }    
+    void PlayRandomClip()
+    {
+        audioSource.clip = differentWhispers[Random.Range(0, differentWhispers.Length)];
+        audioSource.Play();
+        toBeInvoked();
+    }
     public void AudioSourceFadeOut()
     {
-        if(fadeOut == false)
+        if(fadedOut == false)
         StartCoroutine(StartFadeOut(audioSource, durationOut, TargetVolumeOut));
         playingAudio = false;
     }
     public void AudioSourceFadeIn()
     {
-        if(fadeOut == true)
+        if(fadedOut == true)
         StartCoroutine(StartFadeIn(audioSource, durationIn, TargetVolumeIn));
-        if (fadeOut == false && playingAudio == false)
+        if (fadedOut == false && playingAudio == false)
         {
             audioSource.PlayOneShot(clip);
             StartCoroutine(PlayHeartBeat(clip.length));
@@ -34,7 +61,7 @@ public class FadeAudioSource : MonoBehaviour
             audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;
         }
-        fadeOut = true;
+        fadedOut = true;
         yield break;
     }
     public IEnumerator StartFadeIn(AudioSource audioSource, float duration, float targetVolume)
@@ -47,7 +74,7 @@ public class FadeAudioSource : MonoBehaviour
             audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;
         }
-        fadeOut = false;
+        fadedOut = false;
         yield break;
     }
     public IEnumerator PlayHeartBeat(float clipLength)
