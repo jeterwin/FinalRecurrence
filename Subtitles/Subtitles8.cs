@@ -2,26 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.Playables;
 public class Subtitles8 : MonoBehaviour
 {
     public TextMeshProUGUI textBox;
-    public AudioSource audioSource;
-    public AudioSource audioSource1;
-    /*    private void Awake()
-        {
-            if (PlayerPrefs.GetInt("subtitles") == 1)
-            {
-                textBox.enabled = true;
-                return;
-            }
-
-            else
-            {
-                textBox.enabled = false;
-                return;
-            }
-        }*/
+    public PlayableDirector playableDirector;
     private void Start()
     {
         if (SaveManager.instance.activeSave.monologue8 == true)
@@ -48,13 +33,7 @@ public class Subtitles8 : MonoBehaviour
 
     IEnumerator Sequence1()
     {
-        audioSource.Play();
-        textBox.text = "What is that man doing in the forest at this time?";
-        yield return new WaitForSeconds(4f);
-        audioSource1.Play();
-        textBox.text = "I better follow him in that cabin.";
-        yield return new WaitForSeconds(4f);
-        textBox.text = "";
-        this.enabled = false;
+        playableDirector.Play();
+        yield return null;
     }
 }

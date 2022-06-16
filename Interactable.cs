@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour
     public UnityEvent pressE;
     public UnityEvent pressQ;
     public UnityEvent mouseClick;
+    public UnityEvent Escape;
     public Sprite interactIcon;
     public PlayableDirector director;
     public CinemachineVirtualCamera vcam;

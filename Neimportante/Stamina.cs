@@ -81,11 +81,11 @@ public class Stamina : MonoBehaviour
     }
     private IEnumerator RegenStamina()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.40f);
 
         while(currentStamina < maxStamina)
         {
-            currentStamina += maxStamina / 100;
+            currentStamina += maxStamina / 75;
             staminaSlider.value = currentStamina;
             animator.Play(fadeOut);
             canPlay = true;

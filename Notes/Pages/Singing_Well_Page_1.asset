@@ -27,5 +27,5 @@ MonoBehaviour:
   useSubscript: 1
   displayLines: 1
   narration: {fileID: 0}
-  narration_PlayOnce: 1
+  narration_PlayOnce: 0
   narrationPlayed: 0

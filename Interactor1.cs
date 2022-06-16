@@ -53,6 +53,10 @@ public class Interactor1 : MonoBehaviour
                 {
                     interactable.mouseClick.Invoke();
                 }
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    interactable.Escape.Invoke();
+                }
             }
         }
         else

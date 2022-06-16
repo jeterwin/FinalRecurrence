@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Objective1 : MonoBehaviour
+public class Objective4 : MonoBehaviour
 {
     bool hasPlayed = false;
     public string text;
-    public Animator animator;
     public Text objectiveText;
     public Text currentObjectiveText;
     public AudioSource audioSource;
@@ -19,18 +17,17 @@ public class Objective1 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(SaveManager.instance.hasLoaded)
+        if (SaveManager.instance.hasLoaded)
         {
-            if(SaveManager.instance.activeSave.objective1 == false)
+            if (SaveManager.instance.activeSave.objective2 == false)
             {
                 if (other.gameObject.tag == "Player" && hasPlayed == false)
                 {
-                    hasPlayed = true;
                     objectiveText.text = text;
                     currentObjectiveText.text = text;
                     StartCoroutine(disable());
                     GameManager.instance.activeSave.currentObjective = text;
-                    GameManager.instance.activeSave.objective1 = true;
+                    GameManager.instance.activeSave.objective2 = true;
                     //SaveManager.instance.Save();
                 }
             }

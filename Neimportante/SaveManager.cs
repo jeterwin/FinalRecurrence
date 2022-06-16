@@ -56,6 +56,7 @@ public class SaveManager : MonoBehaviour
 
         if (System.IO.File.Exists(dataPath + "/" + "save1" + ".save"))
         {
+            Debug.Log("sters");
             File.Delete(dataPath + "/" + "save1" + ".save");
         }
     }

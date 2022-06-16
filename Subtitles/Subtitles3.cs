@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.Playables;
 public class Subtitles3 : MonoBehaviour
 {
     public TextMeshProUGUI textBox;
-    public AudioSource audioSource;
+    public PlayableDirector playableDirector;
     /*    private void Awake()
         {
             if (PlayerPrefs.GetInt("subtitles") == 1)
@@ -47,11 +47,14 @@ public class Subtitles3 : MonoBehaviour
     }
 
     IEnumerator Sequence1()
+
     {
-        audioSource.Play();
+        playableDirector.Play();
+        yield return null;
+/*        audioSource.Play();
         textBox.text = "A wood cabin..I can't believe someone would live in this forest.";
         yield return new WaitForSeconds(5f);
         textBox.text = "";
-        this.enabled = false;
+        this.enabled = false;*/
     }
 }

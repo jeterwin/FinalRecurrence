@@ -17,12 +17,11 @@ public class Door : MonoBehaviour
     DoorCollision doorCollision = DoorCollision.NONE;
     public Image crosshair;
     //Vector3 pos = new Vector3(-100, -100, 0);
+    bool moveDoor = false;
     [Space]
     [Header("Audio")]
-    bool moveDoor = false;
     public AudioSource closeDoor;
     public AudioClip openDoorSFX;
-    bool isPlaying = false;
 
 
     // Use this for initialization
@@ -51,6 +50,7 @@ public class Door : MonoBehaviour
                     Fps_Script.instance.canRotate = false;
                     Fps_Script.instance.walkingSpeed = 1f;
                     Fps_Script.instance.runningSpeed = 1.5f;
+                    if(closeDoor != null)
                     closeDoor.PlayOneShot(openDoorSFX);
                 }
                 else if (hitInfo.collider.gameObject == backDoorCollider)
@@ -61,7 +61,8 @@ public class Door : MonoBehaviour
                     Fps_Script.instance.canRotate = false;
                     Fps_Script.instance.walkingSpeed = 1f;
                     Fps_Script.instance.runningSpeed = 1.5f;
-                    closeDoor.PlayOneShot(openDoorSFX);
+                    if (closeDoor != null)
+                        closeDoor.PlayOneShot(openDoorSFX);
                 }
                 else
                 {
@@ -118,25 +119,16 @@ public class Door : MonoBehaviour
                 {
                     lastRot = yRot;
                     if (yRot == 0 && lastRot != yRot)
-                        closeDoor.Play();
+                        if (closeDoor != null)
+                            closeDoor.Play();
                     stoppedBefore = true;
                     //Debug.Log("Stopped Moving Door");
                 }
-                if (lastRot != yRot && isPlaying == false)
-                    StartCoroutine(PlayAudio());
             }
 
             yield return null;
         }
 
-    }
-    IEnumerator PlayAudio()
-    {
-        float i = Mathf.InverseLerp(0, frontOpenPosLimit, yRot);
-        closeDoor.Play();
-        closeDoor.time = i;
-        isPlaying = true;
-        yield return null;
     }
 
     enum DoorCollision

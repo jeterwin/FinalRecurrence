@@ -24,7 +24,7 @@ MonoBehaviour:
     and a code: \r\n\"Charley Rollins\"\r\n\"Cabin x: <Cod>\""
   texture: {fileID: 0}
   useSubscript: 1
-  displayLines: 0
+  displayLines: 1
   narration: {fileID: 0}
   narration_PlayOnce: 0
   narrationPlayed: 0

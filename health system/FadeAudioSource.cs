@@ -4,17 +4,20 @@ using UnityEngine;
 public class FadeAudioSource : MonoBehaviour
 {
     [Header("Audio")]
-    public AudioSource audioSource;
+    public AudioSource fadeInaudioSource;
+    public AudioSource fadeOutaudioSource;
+    public AudioSource heartBeat;
+    public AudioSource whispers;
     public AudioClip clip;
     public AudioClip[] differentWhispers;
     [Space]
     [Header("Parameters")]
     public float durationOut, durationIn, TargetVolumeOut, TargetVolumeIn, timeToRepeat;
-    public bool fadedOut = false, playingAudio = false;
+    public bool fadedOut = false, playingAudio = false, shouldFadeOutOnCollision;
     [SerializeField] public bool randomSound;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && fadedOut == false)
+        if (other.tag == "Player" && fadedOut == false && shouldFadeOutOnCollision == true)
         {
             AudioSourceFadeOut();
         }
@@ -30,23 +33,23 @@ public class FadeAudioSource : MonoBehaviour
     }    
     void PlayRandomClip()
     {
-        audioSource.clip = differentWhispers[Random.Range(0, differentWhispers.Length)];
-        audioSource.Play();
+        whispers.clip = differentWhispers[Random.Range(0, differentWhispers.Length)];
+        whispers.Play();
         toBeInvoked();
     }
     public void AudioSourceFadeOut()
     {
         if(fadedOut == false)
-        StartCoroutine(StartFadeOut(audioSource, durationOut, TargetVolumeOut));
+        StartCoroutine(StartFadeOut(fadeOutaudioSource, durationOut, TargetVolumeOut));
         playingAudio = false;
     }
     public void AudioSourceFadeIn()
     {
         if(fadedOut == true)
-        StartCoroutine(StartFadeIn(audioSource, durationIn, TargetVolumeIn));
+        StartCoroutine(StartFadeIn(fadeInaudioSource, durationIn, TargetVolumeIn));
         if (fadedOut == false && playingAudio == false)
         {
-            audioSource.PlayOneShot(clip);
+            heartBeat.PlayOneShot(clip);
             StartCoroutine(PlayHeartBeat(clip.length));
             playingAudio = true;
         }

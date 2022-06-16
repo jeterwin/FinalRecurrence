@@ -2,24 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Playables;
 public class Subtitles5 : MonoBehaviour
 {
     public TextMeshProUGUI textBox;
-    public AudioSource audioSource;
-    /*    private void Awake()
-        {
-            if (PlayerPrefs.GetInt("subtitles") == 1)
-            {
-                textBox.enabled = true;
-                return;
-            }
-
-            else
-            {
-                textBox.enabled = false;
-                return;
-            }
-        }*/
+    public PlayableDirector playableDirector;
     private void Start()
     {
         if (SaveManager.instance.activeSave.monologue5 == true)
@@ -46,10 +33,12 @@ public class Subtitles5 : MonoBehaviour
 
     IEnumerator Sequence1()
     {
-        audioSource.Play();
+        playableDirector.Play();
+        yield return null;
+/*        audioSource.Play();
         textBox.text = "I wonder where could cabin 7 be...it shouldn't be far from here.";
         yield return new WaitForSeconds(6f);
         textBox.text = "";
-        this.enabled = false;
+        this.enabled = false;*/
     }
 }

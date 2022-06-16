@@ -51,6 +51,11 @@ public class Checkpoint4 : MonoBehaviour
                 SaveManager.instance.activeSave.jumpscare3 = GameManager.instance.activeSave.jumpscare3;
                 SaveManager.instance.activeSave.jumpscare4 = GameManager.instance.activeSave.jumpscare4;
                 SaveManager.instance.activeSave.jumpscare5 = GameManager.instance.activeSave.jumpscare5;
+                SaveManager.instance.activeSave.flashback1 = GameManager.instance.activeSave.flashback1;
+                SaveManager.instance.activeSave.flashback2 = GameManager.instance.activeSave.flashback2;
+                SaveManager.instance.activeSave.flashback3 = GameManager.instance.activeSave.flashback3;
+                SaveManager.instance.activeSave.flashback4 = GameManager.instance.activeSave.flashback4;
+                SaveManager.instance.activeSave.flashback5 = GameManager.instance.activeSave.flashback5;
                 SaveManager.instance.activeSave.battery1 = GameManager.instance.activeSave.battery1;
                 SaveManager.instance.activeSave.battery2 = GameManager.instance.activeSave.battery2;
                 SaveManager.instance.activeSave.battery3 = GameManager.instance.activeSave.battery3;

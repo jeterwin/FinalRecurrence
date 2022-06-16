@@ -2,47 +2,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Events;
 public class ChangePostProcessVolume : MonoBehaviour
 {
     public PostProcessVolume newVolume, oldVolume;
     public float duration, newVal;
+    private bool canTrigger = false;
     private ChromaticAberration chromaticAberration1;
+    public UnityEvent @event_before;
+    public UnityEvent @event_after;
     private void Awake()
     {
         chromaticAberration1 = newVolume.profile.GetSetting<ChromaticAberration>();
     }
     private void OnTriggerEnter(Collider other)
-    {
-        StartCoroutine(goTo1());
+    {if (other.gameObject.tag == "Player")
+        {
+            canTrigger = true;
+            StartCoroutine(goTo1());
+        }
     }
     private void Update()
     {
-        newVal = Random.Range(0.1f, 1);
-        chromaticAberration1.intensity.value = newVal;
-        // Calculate new smoothed average
+        if (canTrigger)
+        {
+            newVal = Random.Range(0.1f, 1);
+            chromaticAberration1.intensity.value = newVal;
+        }
     }
-    private void OnTriggerExit(Collider other)
+    public void finishedFlashback()
     {
         StartCoroutine(comeTo1());
     }
     public IEnumerator goTo1()
     {
+        newVolume.isGlobal = true;
         float time = 0;
-        while(time <= duration)
+        while (time < duration)
         {
             newVolume.weight = Mathf.Lerp(0, 1, time / 2);
             time += Time.deltaTime;
+            @event_before.Invoke();
             yield return null;
         }
     }
     public IEnumerator comeTo1()
     {
-        float time = duration;
-        while (time >= 0)
+        float time = 0;
+        while (time < duration)
         {
-            newVolume.weight = Mathf.Lerp(1, 0, time / 2);
-            time -= Time.deltaTime;
+            newVolume.weight = Mathf.Lerp(1, 0, time / duration);
+            time += Time.deltaTime;
+            @event_after.Invoke();
             yield return null;
         }
+        newVolume.weight = 0;
+        newVolume.isGlobal = false;
+        this.gameObject.SetActive(false);
+    }
+    public void FlashBack()
+    {
+        canTrigger = true;
+        StartCoroutine(goTo1());
     }
 }

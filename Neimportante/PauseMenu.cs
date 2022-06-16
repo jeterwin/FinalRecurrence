@@ -37,7 +37,8 @@ public class PauseMenu : MonoBehaviour
                 {
                     NoteSystem.instance.CloseNote(true);
                     NoteSystem.instance.Close(true);
-                    //NoteSystem.instance.usingNotesSystem = !NoteSystem.instance.usingNotesSystem;
+                    if(NoteSystem.instance.usingNotesSystem)
+                    NoteSystem.instance.usingNotesSystem = !NoteSystem.instance.usingNotesSystem;
                     Pause();
                 }
             }

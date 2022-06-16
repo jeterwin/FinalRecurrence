@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class Objective2 : MonoBehaviour
 {
     bool hasPlayed = false;
-    public string On;
     public string text;
-    public Animator animator;
     public Text objectiveText;
     public Text currentObjectiveText;
     public AudioSource audioSource;
     public AudioClip[] audioClips;
+    public GameObject objectiveCanvas;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -28,7 +27,6 @@ public class Objective2 : MonoBehaviour
                     objectiveText.text = text;
                     currentObjectiveText.text = text;
                     StartCoroutine(disable());
-                    animator.Play(On);
                     GameManager.instance.activeSave.currentObjective = text;
                     GameManager.instance.activeSave.objective2 = true;
                     //SaveManager.instance.Save();
@@ -41,7 +39,9 @@ public class Objective2 : MonoBehaviour
     {
         audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
         audioSource.Play();
-        yield return new WaitForSeconds(2f);
+        objectiveCanvas.SetActive(true);
+        yield return new WaitForSeconds(4.5f);
+        objectiveCanvas.SetActive(false);
         Destroy(this.gameObject);
         yield return null;
     }
