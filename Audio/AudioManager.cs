@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
     //public AudioClip defaultAmbience;
     public AudioSource defaultAmbience;
     public AudioSource defaultAmbience1;
-    public float volume;
 
     //private AudioSource track01, track02;
     private bool isPlayingTrack01;
@@ -25,22 +24,22 @@ public class AudioManager : MonoBehaviour
         //track02 = gameObject.AddComponent<AudioSource>();
         isPlayingTrack01 = true;
 
-        SwapTrack(defaultAmbience);
+        SwapTrack(defaultAmbience, 0.3f, 0);
     }
 
-    public void SwapTrack(AudioSource newClip)
+    public void SwapTrack(AudioSource newClip, float volume1, float volume2)
     {
         StopAllCoroutines();
-        StartCoroutine(FadeTrack(newClip));
+        StartCoroutine(FadeTrack(newClip, volume1, volume2));
         isPlayingTrack01 = !isPlayingTrack01;
     }
 
     public void ReturnToDefault()
     {
-        SwapTrack(defaultAmbience);
+        SwapTrack(defaultAmbience, 0.3f, 0);
     }
 
-    private IEnumerator FadeTrack(AudioSource newClip)
+    private IEnumerator FadeTrack(AudioSource newClip, float volume1, float volume2)
     {
         float timeToFade = 3f;
         float timeElapsed = 0;
@@ -53,8 +52,8 @@ public class AudioManager : MonoBehaviour
 
             while(timeElapsed < timeToFade)
             {
-                defaultAmbience.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
-                defaultAmbience1.volume = Mathf.Lerp(volume, 0, timeElapsed / timeToFade);
+                defaultAmbience.volume = Mathf.Lerp(0, volume1, timeElapsed / timeToFade);
+                defaultAmbience1.volume = Mathf.Lerp(volume2, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
@@ -68,8 +67,8 @@ public class AudioManager : MonoBehaviour
 
             while(timeElapsed < timeToFade)
             {
-                defaultAmbience1.volume = Mathf.Lerp(0, volume, timeElapsed / timeToFade);
-                defaultAmbience.volume = Mathf.Lerp(volume, 0, timeElapsed / timeToFade);
+                defaultAmbience1.volume = Mathf.Lerp(0, volume1, timeElapsed / timeToFade);
+                defaultAmbience.volume = Mathf.Lerp(volume2, 0, timeElapsed / timeToFade);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }

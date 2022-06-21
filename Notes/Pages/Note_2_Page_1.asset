@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd853a210fd65048a0716d1d9cf91fa, type: 3}
   m_Name: Note_2_Page_1
   m_EditorClassIdentifier: 
-  type: 0
-  text: "\tThe iron gates concealed an immense, mist enwrapped oak forest. Tiny rays
-    of pale light shone through the unnoticeable gaps between the dense trees. A
-    lifeless smoke-pale cloud wrapped itself around your surroundings, it felt as
-    if the forest was never-ending. It deadened sound, a somber silence overhung
-    the ground, nothing stirred, nothing shone, nothing sang. Stormy weather spread
-    twigs all over the uneven ground, some were munched by mud while others reached
-    the lake close-by Cabin 7: 3047."
-  texture: {fileID: 0}
+  type: 1
+  text: "\tWe have exciting news, Happy Hearts Orphan Home is a new orphanage located
+    on St. Philips street, which is greeted with booming success! The director wishes
+    to create a wonderful place for the little children to call home and find an
+    endearing and caring family to take care of them. The orphanage has a wide range
+    of facilities, including a playground, a pool, and a small botanic garden where
+    they learn how important plants and green life are for everyone! Last but not
+    least, not long after the opening, two boys were adopted by two wonderful neighbouring
+    families."
+  texture: {fileID: 21300000, guid: 1f0a9e6fc74867e45863aff465e861ac, type: 3}
   useSubscript: 1
   displayLines: 1
   narration: {fileID: 0}

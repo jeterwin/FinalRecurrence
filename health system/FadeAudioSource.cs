@@ -43,6 +43,14 @@ public class FadeAudioSource : MonoBehaviour
         StartCoroutine(StartFadeOut(fadeOutaudioSource, durationOut, TargetVolumeOut));
         playingAudio = false;
     }
+    public void JustFadeIn()
+    {
+        StartCoroutine(StartFadeIn(fadeInaudioSource, durationIn, TargetVolumeIn));
+    }
+    public void JustFadeOut()
+    {
+        StartCoroutine(StartFadeOut(fadeOutaudioSource, durationOut, TargetVolumeOut));
+    }
     public void AudioSourceFadeIn()
     {
         if(fadedOut == true)

@@ -39,7 +39,7 @@ public class Subtitles3 : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                StartCoroutine(Sequence1());
+                playableDirector.Play();
                 GameManager.instance.activeSave.monologue3 = true;
             }
         }
@@ -51,10 +51,5 @@ public class Subtitles3 : MonoBehaviour
     {
         playableDirector.Play();
         yield return null;
-/*        audioSource.Play();
-        textBox.text = "A wood cabin..I can't believe someone would live in this forest.";
-        yield return new WaitForSeconds(5f);
-        textBox.text = "";
-        this.enabled = false;*/
     }
 }

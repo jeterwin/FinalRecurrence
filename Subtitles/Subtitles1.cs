@@ -25,7 +25,7 @@ public class Subtitles1 : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                StartCoroutine(Sequence1());
+                playableDirector.Play();
                 GameManager.instance.activeSave.monologue1 = true;
             }
         }

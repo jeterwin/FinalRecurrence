@@ -69,13 +69,13 @@ public class Door1 : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && moveDoor == true)
         {
             moveDoor = false;
             //Debug.Log("Mouse up");
             Fps_Script.instance.canRotate = true;
-            Fps_Script.instance.walkingSpeed = 10f;
-            Fps_Script.instance.runningSpeed = 20f;
+            Fps_Script.instance.walkingSpeed = Stamina.instance.normalWalk;
+            Fps_Script.instance.runningSpeed = Stamina.instance.normalSprint;
         }
     }
 

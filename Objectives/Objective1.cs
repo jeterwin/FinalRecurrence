@@ -7,7 +7,6 @@ public class Objective1 : MonoBehaviour
 {
     bool hasPlayed = false;
     public string text;
-    public Animator animator;
     public Text objectiveText;
     public Text currentObjectiveText;
     public AudioSource audioSource;

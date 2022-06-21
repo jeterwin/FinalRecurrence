@@ -38,20 +38,19 @@ public class Stamina : MonoBehaviour
         //Se pot schimba valorile pt sprint
         if(currentStamina > 0)
         {
-            if(Input.GetKey(GameManager.instance.shift) && characterController.isGrounded && Fps_Script.instance.isCrouching == false && Fps_Script.instance.canMove == true && Fps_Script.instance.moveDirection.x != 0)
+            if(Input.GetKey(GameManager.instance.shift) && characterController.isGrounded && Fps_Script.instance.isCrouching == false 
+                && Fps_Script.instance.canMove == true && Fps_Script.instance.moveDirection.x != 0)
             {
                 UseStamina(0.25f);
                 if (canPlay == true)
                     animator.Play(fadeIn);
                 player.walkingSpeed = normalSprint;
                 player.isRunning = true;
-                //FootSteps.instance.animator.SetBool("isRunning", true);
             }
             if(Input.GetKeyUp(GameManager.instance.shift))
             {
                 player.walkingSpeed = normalWalk;
                 player.isRunning = false;
-                //FootSteps.instance.animator.SetBool("isRunning", false);
             }
         }
         //Se pot schimba valorile pt sprint
@@ -59,7 +58,6 @@ public class Stamina : MonoBehaviour
         {
             player.walkingSpeed = normalWalk;
             player.isRunning = false;
-            //FootSteps.instance.animator.SetBool("isRunning", false);
         }
         if (currentStamina >= 99)
             canPlay = true;

@@ -80,7 +80,7 @@ public class Fps_Script : MonoBehaviour
     }
     void Update()
     {
-        playerInputActions.Player.Movement.performed += Movement_performed;
+        //playerInputActions.Player.Movement.performed += Movement_performed;
         Vector2 inputVector = playerInputActions.Player.Movement.ReadValue<Vector2>();
         // We are grounded, so recalculate move direction based on axes
         forward = transform.TransformDirection(new Vector3(0, 0, 1));

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec203aae96a42244ba17a02a85f269b, type: 3}
   m_Name: Note8
   m_EditorClassIdentifier: 
-  label: '- of August 2001'
+  label: '-'
   pages:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f645297e57d7c1a4a85d827c8b470a9a, type: 2}

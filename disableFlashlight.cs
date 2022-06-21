@@ -9,7 +9,7 @@ public class disableFlashlight : MonoBehaviour
         if(Flashlight_PRO.instance.is_enabled == true)
         {
             Flashlight_PRO.instance.StartCoroutine(Flashlight_PRO.instance.FlashlightOnOff());
-            SaveManager.instance.activeSave.hasFlashlight = false;
         }
+        SaveManager.instance.activeSave.hasFlashlight = false;
     }
 }

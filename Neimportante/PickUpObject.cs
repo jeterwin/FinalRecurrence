@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 public class PickUpObject : MonoBehaviour
 {
-    public GameObject myHands; //reference to your hands/the position where you want your object to go
-    GameObject ObjectIwantToPickUp; // the gameobject onwhich you collided with
+    public GameObject myHands;
+    GameObject ObjectIwantToPickUp;
     Vector3 originalPos;
     Quaternion originalRotation;
-    bool hasItem; // a bool to see if you have an item in your hand
+    private MeshCollider objectPickedCollider;
+    bool hasItem;
 
     public Fps_Script playerScript;
     public PostProcessProfile profile;
@@ -28,34 +29,29 @@ public class PickUpObject : MonoBehaviour
         ObjectIwantToPickUp = this.gameObject;
         originalPos = ObjectIwantToPickUp.transform.position;
         originalRotation = ObjectIwantToPickUp.transform.rotation;
+        objectPickedCollider = GetComponent<MeshCollider>();
     }
  
     public void Pickup()
     {
         if(hasItem == false)
         {
-        hasItem = true;
+            objectPickedCollider.isTrigger = true;
             DoF = profile.GetSetting<DepthOfField>();
             DoF.active = true;
-        //ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = true;
             StartCoroutine(LerpPositionTo(myHands.transform.position, 0.7f));
-        //ObjectIwantToPickUp.transform.position = myHands.transform.position; // sets the position of the object to your hand position
-        //ObjectIwantToPickUp.transform.parent = myHands.transform; //makes the object become a child of the parent so that it moves with the hands
-        playerScript.canMove = false;
-        itemAnimator.Play(FadeInAnimName, 0, 0.0f);
+            playerScript.canMove = false;
+            itemAnimator.Play(FadeInAnimName, 0, 0.0f);
         }
     }
     public void DropItem()
     {
         if (hasItem == true)
         {
+            objectPickedCollider.isTrigger = false;
             DoF = profile.GetSetting<DepthOfField>();
             DoF.active = false;
-            //ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false; // make the rigidbody work again
-            //ObjectIwantToPickUp.transform.rotation = originalRotation;
-            //        ObjectIwantToPickUp.transform.parent = null; // make the object no be a child of the hands
             StartCoroutine(LerpPositionBack(originalPos, 0.7f));
-            //ObjectIwantToPickUp.transform.position = originalPos;
             ObjectIwantToPickUp.transform.rotation = originalRotation;
             hasItem = false;
             playerScript.canMove = true;
@@ -72,6 +68,7 @@ public class PickUpObject : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+        hasItem = true;
         transform.position = targetPosition;
     }
     IEnumerator LerpPositionBack(Vector3 targetPosition, float duration)
@@ -92,17 +89,7 @@ public class PickUpObject : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Q))
             {
-                DoF = profile.GetSetting<DepthOfField>();
-                DoF.active = false;
-                //ObjectIwantToPickUp.GetComponent<Rigidbody>().isKinematic = false; // make the rigidbody work again
-                //ObjectIwantToPickUp.transform.rotation = originalRotation;
-                //        ObjectIwantToPickUp.transform.parent = null; // make the object no be a child of the hands
-                StartCoroutine(LerpPositionBack(originalPos, 0.7f));
-                //ObjectIwantToPickUp.transform.position = originalPos;
-                ObjectIwantToPickUp.transform.rotation = originalRotation;
-                hasItem = false;
-                playerScript.canMove = true;
-                itemAnimator.Play(FadeOutAnimName, 0, 0.0f);
+                DropItem();
             }
             h = 1.0f * Input.GetAxis("Mouse X");
             v = 1.0f * Input.GetAxis("Mouse Y");

@@ -27,7 +27,7 @@ public class Subtitles : MonoBehaviour
     void Start()
     {
         textBox = GetComponent<TextMeshProUGUI>();
-        StartCoroutine(Sequence1());
+        playableDirector.Play();
         if (SettingsMenu.instance.subDec == true)
             textBox.enabled = true;
         else

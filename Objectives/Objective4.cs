@@ -19,7 +19,7 @@ public class Objective4 : MonoBehaviour
     {
         if (SaveManager.instance.hasLoaded)
         {
-            if (SaveManager.instance.activeSave.objective2 == false)
+            if (SaveManager.instance.activeSave.objective4 == false)
             {
                 if (other.gameObject.tag == "Player" && hasPlayed == false)
                 {
@@ -27,7 +27,7 @@ public class Objective4 : MonoBehaviour
                     currentObjectiveText.text = text;
                     StartCoroutine(disable());
                     GameManager.instance.activeSave.currentObjective = text;
-                    GameManager.instance.activeSave.objective2 = true;
+                    GameManager.instance.activeSave.objective4 = true;
                     //SaveManager.instance.Save();
                 }
             }

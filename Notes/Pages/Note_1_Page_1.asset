@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Note_1_Page_1
   m_EditorClassIdentifier: 
   type: 0
-  text: "\t13th May 2000, 2 years ago, there was a disastrous sight to be seen on
-    Shepherd's Hill, where three children, Steven Brook, Charley Rolland and Elias
-    Otto, went missing near a local park. They were unsupervised and there were no
-    witnesses at the scene, the neighbours had claimed to have been away from home
-    at that moment. The kidnapper was very careful not to leave any clues behind,
-    making the search a hidrance for the police."
+  text: "\tTwo years ago today, 13th May 1999, there was a disastrous sight to be
+    seen on Rosebud Avenue, where three children, Steven Brook, Charley Rolland and
+    Elias Otto, all went missing from the same area. The police found out that the
+    first victim, Steven Brook, was kidnapped at midnight while Elias and Charley
+    went missing in the morning. They were unsupervised and there were no witnesses
+    at the scene, the neighbours had claimed to have been away from home at that
+    moment. The kidnapper was very careful not to leave any clues behind, making
+    the search a hidrance for the police."
   texture: {fileID: 0}
   useSubscript: 1
   displayLines: 1

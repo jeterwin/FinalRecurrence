@@ -28,6 +28,7 @@ public class Interactable : MonoBehaviour
     public Collider collision;
     public GameObject batteryCanvas;
     public AudioSource flashlightAudio;
+    private GameObject player1;
 
     public Animator animator;
     public string animationName;
@@ -40,6 +41,7 @@ public class Interactable : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        player1 = GameObject.Find("CMvcam2");
     }
    public void EndLevel1()
    {
@@ -62,17 +64,7 @@ public class Interactable : MonoBehaviour
         director.Play();
         vcam.Priority = 12;
         Fps_Script.instance.enabled = false;
-        //GameObject.Find("LeaveDoor").GetComponent<Interactable>().enabled = false;
-        //crosshair.SetActive(false);
-        //crosshair1.SetActive(false);
-        //Fps_Script.instance.canMove = false;
-        //Fps_Script.instance.canRotate = false;
-        //animator.Play(animationName);
-        //yield return new WaitForSeconds(2f);
-        //PauseMenu.instance.canPause = false;
-        //SaveManager.instance.activeSave.hasFlashlight = false;
-        //SaveManager.instance.activeSave.level = 3;
-        //InGameLevelLoader.instance.LoadLevelWithoutAudio(3);
+        player1.GetComponent<HeadBop>().enabled = false;
         yield return null;
     }
     IEnumerator animationLMFAO()

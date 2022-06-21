@@ -56,7 +56,7 @@ public class SaveManager : MonoBehaviour
 
         if (System.IO.File.Exists(dataPath + "/" + "save1" + ".save"))
         {
-            Debug.Log("sters");
+
             File.Delete(dataPath + "/" + "save1" + ".save");
         }
     }
@@ -99,7 +99,10 @@ public class SaveData
     public bool checkpoint4;
     public bool checkpoint5;
     public bool checkpoint6;
-
+    public bool checkpoint7;
+    public bool checkpoint8;
+    public bool checkpoint9;
+    public bool checkpoint10;
     //Cate baterii trebe
     public bool battery1;
     public bool battery2;
@@ -127,7 +130,10 @@ public class SaveData
     public bool note8;
     public bool note9;
     public bool note10;
-
+    public bool note11;
+    public bool note12;
+    public bool note13;
+    public bool note14;
     public bool placedFuse;
 
     public int batteries;
@@ -151,6 +157,11 @@ public class SaveData
     public bool objective3;
     public bool objective4;
     public bool objective5;
+    public bool objective6;
+    public bool objective7;
+    public bool objective8;
+    public bool objective9;
+    public bool objective10;
 
     public bool monologue1;
     public bool monologue2;
@@ -162,4 +173,9 @@ public class SaveData
     public bool monologue8;
     public bool monologue9;
     public bool monologue10;
+    public bool monologue11;
+    public bool monologue12;
+    public bool monologue13;
+    public bool monologue14;
+    public bool monologue15;
 }

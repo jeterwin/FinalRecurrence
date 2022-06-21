@@ -13,14 +13,7 @@ MonoBehaviour:
   m_Name: Note_3_Page_1
   m_EditorClassIdentifier: 
   type: 0
-  text: "\tA transparent silhouette was rowing along the lake, waving towards the
-    unknown. There is an unbearable putrid smell coming from the person paddling
-    the canoe, everything that could seem off, did. The night already fell across
-    the watery grey coulds, it was just a matter of time before the rain came in
-    pouring, hovering the wide forest. No person would ever visit this gloomy place,
-    be it day or night, moreover spend their life living in this lifeless, accursed
-    woodland. Ironic enough, it felt as something alive was keeping its eyes locked
-    onto you. With all these in mind, you are not alone. Mansion 1 : 2458."
+  text: "\tMansion 1 : 2458."
   texture: {fileID: 0}
   useSubscript: 1
   displayLines: 1

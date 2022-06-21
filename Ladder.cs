@@ -4,38 +4,30 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour
 {
+    public static Ladder instance;
     public GameObject playerObject;
     public bool canClimb = false;
-    public float speed = 1f;
-
-
+    public float speed = 2f;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == playerObject)
+        if (other.gameObject.tag == "Player")
         {
             canClimb = true;
+            Fps_Script.instance.walkingSpeed = speed;
+            Fps_Script.instance.runningSpeed = speed;
+            Stamina.instance.enabled = false;
         }
     }
 
-        private void OnTriggerExit(Collider other1)
-        {
-            if (other1.gameObject == playerObject)
-            {
-                canClimb = false;
-            }
-        }
-    private void Update()
+    private void OnTriggerExit(Collider other1)
     {
-        if (canClimb)
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                playerObject.transform.position = new Vector3(0, 1, 0) * Time.deltaTime * speed;
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                playerObject.transform.position = new Vector3(0, -1, 0) * Time.deltaTime * speed;
-            }
-        }
+        canClimb = false;
+        Fps_Script.instance.walkingSpeed = Stamina.instance.normalWalk;
+        Fps_Script.instance.runningSpeed = Stamina.instance.normalSprint;
+        Stamina.instance.enabled = true;
     }
 }

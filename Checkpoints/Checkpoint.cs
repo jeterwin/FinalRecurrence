@@ -34,6 +34,11 @@ public class Checkpoint : MonoBehaviour
                 SaveManager.instance.activeSave.canOpenInventory = true;
                 SaveManager.instance.activeSave.hasFlashlight = true;
                 SaveManager.instance.activeSave.passedStory = true;
+                SaveManager.instance.activeSave.objective1 = GameManager.instance.activeSave.objective1;
+                SaveManager.instance.activeSave.objective2 = GameManager.instance.activeSave.objective2;
+                SaveManager.instance.activeSave.objective3 = GameManager.instance.activeSave.objective3;
+                SaveManager.instance.activeSave.objective4 = GameManager.instance.activeSave.objective4;
+                SaveManager.instance.activeSave.objective5 = GameManager.instance.activeSave.objective5;
                 SaveManager.instance.activeSave.level = 3;
                 SaveManager.instance.activeSave.chapter = 1;
                 SaveManager.instance.hasLoaded = true;

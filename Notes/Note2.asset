@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec203aae96a42244ba17a02a85f269b, type: 3}
   m_Name: Note2
   m_EditorClassIdentifier: 
-  label: 'Shepherd''s Hills : Prologue'
+  label: Happy Hearts Orphan Home
   pages:
   - {fileID: 11400000, guid: 8c313a26712976b418d18aa3515d57be, type: 2}
