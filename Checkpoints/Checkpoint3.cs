@@ -27,6 +27,7 @@ public class Checkpoint3 : MonoBehaviour
                 GameManager.instance.respawnPoint = other.transform.position;
                 SaveManager.instance.activeSave.respawnPosition = other.transform.position;
                 SaveManager.instance.activeSave.checkpoint4 = true;
+                SaveManager.instance.activeSave.placedFuse = GameManager.instance.activeSave.placedFuse;
                 SaveManager.instance.activeSave.currentObjective = GameManager.instance.activeSave.currentObjective;
                 SaveManager.instance.activeSave.batteries = Flashlight_PRO.instance.batteries;
                 //SaveManager.instance.activeSave.medicines = HealthSystem.instance.DrugsAmount;
@@ -69,6 +70,11 @@ public class Checkpoint3 : MonoBehaviour
                 SaveManager.instance.activeSave.battery3 = GameManager.instance.activeSave.battery3;
                 SaveManager.instance.activeSave.battery4 = GameManager.instance.activeSave.battery4;
                 SaveManager.instance.activeSave.battery5 = GameManager.instance.activeSave.battery5;
+                SaveManager.instance.activeSave.battery6 = GameManager.instance.activeSave.battery6;
+                SaveManager.instance.activeSave.battery7 = GameManager.instance.activeSave.battery7;
+                SaveManager.instance.activeSave.battery8 = GameManager.instance.activeSave.battery8;
+                SaveManager.instance.activeSave.battery9 = GameManager.instance.activeSave.battery9;
+                SaveManager.instance.activeSave.battery10 = GameManager.instance.activeSave.battery10;
                 //Dialogues
                 SaveManager.instance.activeSave.monologue1 = GameManager.instance.activeSave.monologue1;
                 SaveManager.instance.activeSave.monologue2 = GameManager.instance.activeSave.monologue2;

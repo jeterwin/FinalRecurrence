@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 using TMPro;
-public class Subtitles15 : MonoBehaviour
+using UnityEngine.Playables;
+public class Subtitles17 : MonoBehaviour
 {
     public TextMeshProUGUI textBox;
     public PlayableDirector playableDirector;
     private void Start()
     {
-        if (SaveManager.instance.activeSave.monologue15 == true)
+        if (SaveManager.instance.activeSave.monologue17 == true)
             this.gameObject.SetActive(false);
     }
     private void Update()
@@ -19,11 +19,18 @@ public class Subtitles15 : MonoBehaviour
         else
             textBox.enabled = false;
     }
-    public void startCutscene()
+    private void OnTriggerEnter(Collider other)
     {
-        playableDirector.Play();
-        GameManager.instance.activeSave.monologue15 = true;
+        if (GameManager.instance.activeSave.monologue17 == false)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                playableDirector.Play();
+                GameManager.instance.activeSave.monologue17 = true;
+            }
+        }
     }
+
     IEnumerator Sequence1()
     {
         playableDirector.Play();

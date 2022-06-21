@@ -69,6 +69,11 @@ public class Checkpoint2 : MonoBehaviour
                 SaveManager.instance.activeSave.battery3 = GameManager.instance.activeSave.battery3;
                 SaveManager.instance.activeSave.battery4 = GameManager.instance.activeSave.battery4;
                 SaveManager.instance.activeSave.battery5 = GameManager.instance.activeSave.battery5;
+                SaveManager.instance.activeSave.battery6 = GameManager.instance.activeSave.battery6;
+                SaveManager.instance.activeSave.battery7 = GameManager.instance.activeSave.battery7;
+                SaveManager.instance.activeSave.battery8 = GameManager.instance.activeSave.battery8;
+                SaveManager.instance.activeSave.battery9 = GameManager.instance.activeSave.battery9;
+                SaveManager.instance.activeSave.battery10 = GameManager.instance.activeSave.battery10;
                 //Dialogues
                 SaveManager.instance.activeSave.monologue1 = GameManager.instance.activeSave.monologue1;
                 SaveManager.instance.activeSave.monologue2 = GameManager.instance.activeSave.monologue2;
@@ -91,6 +96,8 @@ public class Checkpoint2 : MonoBehaviour
                 SaveManager.instance.activeSave.objective3 = GameManager.instance.activeSave.objective3;
                 SaveManager.instance.activeSave.objective4 = GameManager.instance.activeSave.objective4;
                 SaveManager.instance.activeSave.objective5 = GameManager.instance.activeSave.objective5;
+
+                SaveManager.instance.activeSave.placedFuse = GameManager.instance.activeSave.placedFuse;
                 //saveGame.Play("SavingGame");
                 StartCoroutine(disable());
                 SaveManager.instance.Save();

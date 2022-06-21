@@ -30,10 +30,7 @@ public class Interactor1 : MonoBehaviour
         {
             if(hit.collider.GetComponent<Interactable>() != false)
             {
-                if(interactable == null)
-                {
-                    interactable = hit.collider.GetComponent<Interactable>();
-                }
+                interactable = hit.collider.GetComponent<Interactable>();
                 if(interactable.interactIcon != null)
                 {
                     crosshair.enabled = true;

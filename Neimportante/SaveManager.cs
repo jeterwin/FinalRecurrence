@@ -109,6 +109,11 @@ public class SaveData
     public bool battery3;
     public bool battery4;
     public bool battery5;
+    public bool battery6;
+    public bool battery7;
+    public bool battery8;
+    public bool battery9;
+    public bool battery10;
 
     public bool medicine1;
     public bool medicine2;
@@ -178,4 +183,9 @@ public class SaveData
     public bool monologue13;
     public bool monologue14;
     public bool monologue15;
+    public bool monologue16;
+    public bool monologue17;
+    public bool monologue18;
+    public bool monologue19;
+    public bool monologue20;
 }
