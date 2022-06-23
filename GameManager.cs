@@ -46,7 +46,12 @@ public class GameManager : MonoBehaviour
             respawnPoint = SaveManager.instance.activeSave.respawnPosition;
             Fps_Script.instance.transform.position = respawnPoint;
             Flashlight_PRO.instance.batteries = SaveManager.instance.activeSave.batteries;
-            //HealthSystem.instance.DrugsAmount = SaveManager.instance.activeSave.medicines;
+            if(HealthSystem.instance != null)
+            {
+                HealthSystem.instance.DrugsAmount = SaveManager.instance.activeSave.medicines;
+                HealthSystem.instance.sanityValue = SaveManager.instance.activeSave.sanitySystemSaved;
+            }
+
             //Sa se salveze sanityu
             batteries = SaveManager.instance.activeSave.batteries;
         }

@@ -21,7 +21,7 @@ public class Subtitles1 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(SaveManager.instance.activeSave.monologue1 == false)
+        if(GameManager.instance.activeSave.monologue1 == false)
         {
             if (other.gameObject.tag == "Player")
             {

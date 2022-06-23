@@ -142,6 +142,7 @@ public class SaveData
     public bool placedFuse;
 
     public int batteries;
+    public float sanitySystemSaved;
     public int medicines;
     public string currentObjective;
 

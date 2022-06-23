@@ -30,8 +30,9 @@ public class Checkpoint6 : MonoBehaviour
                 SaveManager.instance.activeSave.placedFuse = GameManager.instance.activeSave.placedFuse;
                 SaveManager.instance.activeSave.currentObjective = GameManager.instance.activeSave.currentObjective;
                 SaveManager.instance.activeSave.batteries = Flashlight_PRO.instance.batteries;
-                //SaveManager.instance.activeSave.medicines = HealthSystem.instance.DrugsAmount;
                 //Medicine
+                SaveManager.instance.activeSave.medicines = HealthSystem.instance.DrugsAmount;
+                SaveManager.instance.activeSave.sanitySystemSaved = HealthSystem.instance.sanityValue;
                 SaveManager.instance.activeSave.medicine1 = GameManager.instance.activeSave.medicine1;
                 SaveManager.instance.activeSave.medicine2 = GameManager.instance.activeSave.medicine2;
                 SaveManager.instance.activeSave.medicine3 = GameManager.instance.activeSave.medicine3;
@@ -91,12 +92,22 @@ public class Checkpoint6 : MonoBehaviour
                 SaveManager.instance.activeSave.monologue13 = GameManager.instance.activeSave.monologue13;
                 SaveManager.instance.activeSave.monologue14 = GameManager.instance.activeSave.monologue14;
                 SaveManager.instance.activeSave.monologue15 = GameManager.instance.activeSave.monologue15;
+                SaveManager.instance.activeSave.monologue16 = GameManager.instance.activeSave.monologue16;
+                SaveManager.instance.activeSave.monologue17 = GameManager.instance.activeSave.monologue17;
+                SaveManager.instance.activeSave.monologue18 = GameManager.instance.activeSave.monologue18;
+                SaveManager.instance.activeSave.monologue19 = GameManager.instance.activeSave.monologue19;
+                SaveManager.instance.activeSave.monologue20 = GameManager.instance.activeSave.monologue20;
                 //Objectives
                 SaveManager.instance.activeSave.objective1 = GameManager.instance.activeSave.objective1;
                 SaveManager.instance.activeSave.objective2 = GameManager.instance.activeSave.objective2;
                 SaveManager.instance.activeSave.objective3 = GameManager.instance.activeSave.objective3;
                 SaveManager.instance.activeSave.objective4 = GameManager.instance.activeSave.objective4;
                 SaveManager.instance.activeSave.objective5 = GameManager.instance.activeSave.objective5;
+                SaveManager.instance.activeSave.objective6 = GameManager.instance.activeSave.objective6;
+                SaveManager.instance.activeSave.objective7 = GameManager.instance.activeSave.objective7;
+                SaveManager.instance.activeSave.objective8 = GameManager.instance.activeSave.objective8;
+                SaveManager.instance.activeSave.objective9 = GameManager.instance.activeSave.objective9;
+                SaveManager.instance.activeSave.objective10 = GameManager.instance.activeSave.objective10;
                 //saveGame.Play("SavingGame");
                 StartCoroutine(disable());
                 SaveManager.instance.Save();

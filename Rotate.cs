@@ -11,6 +11,7 @@ public class Rotate : MonoBehaviour
 
     private int numberShown;
 
+    public AudioSource audioSource;
     private void Start()
     {
         coroutineAllowed = true;
@@ -25,7 +26,7 @@ public class Rotate : MonoBehaviour
     private IEnumerator RotateWheel()
     {
         coroutineAllowed = false;
-
+        audioSource.Play();
         for (int i = 0; i <= 11; i++)
         {
             transform.Rotate(0f, 3f, 0f);

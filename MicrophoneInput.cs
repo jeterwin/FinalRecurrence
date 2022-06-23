@@ -2,17 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Audio;
-
+using UnityEngine.Events;
 [RequireComponent(typeof(AudioSource))]
 public class MicrophoneInput : MonoBehaviour
 {
-	public float minThreshold = 0;
+	public UnityEvent @event;
+	bool hasPlayed = false;
 	public float frequency = 0.0f;
 	public int audioSampleRate;
 	public string microphone;
 	public FFTWindow fftWindow;
 	public Dropdown micDropdown;
-	public Slider thresholdSlider;
 	public Slider volumeSlider;
 	public AudioMixerGroup mixerGroupMicrophone, mixerGroupMaster;
 
@@ -38,21 +38,17 @@ public class MicrophoneInput : MonoBehaviour
 			}
 			options.Add(device);
 		}
+        if(options.Count != 0)
 		microphone = options[PlayerPrefsManager.GetMicrophone()];
-		minThreshold = PlayerPrefsManager.GetThreshold();
 
-		//add mics to dropdown
 		micDropdown.AddOptions(options);
 		micDropdown.onValueChanged.AddListener(delegate {
 			micDropdownValueChangedHandler(micDropdown);
 		});
 
-		//thresholdSlider.onValueChanged.AddListener(delegate {
-			//thresholdValueChangedHandler(thresholdSlider);
-		//});
-		//Sterge astea 3 ^ cand ii pt jumpscare
 		//initialize input with default mic
-		UpdateMicrophone();
+		if (options.Count != 0)
+			UpdateMicrophone();
 	}
 
 	void UpdateMicrophone()
@@ -86,18 +82,18 @@ public class MicrophoneInput : MonoBehaviour
 
     private void Update()
     {
-		//GetAveragedVolume();
+		if(GetAveragedVolume() >= 60 && hasPlayed == false)
+        {
+			@event.Invoke();
+			Debug.Log("cam tare");
+			hasPlayed = true;
+        }
 
 	}
     public void micDropdownValueChangedHandler(Dropdown mic)
 	{
 		microphone = options[mic.value];
 		UpdateMicrophone();
-	}
-
-	public void thresholdValueChangedHandler(Slider thresholdSlider)
-	{
-		minThreshold = thresholdSlider.value;
 	}
 
 	public float GetAveragedVolume()
@@ -113,26 +109,4 @@ public class MicrophoneInput : MonoBehaviour
 		return a; /// 256;
 	}
 
-	public float GetFundamentalFrequency()
-	{
-		float fundamentalFrequency = 0.0f;
-		float[] data = new float[samples];
-		audioSource.GetSpectrumData(data, 0, fftWindow);
-		float s = 0.0f;
-		int i = 0;
-		for (int j = 1; j < samples; j++)
-		{
-			if (data[j] > minThreshold) // volumn must meet minimum threshold
-			{
-				if (s < data[j])
-				{
-					s = data[j];
-					i = j;
-				}
-			}
-		}
-		fundamentalFrequency = i * audioSampleRate / samples;
-		frequency = fundamentalFrequency;
-		return fundamentalFrequency;
-	}
 }

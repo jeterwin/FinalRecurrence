@@ -16,6 +16,7 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audiomixer;
     public Slider musicSlider;
     public Slider SFXSlider;
+    public Slider DialogueSlider;
     public Slider Sensitivity;
     [Space]
     [Header("Graphics")]
@@ -225,6 +226,11 @@ public class SettingsMenu : MonoBehaviour
             audiomixer.SetFloat("SFXvolume", Mathf.Log10(PlayerPrefs.GetFloat("SFXvolume")) * 20);
             SFXSlider.value = PlayerPrefs.GetFloat("SFXvolume");
         }
+        if (PlayerPrefs.HasKey("Dialoguevolume"))
+        {
+            audiomixer.SetFloat("Dialoguevolume", Mathf.Log10(PlayerPrefs.GetFloat("Dialoguevolume")) * 20);
+            DialogueSlider.value = PlayerPrefs.GetFloat("Dialoguevolume");
+        }
         //Fullscreen
         if (PlayerPrefs.HasKey("isFullscreen"))
         {
@@ -390,6 +396,12 @@ public class SettingsMenu : MonoBehaviour
     {
         audiomixer.SetFloat("SFXvolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("SFXvolume", volume);
+        PlayerPrefs.Save();
+    }
+    public void SetDialogueVolume(float volume)
+    {
+        audiomixer.SetFloat("Dialoguevolume", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("Dialoguevolume", volume);
         PlayerPrefs.Save();
     }
     public void SetQuality(int qualityIndex)

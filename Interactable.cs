@@ -6,6 +6,7 @@ using UnityEngine.Playables;
 using Cinemachine;
 public class Interactable : MonoBehaviour
 {
+    public UnityEvent @event;
     public static Interactable instance;
     public UnityEvent pressE;
     public UnityEvent pressQ;
@@ -19,7 +20,9 @@ public class Interactable : MonoBehaviour
 
     //End level interactable door
     //public AudioSource cantLeaveYet;
+    [Header("Leaving Variables")]
     public GameObject cantLeaveYetCanvas;
+    public AudioSource cantLeaveYetAudio;
 
     //Pickup flashlight
     public GameObject crosshair;
@@ -62,6 +65,7 @@ public class Interactable : MonoBehaviour
     IEnumerator leaveLevel()
     {
         director.Play();
+        @event.Invoke();
         vcam.Priority = 12;
         Fps_Script.instance.enabled = false;
         player1.GetComponent<HeadBop>().enabled = false;
@@ -70,6 +74,7 @@ public class Interactable : MonoBehaviour
     IEnumerator animationLMFAO()
     {
         cantLeaveYetCanvas.SetActive(true);
+        cantLeaveYetAudio.Play();
         yield return new WaitForSeconds(7f);
         cantLeaveYetCanvas.SetActive(false);
         canInteract = true;

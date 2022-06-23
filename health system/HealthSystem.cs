@@ -6,13 +6,10 @@ using UnityEngine.Events;
 public class HealthSystem : MonoBehaviour
 {
     #region
-    public float maxHealthValue = 100;
-    public float minHealthValue = 1;
-    public float myValue = 20;
-    public float ValueAdd = 20;
     public static HealthSystem instance;
-    float changePerSecond;
-    public float timeToChange = 15;
+    public float maxHealthValue = 100;
+    public float sanityValue = 20;
+    public float ValueAdd = 20;
     public int DrugsAmount;
     public Image IconImage;
     public UnityEvent IfValue0_Event;
@@ -20,24 +17,25 @@ public class HealthSystem : MonoBehaviour
     #endregion 
     public void Start()
     {
-        changePerSecond = (minHealthValue - maxHealthValue) / timeToChange;
-        IconImage.fillAmount = maxHealthValue;
+        IconImage.fillAmount = sanityValue;
     }
     private void Awake()
     {
         instance = this;
     }
-
+    public void Jumpscare(float minusSanity)
+    {
+        sanityValue -= minusSanity;
+    }
     public void Update()
     {
-        //myValue = Mathf.Clamp(myValue + changePerSecond * Time.deltaTime, minHealthValue, maxHealthValue);
         if (Input.GetKey(KeyCode.H) && DrugsAmount > 0)
         {
-            myValue += ValueAdd;
+            sanityValue += ValueAdd;
             DrugsAmount -= 1;
         }
-        IconImage.fillAmount = myValue / 100;
-        if (myValue < 30)
+        IconImage.fillAmount = sanityValue / 100;
+        if (sanityValue < 30)
         {
             IfValue0_Event.Invoke();
         }
