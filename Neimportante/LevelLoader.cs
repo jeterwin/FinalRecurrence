@@ -34,6 +34,8 @@ public class LevelLoader : MonoBehaviour
     private float progressAnimationMultiplier = 1f;
     public void NewGame()
     {
+        //If the player presses the new game button, we will check if there was a saved game data to start with
+        //If there was, delete that data and start the game normally
         SaveManager.instance.DeleteSaveData1();
         StartCoroutine(LoadAsynchronously(1));
 

@@ -18,6 +18,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
+        //Changing the priority will make the camera x gradually move to camera y over time or instantly
         frame1_cam.Priority = 1;
         frame2_cam.Priority = 0;
     }

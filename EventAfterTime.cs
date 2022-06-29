@@ -13,6 +13,7 @@ public class EventAfterTime : MonoBehaviour
     }
     public void InvokeEvents()
     {
+        //Call the specified functions after a period of time
         Invoke("InvEv", time);
     }
 }

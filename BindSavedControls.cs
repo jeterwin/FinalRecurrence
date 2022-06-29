@@ -12,6 +12,7 @@ public class BindSavedControls : MonoBehaviour
     public Text DText;
     private void Awake()
     {
+        //Movement input actions
         m_Action = Fps_Script.instance.playerInputActions;
         UpdateDisplayText();
     }
@@ -22,6 +23,7 @@ public class BindSavedControls : MonoBehaviour
     }
     private void UpdateDisplayText()
     {
+        //If we already changed our settings we will load and change them along with thei corresponding text
         WText.text = m_Action.Player.Movement.GetBindingDisplayString(1);
         if (PlayerPrefs.HasKey("WKey"))
             WText.text = PlayerPrefs.GetString("WKey");

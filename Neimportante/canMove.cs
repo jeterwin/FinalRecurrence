@@ -10,6 +10,8 @@ public class canMove : MonoBehaviour
     private CharacterFootsteps characterFootsteps;
     private void Awake()
     {
+        //Find the character footsteps script on the player and enable it when the gameobject this script is attached
+        //to gets activated
         g = GameObject.Find("Player");
         characterFootsteps = g.GetComponent<CharacterFootsteps>();
     }

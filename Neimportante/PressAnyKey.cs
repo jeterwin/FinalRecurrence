@@ -6,14 +6,9 @@ public class PressAnyKey : MonoBehaviour
 {
     public CanvasGroup canvasGroup;
     private float elapsedTime;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        //When the player presses any button start the fade out coroutine
         if(Input.anyKeyDown)
         {
             StartCoroutine(DoFadeOut());
@@ -21,6 +16,9 @@ public class PressAnyKey : MonoBehaviour
     }
     IEnumerator DoFadeOut()
     {
+        //If the canvas group's alpha value is higher than 0 (visible on screen) keep reducing it until it finally becomes invisible
+        //over a period of time
+        //Also disable interactable and raycasts sso mouse clicks can go through the canvas
         while(canvasGroup.alpha > 0)
         {
             elapsedTime += Time.deltaTime;

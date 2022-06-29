@@ -22,8 +22,10 @@ public class ClockRotate1 : MonoBehaviour
     }
     public void Rotate1()
     {
+        //Don't allow the player to spam rotations
         if (coroutineAllowed)
             StartCoroutine(RotateWheel());
+        //Quick maths so we can figure the right time on the clock
         if (i <= 10)
             time = i + 2;
         else
@@ -33,7 +35,7 @@ public class ClockRotate1 : MonoBehaviour
     private IEnumerator RotateWheel()
     {
         coroutineAllowed = false;
-
+        //Rotate the wheel 30 degrees
         transform.Rotate(0f, 0f, 30f);
 
         if (i >= 12)
@@ -42,7 +44,6 @@ public class ClockRotate1 : MonoBehaviour
         }
         else
             i++;
-        //yield return new WaitForSeconds(0.01f);
 
         coroutineAllowed = true;
 

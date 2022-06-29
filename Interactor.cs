@@ -25,6 +25,9 @@ public class Interactor : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
+        //Draw a ray from the camera's position forwards and check if an object with the interactable script has been hit
+        //if yes, change the crosshair's image to the interactable's item one and call some functions if one of the
+        //four buttons specified are pressed
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out hit, 2.5f, interactableLayermask))
         {
             if (hit.collider.GetComponent<Interactable>() != false)
@@ -60,6 +63,9 @@ public class Interactor : MonoBehaviour
         }
         else
         {
+            //This shoots a ray to check for door colliders since I couldn't put this code with the normal interactor
+            //If an object hit has the name Back or Front then we know it's a door collider, therefore we will change
+            //the crosshair again
             Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             if (Physics.Raycast(ray.origin, ray.direction, out hit, 2.5f))
             {

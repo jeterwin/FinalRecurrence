@@ -18,6 +18,7 @@ public class CemeterySpawn : MonoBehaviour
     }
     public void Hello()
     {
+        if(PersonActive <= 9)
         Person[PersonActive].SetActive(true);
         PersonActive += 1;
 

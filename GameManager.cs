@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public SaveData activeSave;
     public Text currentObjectiveText;
     public Vector3 respawnPoint;
-
+    public GameObject sanityCanvas;
     public KeyCode jump { get; set; }
     public KeyCode forward { get; set; }
     public KeyCode backward { get; set; }
@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
         if(Fps_Script.instance != null)
         respawnPoint = Fps_Script.instance.transform.position;
 
+        //If the save loaded we will take some data out of the save and replace the amounts that are currently there with
+        //the ones inside the last save data
         if (SaveManager.instance.hasLoaded && SceneManager.GetActiveScene().buildIndex != 0)
         {
             activeSave = SaveManager.instance.activeSave;
@@ -51,8 +53,8 @@ public class GameManager : MonoBehaviour
                 HealthSystem.instance.DrugsAmount = SaveManager.instance.activeSave.medicines;
                 HealthSystem.instance.sanityValue = SaveManager.instance.activeSave.sanitySystemSaved;
             }
-
-            //Sa se salveze sanityu
+            if (SaveManager.instance.activeSave.hasReachedSanity == true)
+                sanityCanvas.SetActive(true);
             batteries = SaveManager.instance.activeSave.batteries;
         }
         else

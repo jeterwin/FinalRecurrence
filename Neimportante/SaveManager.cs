@@ -141,6 +141,7 @@ public class SaveData
     public bool note14;
     public bool placedFuse;
 
+    public bool hasReachedSanity;
     public int batteries;
     public float sanitySystemSaved;
     public int medicines;

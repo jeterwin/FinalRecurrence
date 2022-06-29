@@ -9,6 +9,7 @@ public class Subtitles1 : MonoBehaviour
     public PlayableDirector playableDirector;
     private void Update()
     {
+        //If the player stops the subtitles, we will de-activate the subtitle text that appears on-screen.
         if (SettingsMenu.instance.subDec == true)
             textBox.enabled = true;
         else
@@ -16,12 +17,14 @@ public class Subtitles1 : MonoBehaviour
     }
     private void Start()
     {
+        //If we already played this dialogue we will go ahead and de-activate it for resource purposes.
         if(SaveManager.instance.activeSave.monologue1 == true)
             this.gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(GameManager.instance.activeSave.monologue1 == false)
+        //If we didn't play this dialogue already, we will play it and save that we did.
+        if (GameManager.instance.activeSave.monologue1 == false)
         {
             if (other.gameObject.tag == "Player")
             {

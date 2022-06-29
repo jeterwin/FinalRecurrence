@@ -8,7 +8,7 @@ public class ChangeNote : MonoBehaviour
     public Page page;
     private void Start()
     {
-        //NoteSystem.AddNote(note.Label, note);
+        //Change the name and the text of a letter/note
         //note.Label = "text";
         //page.Text = "text";
     }

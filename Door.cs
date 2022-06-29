@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
-    public float ySensitivity = 300f;
-    public float frontOpenPosLimit = 45;
-    public float backOpenPosLimit = 45;
+    //Variables on how much and how fast the door can be opened
+    public float ySensitivity;
+    public float frontOpenPosLimit;
+    public float backOpenPosLimit;
 
     public GameObject frontDoorCollider;
     public GameObject backDoorCollider;
@@ -16,36 +17,34 @@ public class Door : MonoBehaviour
     float lastRot = 0;
     DoorCollision doorCollision = DoorCollision.NONE;
     public Image crosshair;
-    //Vector3 pos = new Vector3(-100, -100, 0);
     bool moveDoor = false;
     [Space]
     [Header("Audio")]
     public AudioSource closeDoor;
     public AudioClip openDoorSFX;
 
-
-    // Use this for initialization
     void Awake()
     {
         StartCoroutine(doorMover());
     }
-    // Update is called once per frame
     void Update()
     {
+        //Set a ray starting from the camera's middle
         Ray ray =  mainCamera.ViewportPointToRay(new Vector3(0.5f,0.5f,0f));
  
         if (Input.GetMouseButtonDown(0))
         {
             if(PauseMenu.IsGamePaused == true)
                 return;
-            //Debug.Log("Mouse down");
             RaycastHit hitInfo;
+            //Draw a ray from the ray's starting point forwards with a specified distance
             if (Physics.Raycast(ray.origin, ray.direction, out hitInfo, 2.5f))
             {
+                //If the object hit was either the front door collider or the back door collider play a quick door opening sound
+                //along with specifying which collision was hit
                 if (hitInfo.collider.gameObject == frontDoorCollider)
                 {
                     moveDoor = true;
-                    //Debug.Log("Front door hit");
                     doorCollision = DoorCollision.FRONT;
                     Fps_Script.instance.canRotate = false;
                     Fps_Script.instance.walkingSpeed = 1f;
@@ -56,7 +55,6 @@ public class Door : MonoBehaviour
                 else if (hitInfo.collider.gameObject == backDoorCollider)
                 {
                     moveDoor = true;
-                    //Debug.Log("Back door hit");
                     doorCollision = DoorCollision.BACK;
                     Fps_Script.instance.canRotate = false;
                     Fps_Script.instance.walkingSpeed = 1f;
@@ -73,8 +71,8 @@ public class Door : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            //Move at the normal speed after releasing the click
             moveDoor = false;
-            //Debug.Log("Mouse up");
             Fps_Script.instance.canRotate = true;
             Fps_Script.instance.walkingSpeed = 1.5f;
             Fps_Script.instance.runningSpeed = 2f;
@@ -89,25 +87,16 @@ public class Door : MonoBehaviour
             if (moveDoor)
             {
                 stoppedBefore = false;
-                //Debug.Log("Moving Door");
-                //yRot += Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
-                //Check if this is front door or back
+                //Rotate the door's local angles depending on the location and the mouse's Y axis
+                //And make sure the rotation doesn't go past the opening limit
                 if (doorCollision == DoorCollision.FRONT)
                 {
-                    //Debug.Log("Pull Down(PULL TOWARDS)");
                     yRot += -Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
                     yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
-                    //yRot = Mathf.Clamp(yRot, -frontOpenPosLimit, 0);
-                    //Debug.Log(yRot);
                     transform.localEulerAngles = new Vector3(0, yRot, 0);
-                    //transform.localEulerAngles = new Vector3(0, -yRot, 0);
                 }
                 else if (doorCollision == DoorCollision.BACK)
                 {
-                    //Debug.Log("Pull Up(PUSH AWAY)");
-                    //yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
-                    //Debug.Log(yRot);
-                    //transform.localEulerAngles = new Vector3(0, yRot, 0);
                     yRot += Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
                     yRot = Mathf.Clamp(yRot, 0, backOpenPosLimit);
                     transform.localEulerAngles = new Vector3(0, yRot, 0);
@@ -122,7 +111,6 @@ public class Door : MonoBehaviour
                         if (closeDoor != null)
                             closeDoor.Play();
                     stoppedBefore = true;
-                    //Debug.Log("Stopped Moving Door");
                 }
             }
 

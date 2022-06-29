@@ -22,6 +22,8 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         string path = Application.persistentDataPath + "/" + "save1" + ".save";
+        //If there is a saved game, change the button's text from New Game to Continue
+        //This is useless cuz I made another script that activates a button "Continue"
         if (File.Exists(path))
         {
             text.text = "Continue";
@@ -30,7 +32,7 @@ public class MainMenu : MonoBehaviour
         {
             text.text = "New Game";
         }
-
+        //Applies all saved slider values in the settings menu
         if (PlayerPrefs.HasKey("volume"))
         {
             audiomixer.SetFloat("volume", Mathf.Log10(PlayerPrefs.GetFloat("volume")) * 20);

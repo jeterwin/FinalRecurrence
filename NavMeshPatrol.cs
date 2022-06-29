@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class NavMeshPatrol : MonoBehaviour
 {
-
+    //Variables
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;

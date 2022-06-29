@@ -13,6 +13,7 @@ public class batteryCount : MonoBehaviour
     }
     public void UpdateBatteries()
     {
+        //Call this function to update the current batteries text
         textBox.text = Flashlight_PRO.instance.batteries + "x";
     }
 }

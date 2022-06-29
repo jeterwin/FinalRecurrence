@@ -26,6 +26,7 @@ public class ChangePostProcessVolume : MonoBehaviour
     {
         if (canTrigger)
         {
+            //Lateral effect for flashback
             newVal = Random.Range(0.1f, 1);
             chromaticAberration1.intensity.value = newVal;
         }
@@ -36,6 +37,8 @@ public class ChangePostProcessVolume : MonoBehaviour
     }
     public IEnumerator goTo1()
     {
+        //Change towards the new post processing settings for the flashback
+        //Make the new volume global and activate it over time
         newVolume.isGlobal = true;
         float time = 0;
         while (time < duration)
@@ -48,6 +51,7 @@ public class ChangePostProcessVolume : MonoBehaviour
     }
     public IEnumerator comeTo1()
     {
+        //Change towards the old post processing settings for the flashback
         float time = 0;
         while (time < duration)
         {
@@ -56,6 +60,7 @@ public class ChangePostProcessVolume : MonoBehaviour
             @event_after.Invoke();
             yield return null;
         }
+        //Make the new volume local and de-activate it
         newVolume.weight = 0;
         newVolume.isGlobal = false;
         this.gameObject.SetActive(false);

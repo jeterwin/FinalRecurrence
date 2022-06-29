@@ -49,9 +49,12 @@ public class EnemyAiTutorial : MonoBehaviour
         if (playerInAttackRange && playerInSightRange)
         {
             @event.Invoke();
+            if(AttackImg != null)
             AttackImg.gameObject.SetActive(true);
             Invoke("RespawnPlayerM", 1.5f);
+            if(Audio != null)
             Audio.enabled = true;
+            if(AttackAnimatiomPlay != null)
             AttackAnimatiomPlay.Play(AttackAnimationName);
            
         }
@@ -132,9 +135,12 @@ public class EnemyAiTutorial : MonoBehaviour
     }
     public void RespawnPlayerM()
     {
-
+        if(CloseChase != null)
+        {
         CloseChase.enabled = true;
         CloseChase.gameObject.GetComponent<Animator>().Play("CloseChaseImg");
+        }
+        if(AttackImg != null)
         AttackImg.gameObject.SetActive(false);
     }
     public void ChangesightRange()

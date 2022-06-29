@@ -19,7 +19,7 @@ public class Fps_Script : MonoBehaviour
     public Transform playerCamera;
     public Camera cam;
     public CinemachineVirtualCamera virtualCamera;
-    //public float lookSpeed = 2.0f;
+    //Maximum angles that the player can look up or down
     public float lookXLimit = 45.0f;
     public float height;
     public bool isRunning = false;
@@ -32,6 +32,7 @@ public class Fps_Script : MonoBehaviour
     [SerializeField] private Vector3 crouchingCenter = new Vector3(0, 0.5f, 0);
     [SerializeField] private Vector3 standingCenter = new Vector3(0, 0, 0);
     public bool isCrouching;
+    [Space]
     Vector3 forward, right;
     public CharacterController characterController;
     public Vector3 moveDirection = Vector3.zero;
@@ -47,7 +48,7 @@ public class Fps_Script : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerInputActions = new PlayerInputActions();
 
-        //Get bindings 
+        //Set and get default key bindings
         string W = "<Keyboard>/" + PlayerPrefs.GetString("WKey", "W");
         playerInputActions.Player.Movement.ApplyBindingOverride(1, new InputBinding { overridePath = W });
         string S = "<Keyboard>/" + PlayerPrefs.GetString("SKey", "S");
@@ -126,10 +127,6 @@ public class Fps_Script : MonoBehaviour
                 mouseLook.LookRotation(transform, virtualCamera.transform);
             else
                 mouseLook.LookRotation(transform, cam.transform);
-            //rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            //rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            //playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            //transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
         }
     }

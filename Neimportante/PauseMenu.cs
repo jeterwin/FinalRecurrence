@@ -25,6 +25,8 @@ public class PauseMenu : MonoBehaviour
     private float progressAnimationMultiplier = 0.25f;
     void Update()
     {
+        //If ESC or the Options button (on joysticks) is pressed, check if the game is paused or not:
+        //if it is : resume / if it isn't : pause
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             if (IsGamePaused)
@@ -35,6 +37,8 @@ public class PauseMenu : MonoBehaviour
             {
                 if (canPause == true)
                 {
+                    //If you are able to pause (you are not allowed to pause during cutscenes) and you are currently reading
+                    //a note inside the note system, de-activate the note system, get the note off the screen and pause the game
                     NoteSystem.instance.CloseNote(true);
                     NoteSystem.instance.Close(true);
                     if(NoteSystem.instance.usingNotesSystem)
@@ -51,6 +55,9 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
+        //Let the audio listener catch sounds, make the cursor invisible and unlock it from the middle of the screen
+        //de-activate the pause menu and the settings menu (in case the player is in the settings menu) let time run normal again
+        //and let the player move freely
         AudioListener.volume = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -62,6 +69,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void ResumeInMainMenu()
     {
+        //Well, all of the above but reversed basically, and in the main menu
         //AudioListener.volume = 1f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -73,6 +81,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Pause()
     {
+        //Well, all of the above but reversed basically
         AudioListener.volume = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -88,18 +97,27 @@ public class PauseMenu : MonoBehaviour
     }
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
+        //Load a certain scene (after its given index) and don't allow the scene to be activated until it was loaded
+        //also de-activate the main menu and activate the loading screen ui
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         operation.allowSceneActivation = false;
         mainMenu.SetActive(false);
         loadingScreen.SetActive(true);
 
+        //While the operation isn't done
         while (!operation.isDone)
         {
+            //Divide it by 0.9 so it can return "1" as a value;
             targetValue = operation.progress / 0.9f;
 
+            //Make the current loading value go from it's current one to the target one in a specified time and update
+            //the slider with how much the level has loaded
             currentValue = Mathf.MoveTowards(currentValue, targetValue, progressAnimationMultiplier * Time.deltaTime);
             slider.value = currentValue;
 
+            //Once the slider value reached 1 (the scene is fully loaded), display the "Press Space to continue" text
+            //and play its animation (the breathing one)
+            //If the player presses space, activate the next scene / level.
             if (slider.value == 1)
             {
                 text.SetActive(true);
@@ -111,10 +129,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-
-
     public void QuitGame()
     {
+        //Yes
         Application.Quit();
     }
 }

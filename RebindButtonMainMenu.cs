@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 public class RebindButtonMainMenu : MonoBehaviour
 {
-
+    //Action number in input action map
     public string BindingIndex;
     public Text text;
     bool waitingForKey;
@@ -39,8 +39,7 @@ public class RebindButtonMainMenu : MonoBehaviour
 		 */
         keyEvent = Event.current;
 
-        //Executes if a button gets pressed and
-        //the user presses a key
+        //Executes if a button gets pressed and the user presses a key
         if (keyEvent.isKey && waitingForKey)
         {
             newKey = keyEvent.keyCode; //Assigns newKey to the key user presses
@@ -87,11 +86,11 @@ public class RebindButtonMainMenu : MonoBehaviour
         switch(i)
         {
             case 1:
-                PlayerPrefs.SetString("WKey", newKey.ToString());
+                PlayerPrefs.SetString("WKey", newKey.ToString()); //Save the pressed key to W/A/S/D
                 PlayerPrefs.Save();
                 break;
             case 2:
-                PlayerPrefs.SetString("DKey", newKey.ToString());
+                PlayerPrefs.SetString("AKey", newKey.ToString());
                 PlayerPrefs.Save();
                 break;
             case 3:

@@ -20,12 +20,14 @@ public class HeadBop : MonoBehaviour
         {
             //Player is moving
             timer += Time.deltaTime * walkingBobbingSpeed;
+            //Modify the Y axis (up down) with the bopping amount so it seems like your head is bopping
             transform.localPosition = new Vector3(transform.localPosition.x, defaultPosY + Mathf.Sin(timer) * bobbingAmount, transform.localPosition.z);
         }
         else
         {
             //Idle
             timer = 0;
+            //Go back to normal Y position when not moving
             transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(transform.localPosition.y, defaultPosY, Time.deltaTime * walkingBobbingSpeed), transform.localPosition.z);
         }
     }

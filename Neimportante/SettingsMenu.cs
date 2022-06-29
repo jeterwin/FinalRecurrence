@@ -51,6 +51,7 @@ public class SettingsMenu : MonoBehaviour
     {
         instance = this;
         //Quality
+        //If there was a quality level saved, restore its settings based on its preset
         if (PlayerPrefs.HasKey("qualityLevel"))
         {
         switch(PlayerPrefs.GetInt("qualityLevel"))
@@ -152,7 +153,7 @@ public class SettingsMenu : MonoBehaviour
             subDec = false;
         }
         //Sensitivity
-        Sensitivity.value = PlayerPrefs.GetFloat("sens", 1f);
+        Sensitivity.value = PlayerPrefs.GetFloat("sens", 2f);
         if (Fps_Script.instance)
             Fps_Script.instance.mouseLook.XSensitivity = Fps_Script.instance.mouseLook.YSensitivity = PlayerPrefs.GetFloat("sens", 1f);
         //Fps_Script.instance.lookSpeed = PlayerPrefs.GetFloat("sens", 1f);

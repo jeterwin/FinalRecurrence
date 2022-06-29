@@ -13,6 +13,7 @@ public class FadeObject : MonoBehaviour
     {
         canFade = false;
         obj = this.gameObject;
+        //Get the current object and its alpha material color and set it to 0
         alphaColor = obj.GetComponent<MeshRenderer>().material.color;
         alphaColor.a = 0;
     }
@@ -20,6 +21,7 @@ public class FadeObject : MonoBehaviour
     {
         if (canFade)
         {
+            //Go from the object's current color to the color specified in a certain amount of time
             obj.GetComponent<MeshRenderer>().material.color = Color.Lerp(obj.GetComponent<MeshRenderer>().material.color, alphaColor, timeToFade * Time.deltaTime);
         }
     }

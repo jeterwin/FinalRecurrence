@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.AI;
 public class RespawnChase : MonoBehaviour
-{
+{   //Variables
     #region Transforms
     public Transform Player;
     public Transform RespawnPoint;
@@ -17,7 +17,8 @@ public class RespawnChase : MonoBehaviour
     public AudioSource Audio;
     public AudioSource Audio1;
     public UnityEvent Event;
-
+    public Transform CameraPlayer;
+    //We use the function to calculate the position and rotation of the player and the enemy for respawn
     public void RespawanPlayer()
     {
         Event.Invoke();
@@ -49,5 +50,12 @@ public class RespawnChase : MonoBehaviour
         Player.position = new Vector3(RespawnPoint.position.x, RespawnPoint.position.y, RespawnPoint.position.z);
         Player.rotation = Quaternion.EulerAngles(RespawnPoint.rotation.x, RespawnPoint.rotation.y, RespawnPoint.rotation.z);
 
+    }
+    public void RespawanOPlayerSiCamera()
+    {
+
+        Player.position = new Vector3(RespawnPoint.position.x, RespawnPoint.position.y, RespawnPoint.position.z);
+        Player.rotation = Quaternion.EulerAngles(RespawnPoint.rotation.x, RespawnPoint.rotation.y, RespawnPoint.rotation.z);
+        CameraPlayer.rotation = Quaternion.EulerAngles(CameraPlayer.rotation.x, RespawnPoint.rotation.y, CameraPlayer.rotation.z);
     }
 }

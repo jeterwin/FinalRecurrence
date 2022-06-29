@@ -18,7 +18,7 @@ public class Medicine4 : MonoBehaviour
     {
         HealthSystem.instance.DrugsAmount += 1;
         GameManager.instance.activeSave.medicine4 = true;
+        HealthSystem.instance.pillAmount.text = HealthSystem.instance.DrugsAmount + "x";
         Destroy(this.gameObject);
-        //batteryCount.instance.UpdateBatteries();
     }
 }

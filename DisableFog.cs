@@ -6,7 +6,7 @@ public class DisableFog : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
             RenderSettings.fog = false;
     }
 
@@ -15,4 +15,15 @@ public class DisableFog : MonoBehaviour
         if (other.gameObject.tag == "Player")
             RenderSettings.fog = true;
     }
+    public void DisableFogFunction()
+    {
+        RenderSettings.fog = false;
+
+    }
+    public void EnableFogFunction()
+    {
+        RenderSettings.fog = true;
+
+    }
 }
+

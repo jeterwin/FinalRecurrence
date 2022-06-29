@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    //public AudioClip defaultAmbience;
+    //The default ambience and the new one
     public AudioSource defaultAmbience;
     public AudioSource defaultAmbience1;
 
-    //private AudioSource track01, track02;
     private bool isPlayingTrack01;
 
     public static AudioManager instance;
@@ -20,8 +19,6 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-        //track01 = gameObject.AddComponent<AudioSource>();
-        //track02 = gameObject.AddComponent<AudioSource>();
         isPlayingTrack01 = true;
 
         SwapTrack(defaultAmbience, 0.3f, 0);
@@ -36,6 +33,7 @@ public class AudioManager : MonoBehaviour
 
     public void ReturnToDefault()
     {
+        //Stop playing the current ambient sound and fade over the new default one
         SwapTrack(defaultAmbience, 0.3f, 0);
     }
 
@@ -43,10 +41,9 @@ public class AudioManager : MonoBehaviour
     {
         float timeToFade = 3f;
         float timeElapsed = 0;
+        //Depending on the playing ambient, we will fade one or the other in a specified amount of time towards a specified volume
         if(isPlayingTrack01)
         {
-            //track02.clip = newClip;
-            //track02.Play();
             defaultAmbience = newClip;
             defaultAmbience.Play();
 

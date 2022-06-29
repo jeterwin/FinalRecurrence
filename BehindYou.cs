@@ -5,7 +5,9 @@ using UnityEngine;
 public class BehindYou : MonoBehaviour
 {
     public Transform other;
+    //Object to be invisible when you turn
     public GameObject toBeVisible;
+    //In case a script should get disabled after you turn
     public AheadOfYou ndScript;
     public bool isInvisible = false;
 

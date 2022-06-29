@@ -12,10 +12,17 @@ public class RebindButton : MonoBehaviour
     private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
     private void Awake()
     {
+        //If there is a player (this won't work in levels where the script isn't present), get the movement input actions
+        //and enable them
         if(Fps_Script.instance != null)
         m_Action = Fps_Script.instance.playerInputActions;
         m_Action.Player.Movement.Enable();
     }
+    //These functions are used on an on click event on buttons, once clicked the button's text will change to "..."
+    //and whatever key the player presses next will be saved and rebinded for the current action inside the player movement
+    //input action map
+    //If they press ESC the action will be canceled and the button won't be rebinded
+    //The same happens if they press a key that is already binded to a different action.
     public void FunctionW()
     {
         m_Action.Player.Movement.Disable();
