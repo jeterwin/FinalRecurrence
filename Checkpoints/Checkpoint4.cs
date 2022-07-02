@@ -76,6 +76,11 @@ public class Checkpoint4 : MonoBehaviour
                 SaveManager.instance.activeSave.battery8 = GameManager.instance.activeSave.battery8;
                 SaveManager.instance.activeSave.battery9 = GameManager.instance.activeSave.battery9;
                 SaveManager.instance.activeSave.battery10 = GameManager.instance.activeSave.battery10;
+                SaveManager.instance.activeSave.battery11 = GameManager.instance.activeSave.battery11;
+                SaveManager.instance.activeSave.battery12 = GameManager.instance.activeSave.battery12;
+                SaveManager.instance.activeSave.battery13 = GameManager.instance.activeSave.battery13;
+                SaveManager.instance.activeSave.battery14 = GameManager.instance.activeSave.battery14;
+                SaveManager.instance.activeSave.battery15 = GameManager.instance.activeSave.battery15;
                 //Dialogues
                 SaveManager.instance.activeSave.monologue1 = GameManager.instance.activeSave.monologue1;
                 SaveManager.instance.activeSave.monologue2 = GameManager.instance.activeSave.monologue2;

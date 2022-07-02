@@ -54,6 +54,11 @@ public class Stamina : MonoBehaviour
                 player.walkingSpeed = normalSprint;
                 player.isRunning = true;
             }
+            else
+            {
+                player.walkingSpeed = normalWalk;
+                player.isRunning = false;
+            }
             if(Input.GetKeyUp(GameManager.instance.shift))
             {
                 player.walkingSpeed = normalWalk;

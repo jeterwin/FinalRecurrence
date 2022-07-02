@@ -114,6 +114,11 @@ public class SaveData
     public bool battery8;
     public bool battery9;
     public bool battery10;
+    public bool battery11;
+    public bool battery12;
+    public bool battery13;
+    public bool battery14;
+    public bool battery15;
 
     public bool medicine1;
     public bool medicine2;

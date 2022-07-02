@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Rendering.PostProcessing;
 public class SettingsMenu : MonoBehaviour
 {
@@ -45,6 +46,8 @@ public class SettingsMenu : MonoBehaviour
     private Grain grain;
     private Bloom bloom;
     public bool subDec = true;
+    public TextMeshProUGUI subtitleText;
+    public TextMeshProUGUI subtitleText1;
     Resolution[] resolutions;
 
         private void Awake()
@@ -146,11 +149,19 @@ public class SettingsMenu : MonoBehaviour
         {
             subtitles.isOn = true;
             subDec = true;
+            if(subtitleText != null)
+                subtitleText.enabled = true;
+            if(subtitleText1 != null)
+                subtitleText1.enabled = true;
         }
         else
         {
             subtitles.isOn = false;
             subDec = false;
+            if (subtitleText != null)
+                subtitleText.enabled = false;
+            if (subtitleText1 != null)
+                subtitleText1.enabled = false;
         }
         //Sensitivity
         Sensitivity.value = PlayerPrefs.GetFloat("sens", 2f);
@@ -178,7 +189,7 @@ public class SettingsMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("isBloom"))
         {
             bloom = profile.GetSetting<Bloom>();
-            if (PlayerPrefs.GetInt("isBloom") == 1)
+            if (PlayerPrefs.GetInt("isBloom", 0) == 1)
                 bloom.enabled.value = true;
             else
                 bloom.enabled.value = false;
@@ -693,6 +704,7 @@ public class SettingsMenu : MonoBehaviour
         //if(Subtitles.instance)
             //{
             subDec = true;
+            subtitleText.enabled = true;
             //Subtitles.instance.textBox.enabled = true;
             //}
         }
@@ -702,6 +714,7 @@ public class SettingsMenu : MonoBehaviour
             //if(Subtitles.instance)
             //{
             subDec = false;
+            subtitleText.enabled = false;
             //Subtitles.instance.textBox.enabled = false;
             //}
         }

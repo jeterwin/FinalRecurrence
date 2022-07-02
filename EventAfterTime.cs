@@ -5,6 +5,8 @@ using UnityEngine.Events;
 public class EventAfterTime : MonoBehaviour
 {
     public UnityEvent Event;
+    public UnityEvent Event1;
+    public UnityEvent Event2;
     public float time;
 
     public void InvEv()
@@ -15,5 +17,13 @@ public class EventAfterTime : MonoBehaviour
     {
         //Call the specified functions after a period of time
         Invoke("InvEv", time);
+    }
+    public void InvEv1()
+    {
+        Event1.Invoke();
+    }
+    public void InvEv2()
+    {
+        Event2.Invoke();
     }
 }

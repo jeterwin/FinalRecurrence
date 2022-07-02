@@ -100,7 +100,6 @@ public class Fps_Script : MonoBehaviour
         {
             moveDirection.y = movementDirectionY;
         }
-
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
         // as an acceleration (ms^-2)
@@ -157,6 +156,16 @@ public class Fps_Script : MonoBehaviour
 
 
         isCrouching = !isCrouching;
+        if (isCrouching == true)
+        {
+            Stamina.instance.canRun = false;
+            GetComponent<CharacterFootsteps>().enabled = false;
+        }
+        else
+        {
+            Stamina.instance.canRun = true;
+            GetComponent<CharacterFootsteps>().enabled = true;
+        }
     }
 
 }
