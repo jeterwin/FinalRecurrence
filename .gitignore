@@ -1,4 +1,5 @@
-
+Final Recurrence\Assets\Animations
+\Assets\Animations
 app.info
 boot.config
 globalgamemanagers
@@ -128,3 +129,5 @@ obj/Release/UnityEngine.InputSystem.Samples.UIvsGameInput.csproj.AssemblyReferen
 Packages/manifest.json
 Packages/packages-lock.json
 UnityEditor/SceneManagement/PrefabStage.cs
+*.meta
+*.meta
