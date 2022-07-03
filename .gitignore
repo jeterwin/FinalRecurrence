@@ -131,3 +131,305 @@ Packages/packages-lock.json
 UnityEditor/SceneManagement/PrefabStage.cs
 *.meta
 *.meta
+Animations/0Thing.controller.meta
+Animations/AniDorClF1.anim.meta
+Animations/AniDorClF2.anim.meta
+Animations/AnimationCanavas.anim.meta
+Animations/AnimDoorFurnitureChase.anim.meta
+Animations/animtxt.anim.meta
+Animations/Audio.anim.meta
+Animations/Audio.controller.meta
+Animations/BatteryCanvas.anim.meta
+Animations/BatteryCanvas.controller.meta
+Animations/BatteryCanvasInstant.anim.meta
+Animations/BatterySlider.anim.meta
+Animations/bd1.anim.meta
+Animations/BG 1.controller.meta
+Animations/BG.anim.meta
+Animations/BG.controller.meta
+Animations/BG2.anim.meta
+Animations/BildAnima.anim.meta
+Animations/bl1.anim.meta
+Animations/boat.anim.meta
+Animations/Brickhouse_Door_A (4) 1.controller.meta
+Animations/Brickhouse_Door_A (4).controller.meta
+Animations/BrickHouse_Door_A.controller.meta
+Animations/brute.controller.meta
+Animations/Cabin2_Door_A.controller.meta
+Animations/Cabin3.controller.meta
+Animations/CabinDisable.controller.meta
+Animations/Camera.anim.meta
+Animations/Camera.controller.meta
+Animations/CameraWell.anim.meta
+Animations/CanavasMicrophone.anim.meta
+Animations/CanavasMicrophoneFadeIn.anim.meta
+Animations/CantLeaveCanvas.controller.meta
+Animations/CantLeaveYetAnimation.anim.meta
+Animations/Canvas 1.controller.meta
+Animations/Canvas 2.controller.meta
+Animations/Canvas.controller.meta
+Animations/CanvasAnimations.anim.meta
+Animations/CanvasItemPickedUp.controller.meta
+Animations/CanvasObjective.controller.meta
+Animations/CanvasObjectiveOff.anim.meta
+Animations/CanvasObjectiveOn.anim.meta
+Animations/Ch11_nonPBR.controller.meta
+Animations/Ch45_nonPBR.controller.meta
+Animations/ChangeAmbientMusicOnCollision (1).controller.meta
+Animations/Chase2person.anim.meta
+Animations/ChaseEsc2.anim.meta
+Animations/ChaseEsc2Close.anim.meta
+Animations/ClassroomDoor1Close.anim.meta
+Animations/ClassroomDoor1Open.anim.meta
+Animations/ClassroomDoor1Sudden.anim.meta
+Animations/ClassroomDoor2Close.anim.meta
+Animations/ClassroomDoor2Open.anim.meta
+Animations/ClassroomDoor2Sudden.anim.meta
+Animations/CloseChaseImg.anim.meta
+Animations/CloseChaseImg.controller.meta
+Animations/CloseDoor.anim.meta
+Animations/CloseDoorVila1.anim.meta
+Animations/CM vcam11 1.controller.meta
+Animations/CM vcam11.controller.meta
+Animations/CM vcam13.controller.meta
+Animations/CM vcam14.controller.meta
+Animations/CM vcam18.controller.meta
+Animations/CM vcam19.controller.meta
+Animations/CM vcam5.controller.meta
+Animations/cmAnima.anim.meta
+Animations/CmVcam1.anim.meta
+Animations/cmvcam2.anim.meta
+Animations/Crow.anim.meta
+Animations/Cutscene.anim.meta
+Animations/CutSceneDream.meta
+Animations/CutSceneDream/Bg.anim.meta
+Animations/CutSceneDream/BrickHouse_Door_A.controller.meta
+Animations/CutSceneDream/Car (2).controller.meta
+Animations/CutSceneDream/Car.anim.meta
+Animations/CutSceneDream/Car.controller.meta
+Animations/CutSceneDream/Car2.anim.meta
+Animations/CutSceneDream/CarR.anim.meta
+Animations/CutSceneDream/CarTimeline.playable.meta
+Animations/CutSceneDream/Ch.controller.meta
+Animations/CutSceneDream/ChM.anim.meta
+Animations/CutSceneDream/CM vcam1.controller.meta
+Animations/CutSceneDream/Cm1.anim.meta
+Animations/CutSceneDream/CutSceneTimeline.playable.meta
+Animations/CutSceneDream/Door.anim.meta
+Animations/CutSceneDream/ExitCar.controller.meta
+Animations/CutSceneDream/Flick.playable.meta
+Animations/CutSceneDream/Flicker.anim.meta
+Animations/CutSceneDream/Image 1.controller.meta
+Animations/CutSceneDream/Image.controller.meta
+Animations/CutSceneDream/Post.anim.meta
+Animations/CutSceneDream/PostProcessing.controller.meta
+Animations/CutSceneDream/Signal.meta
+Animations/CutSceneLevel2.meta
+Animations/CutSceneLevel2/CM vcam20.controller.meta
+Animations/CutSceneLevel2/CutSceneHolLabirintTimeline.playable.meta
+Animations/CutSceneLevel2/Ending1Timeline.playable.meta
+Animations/CutSceneLevel2/Ending1TranzitionTimeline.playable.meta
+Animations/CutSceneLevel2/FinalEnding1CollindersLightTimeline.playable.meta
+Animations/CutSceneLevel2/SignalLight.signal.meta
+Animations/CutSceneLevel2/VCam.anim.meta
+Animations/CutSceneStart.meta
+Animations/CutSceneStart/BG (1).controller.meta
+Animations/CutSceneStart/Bgaa.anim.meta
+Animations/CutSceneStart/BgFadeIn.anim.meta
+Animations/CutSceneStart/Camera.anim.meta
+Animations/CutSceneStart/CameraAnim.anim.meta
+Animations/CutSceneStart/CM vcam1 1.controller.meta
+Animations/CutSceneStart/CM vcam1.controller.meta
+Animations/CutSceneStart/CutSceneTimelineMoto.playable.meta
+Animations/CutSceneStart/FadeOut.controller.meta
+Animations/CutSceneStart/I1.anim.meta
+Animations/DestroyCabin.anim.meta
+Animations/DisableLight.controller.meta
+Animations/DooorCEscClose1.anim.meta
+Animations/Door_1 1.controller.meta
+Animations/Door_1.controller.meta
+Animations/Door_R 1.controller.meta
+Animations/Door_R 2.controller.meta
+Animations/Door_R 3.controller.meta
+Animations/Door_R 4.controller.meta
+Animations/Door_R.controller.meta
+Animations/DoorCEsc1.anim.meta
+Animations/DoorCgase.anim.meta
+Animations/DoorChase1.controller.meta
+Animations/DoorChase2.controller.meta.anim.meta
+Animations/DoorChase2Close.anim.meta
+Animations/DoorClassroom.anim.meta
+Animations/DoorClassroom1.anim.meta
+Animations/DoorClassroomClose.anim.meta
+Animations/DoorEnding1.anim.meta
+Animations/DoorFinal.anim.meta
+Animations/DoorFinal1.anim.meta
+Animations/DoorOpenChase1Villa1.anim.meta
+Animations/DoorParent (1).controller.meta
+Animations/DoorParent.controller.meta
+Animations/DoorSlowOpening.anim.meta
+Animations/DragOpenedBox.anim.meta
+Animations/Drawers.meta
+Animations/Drawers/Drawer1Close.anim.meta
+Animations/Drawers/Drawer1Open.anim.meta
+Animations/Drawers/Drawer2Close.anim.meta
+Animations/Drawers/Drawer2Open.anim.meta
+Animations/Drawers/Drawer3Close.anim.meta
+Animations/Drawers/Drawer3Open.anim.meta
+Animations/Drawers/Drawer4Close.anim.meta
+Animations/Drawers/Drawer4Open.anim.meta
+Animations/Drawers/filing-cabinet-drawer (1).controller.meta
+Animations/Drawers/filing-cabinet-drawer (2).controller.meta
+Animations/Drawers/filing-cabinet-drawer (3).controller.meta
+Animations/Drawers/filing-cabinet-drawer 1.controller.meta
+Animations/Esc1Chase2.anim.meta
+Animations/EscapeChase2.anim.meta
+Animations/EscChase2.anim.meta
+Animations/eye.controller.meta
+Animations/FadeOutItemCanvas.anim.meta
+Animations/Flashback1.anim.meta
+Animations/Flashlight.anim.meta
+Animations/Flashlight.controller.meta
+Animations/FlashlightOn.anim.meta
+Animations/FlashOffForest.anim.meta
+Animations/FlashOnForest.anim.meta
+Animations/FlashTest.anim.meta
+Animations/FlashTestOff.anim.meta
+Animations/Folder nou.meta
+Animations/GameObject (1).controller.meta
+Animations/GameObject.controller.meta
+Animations/gate_left (1).controller.meta
+Animations/gate_left.controller.meta
+Animations/GateCimitir.anim.meta
+Animations/GateCimitirOn.anim.meta
+Animations/gatel1.anim.meta
+Animations/Grande EcheLle (2).controller.meta
+Animations/Health.anim.meta
+Animations/Image 1.controller.meta
+Animations/Image 2.controller.meta
+Animations/Image 3.controller.meta
+Animations/Image 4.controller.meta
+Animations/Image 5.controller.meta
+Animations/Image 6.controller.meta
+Animations/Image 7.controller.meta
+Animations/Image 8.controller.meta
+Animations/Image.controller.meta
+Animations/ImageAtttak.anim.meta
+Animations/ImageChase.anim.meta
+Animations/Intro.anim.meta
+Animations/ItemCanvas.anim.meta
+Animations/ItemCanvas.controller.meta
+Animations/JumpScare10.anim.meta
+Animations/JumpScare9.anim.meta
+Animations/JumpscareClown1.anim.meta
+Animations/LeaveLevel1.anim.meta
+Animations/Letter1.anim.meta
+Animations/Letter1.controller.meta
+Animations/Level1.controller.meta
+Animations/LevelLoader.controller.meta
+Animations/LighFinal.anim.meta
+Animations/LighFinalEnableLab.anim.meta
+Animations/LightAnima.anim.meta
+Animations/LightFinal1.anim.meta
+Animations/LightTranz1.anim.meta
+Animations/MainMenuCameraSetings.anim.meta
+Animations/MicrophoneCanvas.controller.meta
+Animations/minusSanity.anim.meta
+Animations/Moto.anim.meta
+Animations/New Animation.anim.meta
+Animations/NotUsingFlashlight.anim.meta
+Animations/Object070.controller.meta
+Animations/Object097.controller.meta
+Animations/Old Wooden Crate_vkgrchzga_Var1 1 (2).controller.meta
+Animations/p1.controller.meta
+Animations/PersonC.anim.meta
+Animations/PersonC.controller.meta
+Animations/PickedItemAnimation.anim.meta
+Animations/PickupItemCanvas.anim.meta
+Animations/PickupItemCanvas.controller.meta
+Animations/PlayerObj 1.controller.meta
+Animations/PlayerObj.controller.meta
+Animations/Point Light 1.controller.meta
+Animations/Point Light.controller.meta
+Animations/PointANim.anim.meta
+Animations/PostProcessing.controller.meta
+Animations/pp.anim.meta
+Animations/Prop_Chair_B 1.controller.meta
+Animations/Prop_Chair_B 2.controller.meta
+Animations/Prop_Chair_B.controller.meta
+Animations/Prop_Chair_B_Sa il lasi asa mare.controller.meta
+Animations/QuitAnimation.anim.meta
+Animations/QuitAnimationClose.anim.meta
+Animations/ReloadFlashlight.anim.meta
+Animations/Rock_B (2).controller.meta
+Animations/Rock_B.controller.meta
+Animations/Rocks1.anim.meta
+Animations/Running.anim.meta
+Animations/s1.anim.meta
+Animations/S2 (1).controller.meta
+Animations/SanityCanvasFadeIn.anim.meta
+Animations/SanitySystem.controller.meta
+Animations/SanitySystemAppear.anim.meta
+Animations/SanitySystemCanvas.controller.meta
+Animations/SanitySystemCanvasGroup.controller.meta
+Animations/SanitySystemFadeIn.anim.meta
+Animations/SanitySystemFadeOut.anim.meta
+Animations/SanitySystemTooltip 1.controller.meta
+Animations/SanitySystemTooltip.controller.meta
+Animations/SaveGame.anim.meta
+Animations/SaveGame.controller.meta
+Animations/SavingGame.anim.meta
+Animations/sc.anim.meta
+Animations/sc1.anim.meta
+Animations/sc2.anim.meta
+Animations/Scale.anim.meta
+Animations/Scaund.anim.meta
+Animations/UIRelated/PickedFlashlight.anim.meta
+Animations/UIRelated/PickedFlashlight.controller.meta
+health system/HealthSystem.cs
+Scale.anim.meta
+Scaund.anim.meta
+Settings.anim.meta
+SettingsBack.anim.meta
+Shake.anim.meta
+Shake1.anim.meta
+SkipAnimationOff.anim.meta
+SkipAnimationOn.anim.meta
+SkipCutscene.controller.meta
+soundSignal.signal.meta
+SplashIcon.anim.meta
+Stamina.anim.meta
+StaminaOff.anim.meta
+StaminaSlider.controller.meta
+StartAnim.playable.meta
+StartAnim0.anim.meta
+StartAnim1.anim.meta
+StartAnim1.controller.meta
+StartAnim2.anim.meta
+StartAnim2.controller.meta
+Steps.anim.meta
+Tcam.anim.meta
+Test.anim.meta
+Test1.anim.meta
+Test2.anim.meta
+Text (TMP) 1.controller.meta
+Text (TMP) 2.controller.meta
+Text (TMP).controller.meta
+Text.controller.meta
+TextBreathe.anim.meta
+TextLevel.anim.meta
+TextPuzzelTv.anim.meta
+TrajCam.anim.meta
+UIRelated.meta
+uploads_files_967049_m.controller.meta
+UsingFlashlight.anim.meta
+Viet boat1 (1).controller.meta
+Viet boat1.controller.meta
+Villa1_Door_A.controller.meta
+Wall_1_Corner_Inner.controller.meta
+Well.anim.meta
+well.controller.meta
+WellPlayer.anim.meta
+whiteclown_n_hallin@Start Walking (1) 1.controller.meta
+whiteclown_n_hallin@Start Walking (1).controller.meta
+whiteclown_n_hallin@Walking.fbx.meta
