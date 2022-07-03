@@ -17,6 +17,7 @@ public class HealthSystem : MonoBehaviour
     public UnityEvent IfValue1_Event;
     public PostProcessVolume newVolume;
     private ChromaticAberration chromaticAberration;
+    public Animator animator;
     private bool dangerouslyLow;
     #endregion 
     public void Start()
@@ -35,6 +36,7 @@ public class HealthSystem : MonoBehaviour
     public void Jumpscare(float minusSanity)
     {
         sanityValue -= minusSanity;
+        animator.Play("minusSanity");
     }
     public void Update()
     {
