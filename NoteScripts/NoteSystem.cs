@@ -89,7 +89,7 @@ public class NoteSystem : MonoBehaviour
     private bool readSubscript = false;
     private Sprite defaultPageTexture = null;
     public bool usingNotesSystem;
-
+    public Animator animator;
     #endregion
 
     #region Unity's default methods
@@ -118,11 +118,15 @@ public class NoteSystem : MonoBehaviour
                     Open();
                     openTabSound.clip = openTabSounds[UnityEngine.Random.Range(0, openTabSounds.Length)];
                     openTabSound.Play();
+                    if(SaveManager.instance.activeSave.hasReachedSanity == true)
+                        animator.Play("SanityCanvasFadeIn");
                     break;
                 case false:
                     Close(activeNote != null);
                     closeTabSound.clip = closeTabSounds[UnityEngine.Random.Range(0, closeTabSounds.Length)];
                     closeTabSound.Play();
+                    if (SaveManager.instance.activeSave.hasReachedSanity == true)
+                        animator.Play("SanityCanvasFadeOut");
                     break;
             }
         }
@@ -164,7 +168,8 @@ public class NoteSystem : MonoBehaviour
                 Fps_Script.instance.enabled = false;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
-                Time.timeScale = 0f;
+                Time.timeScale = 1f;
+                //Put the scale to 0 in case smth messes up
                 break;
         }
     }

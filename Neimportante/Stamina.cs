@@ -43,9 +43,9 @@ public class Stamina : MonoBehaviour
         //If the player releases the sprint button then change the player's speed to the normal speed
 
         //If the stamina hits 0 or below, change the moving speed to normal and start the coroutine to gain stamina
-        if(currentStamina > 0)
+        if (currentStamina > 0)
         {
-            if(Input.GetKey(GameManager.instance.shift) && characterController.isGrounded && Fps_Script.instance.isCrouching == false 
+            if (Input.GetKey(GameManager.instance.shift) && characterController.isGrounded && Fps_Script.instance.isCrouching == false
                 && Fps_Script.instance.canMove == true && Fps_Script.instance.moveDirection.x != 0 && canRun == true)
             {
                 UseStamina(0.25f);
@@ -59,7 +59,7 @@ public class Stamina : MonoBehaviour
                 player.walkingSpeed = normalWalk;
                 player.isRunning = false;
             }
-            if(Input.GetKeyUp(GameManager.instance.shift))
+            if (Input.GetKeyUp(GameManager.instance.shift))
             {
                 player.walkingSpeed = normalWalk;
                 player.isRunning = false;
@@ -77,7 +77,7 @@ public class Stamina : MonoBehaviour
     }
     public void UseStamina(float amount)
     {
-        if(currentStamina - amount >= -0.25)
+        if (currentStamina - amount >= -0.25)
         {
             //Reeduce the stamina and update the slider with the current stamina left
             currentStamina -= amount;
@@ -95,7 +95,7 @@ public class Stamina : MonoBehaviour
         //After waiting for x seconds, start regaining stamina and fade out the stamina bar off the player's screen
         yield return new WaitForSeconds(1.40f);
 
-        while(currentStamina < maxStamina)
+        while (currentStamina < maxStamina)
         {
             currentStamina += maxStamina / 60;
             staminaSlider.value = currentStamina;
@@ -103,5 +103,17 @@ public class Stamina : MonoBehaviour
             canPlay = true;
             yield return regenTick;
         }
+    }
+    public void ChangeSpeed(float newWalk)
+    {
+        normalWalk = newWalk;
+        player.walkingSpeed = newWalk;
+    }
+    public void StopSprint()
+    {
+        normalSprint = 0;
+        player.runningSpeed = 0;
+        staminaSlider.enabled = false;
+
     }
 }
