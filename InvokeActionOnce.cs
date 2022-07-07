@@ -15,4 +15,8 @@ public class InvokeActionOnce : MonoBehaviour
             hasPlayed = true;
         }
     }
+    public void CallFunction()
+    {
+        @event.Invoke();
+    }
 }

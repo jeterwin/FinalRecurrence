@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.PostProcessing;
 public class PickUpObject : MonoBehaviour
 {
+    public UnityEvent @event;
+    public UnityEvent LeftClickEvent;
+    public UnityEvent QEvent;
+    bool shouldTriggerEvent = true;
     //My hands aka the point where the object will get to
     public GameObject myHands;
     //Pretty explanatory
     GameObject ObjectIwantToPickUp;
     Vector3 originalPos;
     Quaternion originalRotation;
-    private MeshCollider objectPickedCollider;
+    private Collider objectPickedCollider;
     bool hasItem;
 
     //The player, the post profile and the depth of field that will be modified while the item is picked and rotated
@@ -23,7 +28,6 @@ public class PickUpObject : MonoBehaviour
     public string FadeOutAnimName;
    
     public float RotationSpeed = 5f;
-    public float speed = 1f;
     private float v,h;
 
     void Start()
@@ -33,6 +37,8 @@ public class PickUpObject : MonoBehaviour
         originalPos = ObjectIwantToPickUp.transform.position;
         originalRotation = ObjectIwantToPickUp.transform.rotation;
         objectPickedCollider = GetComponent<MeshCollider>();
+        if(objectPickedCollider == null)
+            objectPickedCollider = GetComponent<BoxCollider>();
     }
  
     public void Pickup()
@@ -40,8 +46,14 @@ public class PickUpObject : MonoBehaviour
         //If the player has no item in hand, make its collider a trigger so it doesn't accidentally push the player away,
         //activate it's depth of field settings, make the object go from its initial position to the position of your hands
         //over a period of time, make the player unable to move and play an animation which shows the player the rotation controls
-        if(hasItem == false)
+        if(shouldTriggerEvent == true)
         {
+            @event.Invoke();
+            shouldTriggerEvent = false;
+        }
+        if (hasItem == false)
+        {
+            LeftClickEvent.Invoke();
             objectPickedCollider.isTrigger = true;
             DoF = profile.GetSetting<DepthOfField>();
             DoF.active = true;
@@ -57,12 +69,12 @@ public class PickUpObject : MonoBehaviour
         //and make the rotation controls fade off the screen smoothly
         if (hasItem == true)
         {
+            QEvent.Invoke();
             objectPickedCollider.isTrigger = false;
             DoF = profile.GetSetting<DepthOfField>();
             DoF.active = false;
             StartCoroutine(LerpPositionBack(originalPos, 0.7f));
             ObjectIwantToPickUp.transform.rotation = originalRotation;
-            hasItem = false;
             playerScript.canMove = true;
             itemAnimator.Play(FadeOutAnimName, 0, 0.0f);
         }
@@ -70,6 +82,7 @@ public class PickUpObject : MonoBehaviour
     IEnumerator LerpPositionTo(Vector3 targetPosition, float duration)
     {
         //Simple lerp script
+        hasItem = true;
         float time = 0;
         Vector3 startPosition = ObjectIwantToPickUp.transform.position;
         while (time < duration)
@@ -78,7 +91,6 @@ public class PickUpObject : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-        hasItem = true;
         transform.position = targetPosition;
     }
     IEnumerator LerpPositionBack(Vector3 targetPosition, float duration)
@@ -91,6 +103,7 @@ public class PickUpObject : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+        hasItem = false;
         transform.position = targetPosition;
     }
     private void Update()
@@ -101,8 +114,8 @@ public class PickUpObject : MonoBehaviour
             {
                 DropItem();
             }
-            h = 1.0f * Input.GetAxis("Mouse X");
-            v = 1.0f * Input.GetAxis("Mouse Y");
+            h = RotationSpeed * Input.GetAxis("Mouse X");
+            v = RotationSpeed * Input.GetAxis("Mouse Y");
             transform.Rotate(0, h, v);
         }
     }

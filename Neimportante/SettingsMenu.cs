@@ -41,6 +41,7 @@ public class SettingsMenu : MonoBehaviour
     private int countRes = 0;
 
     public PostProcessProfile profile;
+    public PostProcessProfile DepthOfFieldProfile;
     private Vignette vignette;
     private MotionBlur motionBlur;
     private Grain grain;

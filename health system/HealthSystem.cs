@@ -19,14 +19,15 @@ public class HealthSystem : MonoBehaviour
     private ChromaticAberration chromaticAberration;
     public Animator animator;
     private bool dangerouslyLow;
+    public AudioSource takePillSound;
     #endregion 
     public void Start()
     {
         IconImage.fillAmount = sanityValue;
         //If the player reached the point where sanity is unlocked, change the sanity pill amount to the last
         //amount of pills they had, otherwise leave it at none
-        if(SaveManager.instance.activeSave.hasReachedSanity == true)
-        pillAmount.text = SaveManager.instance.activeSave.medicines + "x";
+        if (SaveManager.instance.activeSave.hasReachedSanity == true)
+            pillAmount.text = SaveManager.instance.activeSave.medicines + "x";
     }
     private void Awake()
     {
@@ -36,7 +37,8 @@ public class HealthSystem : MonoBehaviour
     public void Jumpscare(float minusSanity)
     {
         sanityValue -= minusSanity;
-        animator.Play("minusSanity");
+        if (animator != null)
+            animator.Play("minusSanity");
     }
     public void Update()
     {
@@ -46,6 +48,7 @@ public class HealthSystem : MonoBehaviour
         {
             sanityValue += ValueAdd;
             DrugsAmount -= 1;
+            takePillSound.Play();
         }
         IconImage.fillAmount = sanityValue / 100;
         if (sanityValue < 25)

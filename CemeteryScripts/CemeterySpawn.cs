@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public class CemeterySpawn : MonoBehaviour
 {
     public GameObject[] Person;
@@ -10,6 +10,7 @@ public class CemeterySpawn : MonoBehaviour
     public GameObject Image;
     public AudioSource HeartBeat;
     public GameObject letter;
+    public UnityEvent @event;
     IEnumerator EnablePerson()
     {
         Hello();
@@ -40,7 +41,8 @@ public class CemeterySpawn : MonoBehaviour
         {
             Image.SetActive(false);
             HeartBeat.Stop();
-            letter.SetActive(true);
+            //letter.SetActive(true);
+            @event.Invoke();
         }
     }
 

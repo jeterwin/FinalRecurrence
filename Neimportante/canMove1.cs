@@ -11,4 +11,14 @@ public class canMove1 : MonoBehaviour
         Fps_Script.instance.canMove = true;
         Fps_Script.instance.canRotate = true;
     }
+    public void disableMovement()
+    {
+        Fps_Script.instance.canMove = false;
+        Fps_Script.instance.canRotate = false;
+    }
+    public void enableMovement()
+    {
+        Fps_Script.instance.canMove = true;
+        Fps_Script.instance.canRotate = true;
+    }
 }

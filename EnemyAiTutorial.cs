@@ -27,11 +27,7 @@ public class EnemyAiTutorial : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-    /*private void Awake()
-    {
-        player = GameObject.Find("PlayerObj").transform;
-        agent = GetComponent<NavMeshAgent>();
-    }*/
+    public UnityEvent @eventEscapedChase, @eventChase;
     public Image AttackImg;
     public Image CloseChase;
     public AudioSource Audio;
@@ -63,6 +59,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private void Patroling()
     {
+        @eventEscapedChase.Invoke();
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -88,6 +85,7 @@ public class EnemyAiTutorial : MonoBehaviour
 
     private void ChasePlayer()
     {
+        @eventChase.Invoke();
         agent.SetDestination(player.position);
     }
 

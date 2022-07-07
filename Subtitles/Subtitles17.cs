@@ -19,21 +19,10 @@ public class Subtitles17 : MonoBehaviour
         else
             textBox.enabled = false;
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (GameManager.instance.activeSave.monologue17 == false)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                playableDirector.Play();
-                GameManager.instance.activeSave.monologue17 = true;
-            }
-        }
-    }
-
-    IEnumerator Sequence1()
+    public void playCutscene()
     {
         playableDirector.Play();
-        yield return null;
+        GameManager.instance.activeSave.monologue17 = true;
     }
+
 }

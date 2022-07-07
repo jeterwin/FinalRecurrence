@@ -86,6 +86,16 @@ public class Checkpoint1 : MonoBehaviour
                 SaveManager.instance.activeSave.monologue13 = GameManager.instance.activeSave.monologue13;
                 SaveManager.instance.activeSave.monologue14 = GameManager.instance.activeSave.monologue14;
                 SaveManager.instance.activeSave.monologue15 = GameManager.instance.activeSave.monologue15;
+                SaveManager.instance.activeSave.monologue16 = GameManager.instance.activeSave.monologue16;
+                SaveManager.instance.activeSave.monologue17 = GameManager.instance.activeSave.monologue17;
+                SaveManager.instance.activeSave.monologue18 = GameManager.instance.activeSave.monologue18;
+                SaveManager.instance.activeSave.monologue19 = GameManager.instance.activeSave.monologue19;
+                SaveManager.instance.activeSave.monologue20 = GameManager.instance.activeSave.monologue20;
+                SaveManager.instance.activeSave.monologue16 = GameManager.instance.activeSave.monologue21;
+                SaveManager.instance.activeSave.monologue17 = GameManager.instance.activeSave.monologue22;
+                SaveManager.instance.activeSave.monologue18 = GameManager.instance.activeSave.monologue23;
+                SaveManager.instance.activeSave.monologue19 = GameManager.instance.activeSave.monologue24;
+                SaveManager.instance.activeSave.monologue20 = GameManager.instance.activeSave.monologue25;
                 //Objectives
                 SaveManager.instance.activeSave.objective1 = GameManager.instance.activeSave.objective1;
                 SaveManager.instance.activeSave.objective2 = GameManager.instance.activeSave.objective2;

@@ -109,10 +109,10 @@ public class Stamina : MonoBehaviour
         normalWalk = newWalk;
         player.walkingSpeed = newWalk;
     }
-    public void StopSprint()
+    public void StopSprint(float newSprint)
     {
-        normalSprint = 0;
-        player.runningSpeed = 0;
+        normalSprint = newSprint;
+        player.runningSpeed = newSprint;
         staminaSlider.enabled = false;
 
     }

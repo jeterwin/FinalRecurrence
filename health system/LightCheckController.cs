@@ -40,8 +40,8 @@ public class LightCheckController : MonoBehaviour
                 LightLevel -= 259327;
                 LightLevel = LightLevel / colors.Length / 2; // /2
                 Light = Mathf.RoundToInt(LightLevel);
-                if (Light < 0 && Flashlight_PRO.instance.is_enabled == false)
-                    HealthSystem.instance.sanityValue -= 0.1f;
+                if (Light < 0 && Flashlight_PRO.instance.is_enabled == false && HealthSystem.instance.sanityValue > 0)
+                    HealthSystem.instance.sanityValue -= 0.5f;
             }
             yield return new WaitForSeconds(1f);
         }
