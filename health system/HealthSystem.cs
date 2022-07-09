@@ -15,7 +15,7 @@ public class HealthSystem : MonoBehaviour
     public Image IconImage;
     public UnityEvent IfValue0_Event;
     public UnityEvent IfValue1_Event;
-    public PostProcessVolume newVolume;
+    public PostProcessProfile newVolume;
     private ChromaticAberration chromaticAberration;
     public Animator animator;
     private bool dangerouslyLow;
@@ -28,11 +28,12 @@ public class HealthSystem : MonoBehaviour
         //amount of pills they had, otherwise leave it at none
         if (SaveManager.instance.activeSave.hasReachedSanity == true)
             pillAmount.text = SaveManager.instance.activeSave.medicines + "x";
+        chromaticAberration = newVolume.GetSetting<ChromaticAberration>();
     }
     private void Awake()
     {
         instance = this;
-        chromaticAberration = newVolume.profile.GetSetting<ChromaticAberration>();
+        //chromaticAberration = newVolume.profile.GetSetting<ChromaticAberration>();
     }
     public void Jumpscare(float minusSanity)
     {

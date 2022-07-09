@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Playables;
 using Footsteps;
 
 public class passedStory : MonoBehaviour
 {
+    public UnityEvent @event;
     public PlayableDirector director;
     public Animator animator;
     public GameObject changeAmbientGroup;
@@ -20,8 +22,7 @@ public class passedStory : MonoBehaviour
         else
         {
             //If they did, let them move and activate the rest that needs to be on screen.
-            Fps_Script.instance.canMove = true;
-            Fps_Script.instance.canRotate = true;
+            @event.Invoke();
             changeAmbientGroup.SetActive(true);
             animator.Play(batteryCanvas);
             PauseMenu.instance.canPause = true;

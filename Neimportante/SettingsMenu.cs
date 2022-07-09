@@ -21,6 +21,7 @@ public class SettingsMenu : MonoBehaviour
     public Slider Sensitivity;
     [Space]
     [Header("Graphics")]
+    public Slider brightnessSlider;
     public Dropdown graphics;
     public Dropdown resolutionDropdown;
     public Dropdown antialiasingDropdown;
@@ -41,7 +42,7 @@ public class SettingsMenu : MonoBehaviour
     private int countRes = 0;
 
     public PostProcessProfile profile;
-    public PostProcessProfile DepthOfFieldProfile;
+    private ColorGrading colorGrading;
     private Vignette vignette;
     private MotionBlur motionBlur;
     private Grain grain;
@@ -54,94 +55,103 @@ public class SettingsMenu : MonoBehaviour
         private void Awake()
     {
         instance = this;
+
+        //Reset DoF
+        profile.GetSetting<DepthOfField>().active = false;
+
+        //Brightness
+        colorGrading = profile.GetSetting<ColorGrading>();
+        colorGrading.postExposure.value = PlayerPrefs.GetFloat("brightness", 2);
+        brightnessSlider.value = PlayerPrefs.GetFloat("brightness", 2);
+
         //Quality
         //If there was a quality level saved, restore its settings based on its preset
         if (PlayerPrefs.HasKey("qualityLevel"))
         {
-        switch(PlayerPrefs.GetInt("qualityLevel"))
-        {
-            case 0:
-                {
-                    textureDropdown.value = 0; // Full res
-                    //PlayerPrefs.SetInt("texture", 0);
-                    QualitySettings.masterTextureLimit = 0; // Full res
+            switch(PlayerPrefs.GetInt("qualityLevel"))
+            {
+                case 0:
+                    {
+                        textureDropdown.value = 0; // Full res
+                        //PlayerPrefs.SetInt("texture", 0);
+                        QualitySettings.masterTextureLimit = 0; // Full res
 
-                    antialiasingDropdown.value = 0; //Disabled
-                    QualitySettings.antiAliasing = 0;
-                    //PlayerPrefs.SetInt("antiAliasing", 0);
+                        antialiasingDropdown.value = 0; //Disabled
+                        QualitySettings.antiAliasing = 0;
+                        //PlayerPrefs.SetInt("antiAliasing", 0);
 
-                    shadowsDropdown.value = 0;
-                    //PlayerPrefs.SetInt("shadows", 0);
-                    ChangeShadows(ShadowmaskMode.Shadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0); // Low
-                    QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
-                }
-                break;
-            case 1:
-                {
-                    textureDropdown.value = 0; // Full res
-                    //PlayerPrefs.SetInt("texture", 0);
-                    QualitySettings.masterTextureLimit = 0; // Full res
+                        shadowsDropdown.value = 0;
+                        //PlayerPrefs.SetInt("shadows", 0);
+                        ChangeShadows(ShadowmaskMode.Shadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0); // Low
+                        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
+                    }
+                    break;
+                case 1:
+                    {
+                        textureDropdown.value = 0; // Full res
+                        //PlayerPrefs.SetInt("texture", 0);
+                        QualitySettings.masterTextureLimit = 0; // Full res
 
-                    antialiasingDropdown.value = 0; //Disabled
-                    //PlayerPrefs.SetInt("antiAliasing", 0);
-                    QualitySettings.antiAliasing = 0;
+                        antialiasingDropdown.value = 0; //Disabled
+                        //PlayerPrefs.SetInt("antiAliasing", 0);
+                        QualitySettings.antiAliasing = 0;
 
-                    shadowsDropdown.value = 1;
-                    //PlayerPrefs.SetInt("shadows", 1);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0); // Low
-                    QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
-                }
-                break;
-            case 2:
-                {
-                    textureDropdown.value = 0; // Full res
-                    //PlayerPrefs.SetInt("texture", 0);
-                    QualitySettings.masterTextureLimit = 0; // Full res
+                        shadowsDropdown.value = 1;
+                        //PlayerPrefs.SetInt("shadows", 1);
+                        ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0); // Low
+                        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
+                    }
+                    break;
+                case 2:
+                    {
+                        textureDropdown.value = 0; // Full res
+                        //PlayerPrefs.SetInt("texture", 0);
+                        QualitySettings.masterTextureLimit = 0; // Full res
 
-                    antialiasingDropdown.value = 1; // 2x
-                    //PlayerPrefs.SetInt("antiAliasing", 1);
-                    QualitySettings.antiAliasing = 2;
+                        antialiasingDropdown.value = 1; // 2x
+                        //PlayerPrefs.SetInt("antiAliasing", 1);
+                        QualitySettings.antiAliasing = 2;
 
-                    shadowsDropdown.value = 2;
-                    //PlayerPrefs.SetInt("shadows", 2);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 100, 3, 2); // Low
-                    QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
-                }
-                break;
-            case 3:
-                {
-                    textureDropdown.value = 0; // Full res
-                    //PlayerPrefs.SetInt("texture", 0);
-                    QualitySettings.masterTextureLimit = 0; // Full res
+                        shadowsDropdown.value = 2;
+                        //PlayerPrefs.SetInt("shadows", 2);
+                        ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 100, 3, 2); // Low
+                        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
+                    }
+                    break;
+                case 3:
+                    {
+                        textureDropdown.value = 0; // Full res
+                        //PlayerPrefs.SetInt("texture", 0);
+                        QualitySettings.masterTextureLimit = 0; // Full res
 
-                    antialiasingDropdown.value = 2; // 4x
-                    //PlayerPrefs.SetInt("antiAliasing", 2);
-                    QualitySettings.antiAliasing = 4;
+                        antialiasingDropdown.value = 2; // 4x
+                        //PlayerPrefs.SetInt("antiAliasing", 2);
+                        QualitySettings.antiAliasing = 4;
 
-                    shadowsDropdown.value = 3;
-                    //PlayerPrefs.SetInt("shadows", 3);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 100, 3, 2); // Low
-                    QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
-                }
-                break;
-            case 4:
-                {
-                    textureDropdown.value = 0; // Full res
-                    //PlayerPrefs.SetInt("texture", 0);
-                    QualitySettings.masterTextureLimit = 0; // Full res
+                        shadowsDropdown.value = 3;
+                        //PlayerPrefs.SetInt("shadows", 3);
+                        ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 100, 3, 2); // Low
+                        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
+                    }
+                    break;
+                case 4:
+                    {
+                        textureDropdown.value = 0; // Full res
+                        //PlayerPrefs.SetInt("texture", 0);
+                        QualitySettings.masterTextureLimit = 0; // Full res
 
-                    antialiasingDropdown.value = 3; // 8x
-                    //PlayerPrefs.SetInt("antiAliasing", 3);
-                    QualitySettings.antiAliasing = 8;
+                        antialiasingDropdown.value = 3; // 8x
+                        //PlayerPrefs.SetInt("antiAliasing", 3);
+                        QualitySettings.antiAliasing = 8;
 
-                    shadowsDropdown.value = 4;
-                    //PlayerPrefs.SetInt("shadows", 4);
-                    ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 100, 3, 4); // Low
+                        shadowsDropdown.value = 4;
+                        //PlayerPrefs.SetInt("shadows", 4);
+                        ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 100, 3, 4); // Low
 
-                    QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
-                }
-                break;
-        }
+                        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
+                    }
+                    break;
+            }
             //QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
             graphics.value = PlayerPrefs.GetInt("qualityLevel");
         }
@@ -544,6 +554,15 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetInt("texture", 2);
         }
         PlayerPrefs.Save();
+    }
+    public void SetBrightness(float brightness)
+    {
+        //2.5 or 3f
+        colorGrading = profile.GetSetting<ColorGrading>();
+        var actualBrightness = Mathf.Clamp(brightness, 2, 2.5f);
+        brightnessSlider.value = actualBrightness;
+        colorGrading.postExposure.value = actualBrightness;
+        PlayerPrefs.SetFloat("brightness", actualBrightness);
     }
     public void SetShadows(int index1)
     {

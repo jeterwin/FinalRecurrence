@@ -16,7 +16,7 @@ public class PickUpObject : MonoBehaviour
     Vector3 originalPos;
     Quaternion originalRotation;
     private Collider objectPickedCollider;
-    bool hasItem;
+    bool hasItem, shouldPickUpMovement = true;
 
     //The player, the post profile and the depth of field that will be modified while the item is picked and rotated
     public Fps_Script playerScript;
@@ -55,6 +55,7 @@ public class PickUpObject : MonoBehaviour
         {
             LeftClickEvent.Invoke();
             objectPickedCollider.isTrigger = true;
+            shouldPickUpMovement = true;
             DoF = profile.GetSetting<DepthOfField>();
             DoF.active = true;
             StartCoroutine(LerpPositionTo(myHands.transform.position, 0.7f));
@@ -71,6 +72,7 @@ public class PickUpObject : MonoBehaviour
         {
             QEvent.Invoke();
             objectPickedCollider.isTrigger = false;
+            shouldPickUpMovement = false;
             DoF = profile.GetSetting<DepthOfField>();
             DoF.active = false;
             StartCoroutine(LerpPositionBack(originalPos, 0.7f));
@@ -108,15 +110,15 @@ public class PickUpObject : MonoBehaviour
     }
     private void Update()
     {
-        if(hasItem == true)
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                DropItem();
-            }
+            DropItem();
+        }
+        if (hasItem == true && shouldPickUpMovement == true)
+        {
             h = RotationSpeed * Input.GetAxis("Mouse X");
             v = RotationSpeed * Input.GetAxis("Mouse Y");
-            transform.Rotate(0, h, v);
+            transform.Rotate(0, h, v, Space.World);
         }
     }
 }

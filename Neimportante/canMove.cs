@@ -24,4 +24,14 @@ public class canMove : MonoBehaviour
         characterFootsteps.enabled = true;
         @event.Invoke();
     }
+    public void disableMovement()
+    {
+        Fps_Script.instance.canMove = false;
+        Fps_Script.instance.canRotate = false;
+    }
+    public void enableMovement()
+    {
+        Fps_Script.instance.canMove = true;
+        Fps_Script.instance.canRotate = true;
+    }
 }

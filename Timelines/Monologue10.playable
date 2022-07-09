@@ -25,7 +25,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 2650197373086303818}
-    m_Duration: 2.4833333333333334
+    m_Duration: 2.8333333333333335
     m_TimeScale: 1
     m_ParentTrack: {fileID: -868865989526313227}
     m_EaseInDuration: 0
@@ -91,10 +91,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: SubtitleData
   - m_Version: 1
-    m_Start: 2.4833333333333334
+    m_Start: 2.8333333333333335
     m_ClipIn: 0
     m_Asset: {fileID: 343776797516751604}
-    m_Duration: 2.4833333333333334
+    m_Duration: 2.7833333333333328
     m_TimeScale: 1
     m_ParentTrack: {fileID: -868865989526313227}
     m_EaseInDuration: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: SubtitleData(Clone)
   m_EditorClassIdentifier: 
   subtitleData:
-    text: I should solve it before moving on.
+    text: Maybe solving this puzzle will unstuck it.
     color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1022695945058653865
 MonoBehaviour:
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: SubtitleData
   m_EditorClassIdentifier: 
   subtitleData:
-    text: Huh, this looks like a cogwheel puzzle.
+    text: This ladder looks like it's stuck on something.
     color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &7116832814306504469
 MonoBehaviour:
@@ -278,7 +278,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 2412001017668873509}
-    m_Duration: 4.916666666666667
+    m_Duration: 5.516666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: 7116832814306504469}
     m_EaseInDuration: 0
