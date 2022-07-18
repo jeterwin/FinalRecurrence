@@ -200,4 +200,9 @@ public class SaveData
     public bool monologue23;
     public bool monologue24;
     public bool monologue25;
+    public bool monologue26;
+    public bool monologue27;
+    public bool monologue28;
+    public bool monologue29;
+    public bool monologue30;
 }

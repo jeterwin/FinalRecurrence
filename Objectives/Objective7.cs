@@ -30,7 +30,6 @@ public class Objective7 : MonoBehaviour
         objectiveCanvas.SetActive(true);
         yield return new WaitForSeconds(4.5f);
         objectiveCanvas.SetActive(false);
-        Destroy(this.gameObject);
         yield return null;
     }
 }

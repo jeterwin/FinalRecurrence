@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public PickUpObject ItemInstance;
     public static PauseMenu instance;
     public static bool IsGamePaused = false;
-    public bool canPause = false;
+    public bool canPause = false, hasItem = false;
+    public UnityEvent pressedESCEvent;
 
     public GameObject loadingScreen;
     public GameObject mainMenu;
@@ -39,10 +42,13 @@ public class PauseMenu : MonoBehaviour
                 {
                     //If you are able to pause (you are not allowed to pause during cutscenes) and you are currently reading
                     //a note inside the note system, de-activate the note system, get the note off the screen and pause the game
+                    if (hasItem == true)
+                        ItemInstance.DropItem();
                     NoteSystem.instance.CloseNote(true);
                     NoteSystem.instance.Close(true);
                     if(NoteSystem.instance.usingNotesSystem)
                     NoteSystem.instance.usingNotesSystem = !NoteSystem.instance.usingNotesSystem;
+                    pressedESCEvent.Invoke();
                     Pause();
                 }
             }

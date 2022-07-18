@@ -22,12 +22,12 @@ public class LightFlickerEffect : MonoBehaviour
     [Tooltip("How much to smooth out the randomness; lower values = sparks, higher = lantern")]
     [Range(1, 50)]
     public int smoothing = 5;
-
+    public GameObject lightMaterial;
     // Continuous average calculation via FIFO queue
     // Saves us iterating every time we update, we just change by the delta
     Queue<float> smoothQueue;
     float lastSum = 0;
-
+    Color colour;
 
     /// <summary>
     /// Reset the randomness and start again. You usually don't need to call
@@ -48,6 +48,12 @@ public class LightFlickerEffect : MonoBehaviour
         {
             light = GetComponent<Light>();
         }
+        if(lightMaterial != null)
+        {
+        lightMaterial.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+        colour = new Color32(255, 255, 255, 255);
+        }
+
     }
 
     void Update()
@@ -63,6 +69,11 @@ public class LightFlickerEffect : MonoBehaviour
 
         // Generate random new item, calculate new average
         float newVal = Random.Range(minIntensity, maxIntensity);
+        if(lightMaterial != null)
+            {
+            lightMaterial.GetComponent<Renderer>().material.SetColor("_EmissionColor", colour * newVal);
+        }
+
         smoothQueue.Enqueue(newVal);
         lastSum += newVal;
 

@@ -37,7 +37,19 @@ public class HealthSystem : MonoBehaviour
     }
     public void Jumpscare(float minusSanity)
     {
-        sanityValue -= minusSanity;
+        if(sanityValue - minusSanity < 0)
+            sanityValue = 0;
+        else
+            sanityValue -= minusSanity;
+        if (animator != null)
+            animator.Play("minusSanity");
+    }
+    public void SolvedPuzzle(float plusSanity)
+    {
+        if (sanityValue + plusSanity > 100)
+            sanityValue = 100;
+        else
+            sanityValue += plusSanity;
         if (animator != null)
             animator.Play("minusSanity");
     }
@@ -48,7 +60,10 @@ public class HealthSystem : MonoBehaviour
         if (Input.GetKey(KeyCode.H) && DrugsAmount > 0 && SaveManager.instance.activeSave.hasReachedSanity == true)
         {
             sanityValue += ValueAdd;
+            if (sanityValue + ValueAdd > 100)
+                sanityValue = 100;
             DrugsAmount -= 1;
+            pillAmount.text = DrugsAmount + "x";
             takePillSound.Play();
         }
         IconImage.fillAmount = sanityValue / 100;

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.Rendering.PostProcessing;
 public class PickUpObject : MonoBehaviour
 {
+    public static PickUpObject instance;
     public UnityEvent @event;
     public UnityEvent LeftClickEvent;
     public UnityEvent QEvent;
@@ -16,7 +17,7 @@ public class PickUpObject : MonoBehaviour
     Vector3 originalPos;
     Quaternion originalRotation;
     private Collider objectPickedCollider;
-    bool hasItem, shouldPickUpMovement = true;
+    public bool hasItem, shouldPickUpMovement = true;
 
     //The player, the post profile and the depth of field that will be modified while the item is picked and rotated
     public Fps_Script playerScript;
@@ -30,6 +31,10 @@ public class PickUpObject : MonoBehaviour
     public float RotationSpeed = 5f;
     private float v,h;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         hasItem = false;
@@ -53,6 +58,8 @@ public class PickUpObject : MonoBehaviour
         }
         if (hasItem == false)
         {
+            PauseMenu.instance.ItemInstance = this;
+            PauseMenu.instance.hasItem = true;
             LeftClickEvent.Invoke();
             objectPickedCollider.isTrigger = true;
             shouldPickUpMovement = true;
@@ -71,6 +78,8 @@ public class PickUpObject : MonoBehaviour
         if (hasItem == true)
         {
             QEvent.Invoke();
+            PauseMenu.instance.ItemInstance = null;
+            PauseMenu.instance.hasItem = false;
             objectPickedCollider.isTrigger = false;
             shouldPickUpMovement = false;
             DoF = profile.GetSetting<DepthOfField>();

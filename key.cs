@@ -6,6 +6,7 @@ public class key : MonoBehaviour
 {
     public bool Key;
     public UnityEvent Event;
+    public UnityEvent IfKeyFalse;
     public void SetActiveKey()
     {
         Key = true;
@@ -15,6 +16,10 @@ public class key : MonoBehaviour
         if (Key == true)
         {
             Event.Invoke();
+        }
+        else
+        {
+            IfKeyFalse.Invoke();
         }
     }
 }

@@ -16,7 +16,8 @@ public class ChangePostProcessVolume : MonoBehaviour
         chromaticAberration1 = newVolume.profile.GetSetting<ChromaticAberration>();
     }
     private void OnTriggerEnter(Collider other)
-    {if (other.gameObject.tag == "Player")
+    {
+        if (other.gameObject.tag == "Player")
         {
             canTrigger = true;
             StartCoroutine(goTo1());

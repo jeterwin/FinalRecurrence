@@ -31,7 +31,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 18.25
+    m_StopTime: 10.816667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -60,13 +60,6 @@ AnimationClip:
     messageOptions: 0
   - time: 10.816667
     functionName: Events
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 18.25
-    functionName: InvokeEventF
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

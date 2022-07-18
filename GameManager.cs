@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Fps_Script.instance != null)
-        respawnPoint = Fps_Script.instance.transform.position;
+        if (Fps_Script.instance != null)
+            respawnPoint = Fps_Script.instance.transform.position;
 
         //If the save loaded we will take some data out of the save and replace the amounts that are currently there with
         //the ones inside the last save data
@@ -48,13 +48,14 @@ public class GameManager : MonoBehaviour
             respawnPoint = SaveManager.instance.activeSave.respawnPosition;
             Fps_Script.instance.transform.position = respawnPoint;
             Flashlight_PRO.instance.batteries = SaveManager.instance.activeSave.batteries;
-            if(HealthSystem.instance != null)
+            if (HealthSystem.instance != null && SaveManager.instance.activeSave.hasReachedSanity == true && sanityCanvas != null)
             {
                 HealthSystem.instance.DrugsAmount = SaveManager.instance.activeSave.medicines;
                 HealthSystem.instance.sanityValue = SaveManager.instance.activeSave.sanitySystemSaved;
-            }
-            if (SaveManager.instance.activeSave.hasReachedSanity == true)
                 sanityCanvas.SetActive(true);
+            }
+/*            if (SaveManager.instance.activeSave.hasReachedSanity == true && sanityCanvas != null)
+                sanityCanvas.SetActive(true);*/
             batteries = SaveManager.instance.activeSave.batteries;
         }
         else

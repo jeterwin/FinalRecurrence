@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayAudioJumpScare : MonoBehaviour
 {
+    public UnityEvent @instantEvent;
     public AudioSource Audio;
     public AudioSource Audio1;
     public bool disable = false;
@@ -13,6 +15,7 @@ public class PlayAudioJumpScare : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            instantEvent.Invoke();
             Invoke("Enable", TimeToPlay);
             Invoke("Disable", TimeToDisable);
         }

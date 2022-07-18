@@ -52,7 +52,7 @@ public class SettingsMenu : MonoBehaviour
     public TextMeshProUGUI subtitleText1;
     Resolution[] resolutions;
 
-        private void Awake()
+    private void Awake()
     {
         instance = this;
 
@@ -68,7 +68,7 @@ public class SettingsMenu : MonoBehaviour
         //If there was a quality level saved, restore its settings based on its preset
         if (PlayerPrefs.HasKey("qualityLevel"))
         {
-            switch(PlayerPrefs.GetInt("qualityLevel"))
+            switch (PlayerPrefs.GetInt("qualityLevel"))
             {
                 case 0:
                     {
@@ -156,13 +156,13 @@ public class SettingsMenu : MonoBehaviour
             graphics.value = PlayerPrefs.GetInt("qualityLevel");
         }
         //Subtitles
-        if(PlayerPrefs.GetInt("subtitles", 1) != 0)
+        if (PlayerPrefs.GetInt("subtitles", 1) != 0)
         {
             subtitles.isOn = true;
             subDec = true;
-            if(subtitleText != null)
+            if (subtitleText != null)
                 subtitleText.enabled = true;
-            if(subtitleText1 != null)
+            if (subtitleText1 != null)
                 subtitleText1.enabled = true;
         }
         else
@@ -184,15 +184,15 @@ public class SettingsMenu : MonoBehaviour
         {
             if (PlayerPrefs.GetFloat("isVignette") != 0)
             {
-            vignetteToggle.isOn = true;
-            vignette = profile.GetSetting<Vignette>();
-            vignette.intensity.value = 0.45f;
+                vignetteToggle.isOn = true;
+                vignette = profile.GetSetting<Vignette>();
+                vignette.intensity.value = 0.45f;
             }
             else
             {
-            vignetteToggle.isOn = false;
-            vignette = profile.GetSetting<Vignette>();
-            vignette.intensity.value = 0f;
+                vignetteToggle.isOn = false;
+                vignette = profile.GetSetting<Vignette>();
+                vignette.intensity.value = 0f;
             }
         }
 
@@ -210,35 +210,35 @@ public class SettingsMenu : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("motionBlurOn") == 1)
             {
-            motionBlurToggle.isOn = true;
-            motionBlur = profile.GetSetting<MotionBlur>();
-            motionBlur.active = true;
+                motionBlurToggle.isOn = true;
+                motionBlur = profile.GetSetting<MotionBlur>();
+                motionBlur.active = true;
             }
             else
             {
-            motionBlurToggle.isOn = false;
-            motionBlur = profile.GetSetting<MotionBlur>();
-            motionBlur.active = false;
+                motionBlurToggle.isOn = false;
+                motionBlur = profile.GetSetting<MotionBlur>();
+                motionBlur.active = false;
             }
         }
         //Film grain
-        if(PlayerPrefs.HasKey("filmGrain"))
+        if (PlayerPrefs.HasKey("filmGrain"))
         {
             if (PlayerPrefs.GetFloat("filmGrain") != 0)
             {
-            grainToggle.isOn = true;
-            grain = profile.GetSetting<Grain>();
-            grain.intensity.value = 0.5f;
+                grainToggle.isOn = true;
+                grain = profile.GetSetting<Grain>();
+                grain.intensity.value = 0.5f;
             }
             else
             {
-            grainToggle.isOn = false;
-            grain = profile.GetSetting<Grain>();
-            grain.intensity.value = 0f;
+                grainToggle.isOn = false;
+                grain = profile.GetSetting<Grain>();
+                grain.intensity.value = 0f;
             }
         }
         //Main volume
-        if(PlayerPrefs.HasKey("volume"))
+        if (PlayerPrefs.HasKey("volume"))
         {
             audiomixer.SetFloat("volume", Mathf.Log10(PlayerPrefs.GetFloat("volume")) * 20);
             musicSlider.value = PlayerPrefs.GetFloat("volume");
@@ -257,7 +257,7 @@ public class SettingsMenu : MonoBehaviour
         //Fullscreen
         if (PlayerPrefs.HasKey("isFullscreen"))
         {
-            if(PlayerPrefs.GetInt("isFullscreen") == 1)
+            if (PlayerPrefs.GetInt("isFullscreen") == 1)
             {
                 fullscreen.isOn = true;
                 Screen.fullScreen = true;
@@ -271,7 +271,7 @@ public class SettingsMenu : MonoBehaviour
         //Vsync
         if (PlayerPrefs.HasKey("vsync"))
         {
-            if(PlayerPrefs.GetInt("vsync") == 1)
+            if (PlayerPrefs.GetInt("vsync") == 1)
             {
                 QualitySettings.vSyncCount = 1;
                 vsyncToggle.isOn = true;
@@ -285,25 +285,25 @@ public class SettingsMenu : MonoBehaviour
         //AntiAliasing
         if (PlayerPrefs.HasKey("antiAliasing"))
         {
-            if(PlayerPrefs.GetInt("antiAliasing") == 0)
+            if (PlayerPrefs.GetInt("antiAliasing") == 0)
             {
                 antialiasingDropdown.value = 0;
                 QualitySettings.antiAliasing = 0;
             }
 
-            else if(PlayerPrefs.GetInt("antiAliasing") == 1)
+            else if (PlayerPrefs.GetInt("antiAliasing") == 1)
             {
                 antialiasingDropdown.value = 1;
                 QualitySettings.antiAliasing = 2;
             }
 
-            else if(PlayerPrefs.GetInt("antiAliasing") == 2)
+            else if (PlayerPrefs.GetInt("antiAliasing") == 2)
             {
                 antialiasingDropdown.value = 2;
                 QualitySettings.antiAliasing = 4;
             }
 
-            else if(PlayerPrefs.GetInt("antiAliasing") == 3)
+            else if (PlayerPrefs.GetInt("antiAliasing") == 3)
             {
                 antialiasingDropdown.value = 3;
                 QualitySettings.antiAliasing = 8;
@@ -312,23 +312,23 @@ public class SettingsMenu : MonoBehaviour
         //Shadows
         if (PlayerPrefs.HasKey("shadows"))
         {
-            if(PlayerPrefs.GetInt("shadows") == 0)
+            if (PlayerPrefs.GetInt("shadows") == 0)
             {
                 ChangeShadows(ShadowmaskMode.Shadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0);
                 shadowsDropdown.value = 0;
             }
-            else if(PlayerPrefs.GetInt("shadows") == 1)
+            else if (PlayerPrefs.GetInt("shadows") == 1)
             {
                 ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 2);
                 shadowsDropdown.value = 1;
             }
-            
-            else if(PlayerPrefs.GetInt("shadows") == 2)
+
+            else if (PlayerPrefs.GetInt("shadows") == 2)
             {
                 ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 100, 3, 2);
                 shadowsDropdown.value = 2;
-            }  
-            else if(PlayerPrefs.GetInt("shadows") == 3)
+            }
+            else if (PlayerPrefs.GetInt("shadows") == 3)
             {
                 ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 100, 3, 2);
                 shadowsDropdown.value = 3;
@@ -342,17 +342,17 @@ public class SettingsMenu : MonoBehaviour
         //Texture
         if (PlayerPrefs.HasKey("texture"))
         {
-            if(PlayerPrefs.GetInt("texture") == 0)
+            if (PlayerPrefs.GetInt("texture") == 0)
             {
                 QualitySettings.masterTextureLimit = 0; // Quarter res
                 textureDropdown.value = 0;
             }
-            else if(PlayerPrefs.GetInt("texture") == 1)
+            else if (PlayerPrefs.GetInt("texture") == 1)
             {
                 QualitySettings.masterTextureLimit = 1; // Half res
                 textureDropdown.value = 1;
             }
-            else if(PlayerPrefs.GetInt("texture") == 2)
+            else if (PlayerPrefs.GetInt("texture") == 2)
             {
                 QualitySettings.masterTextureLimit = 2; // Full res
                 textureDropdown.value = 2;
@@ -363,15 +363,14 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.ClearOptions();
         //List<string> options = new List<string>();
         int currentResolutionIndex = 0;
-        for(int i = resolutions.Length - 1; i > 0; i--)
+        Debug.Log(Screen.currentResolution.refreshRate);
+        Debug.Log(resolutions[0] + " uh" + resolutions[1] + " uh" + resolutions[2] + " uh" + resolutions[3]);
+        for (int i = resolutions.Length - 1; i >= 0; i--)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
-            if(resolutions[i].height >= 720 && resolutions[i].height != 990)
-            {
-                options.Add(option);
-                _resolutions.Add(options.Count - 1, resolutions[i]);
-                countRes++;
-            }
+            options.Add(option);
+            _resolutions.Add(options.Count - 1, resolutions[i]);
+            countRes++;
         }
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = options.FindIndex(c => c.Contains(Screen.currentResolution.height.ToString()) && c.Contains(Screen.currentResolution.width.ToString()) && c.Contains(Screen.currentResolution.refreshRate.ToString()));
@@ -387,7 +386,7 @@ public class SettingsMenu : MonoBehaviour
         }
 
         //resolutionDropdown.AddOptions(options);
-        if(PlayerPrefs.HasKey("resolution"))
+        if (PlayerPrefs.HasKey("resolution"))
         {
             resolutionDropdown.value = PlayerPrefs.GetInt("resolution");
             Resolution resolution = _resolutions[PlayerPrefs.GetInt("resolution")];
@@ -395,8 +394,8 @@ public class SettingsMenu : MonoBehaviour
         }
         else
         {
-        resolutionDropdown.value = currentResolutionIndex;
-        Resolution resolution = _resolutions[currentResolutionIndex];
+            resolutionDropdown.value = currentResolutionIndex;
+            Resolution resolution = _resolutions[currentResolutionIndex];
             Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         }
         resolutionDropdown.RefreshShownValue();
@@ -429,7 +428,7 @@ public class SettingsMenu : MonoBehaviour
     }
     public void SetQuality(int qualityIndex)
     {
-        switch(qualityIndex)
+        switch (qualityIndex)
         {
             case 0:
                 {
@@ -523,7 +522,7 @@ public class SettingsMenu : MonoBehaviour
     }
     public void setVsync(bool on)
     {
-        if(on == true)
+        if (on == true)
         {
             QualitySettings.vSyncCount = 1;
             PlayerPrefs.SetInt("vsync", 1);
@@ -537,21 +536,21 @@ public class SettingsMenu : MonoBehaviour
     }
     public void setTextureQuality(int index2)
     {
-        if(index2 == 0)
+        if (index2 == 0)
         {
-        QualitySettings.masterTextureLimit = 0; // Full res
-        PlayerPrefs.SetInt("texture", 0);
+            QualitySettings.masterTextureLimit = 0; // Full res
+            PlayerPrefs.SetInt("texture", 0);
         }
-        else if(index2 == 1)
+        else if (index2 == 1)
         {
-        QualitySettings.masterTextureLimit = 1; // Half res
-        PlayerPrefs.SetInt("texture", 1);
+            QualitySettings.masterTextureLimit = 1; // Half res
+            PlayerPrefs.SetInt("texture", 1);
         }
 
-        else if(index2 == 2)
+        else if (index2 == 2)
         {
-        QualitySettings.masterTextureLimit = 2; // Quarter res
-        PlayerPrefs.SetInt("texture", 2);
+            QualitySettings.masterTextureLimit = 2; // Quarter res
+            PlayerPrefs.SetInt("texture", 2);
         }
         PlayerPrefs.Save();
     }
@@ -566,28 +565,28 @@ public class SettingsMenu : MonoBehaviour
     }
     public void SetShadows(int index1)
     {
-        if(index1 == 0)
+        if (index1 == 0)
         {
             ChangeShadows(ShadowmaskMode.Shadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0);
             PlayerPrefs.SetInt("shadows", 0);
         }
-        else if(index1 == 1)
+        else if (index1 == 1)
         {
             ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.HardOnly, ShadowResolution.Low, ShadowProjection.StableFit, 100, 3, 0);
             PlayerPrefs.SetInt("shadows", 1);
         }
-           
-        else if(index1 == 2)
+
+        else if (index1 == 2)
         {
             ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.Medium, ShadowProjection.StableFit, 100, 3, 2);
             PlayerPrefs.SetInt("shadows", 2);
         }
-            
-        else if(index1 == 3)
+
+        else if (index1 == 3)
         {
             ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.High, ShadowProjection.StableFit, 100, 3, 2);
             PlayerPrefs.SetInt("shadows", 3);
-        }  
+        }
         else
         {
             ChangeShadows(ShadowmaskMode.DistanceShadowmask, ShadowQuality.All, ShadowResolution.VeryHigh, ShadowProjection.StableFit, 100, 3, 4);
@@ -608,7 +607,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetVignette(bool isOn)
     {
         vignette = profile.GetSetting<Vignette>();
-        if(isOn == true)
+        if (isOn == true)
         {
             vignette.intensity.value = 0.45f;
             PlayerPrefs.SetFloat("isVignette", 0.45f);
@@ -638,37 +637,37 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
-        if(isFullscreen == true)
+        if (isFullscreen == true)
         {
-        PlayerPrefs.SetInt("isFullscreen", 1);
+            PlayerPrefs.SetInt("isFullscreen", 1);
         }
         else
         {
-        PlayerPrefs.SetInt("isFullscreen", 0);
+            PlayerPrefs.SetInt("isFullscreen", 0);
         }
         PlayerPrefs.Save();
     }
     public void antiAliasing(int index)
     {
-        if(index == 0)
+        if (index == 0)
         {
             PlayerPrefs.SetInt("antiAliasing", 0);
             QualitySettings.antiAliasing = 0;
         }
 
-        else if(index == 1)
+        else if (index == 1)
         {
             PlayerPrefs.SetInt("antiAliasing", 1);
             QualitySettings.antiAliasing = 2;
         }
 
-        else if(index == 2)
+        else if (index == 2)
         {
             PlayerPrefs.SetInt("antiAliasing", 2);
             QualitySettings.antiAliasing = 4;
         }
 
-        else if(index == 3)
+        else if (index == 3)
         {
             PlayerPrefs.SetInt("antiAliasing", 3);
             QualitySettings.antiAliasing = 8;
@@ -678,7 +677,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetMotionBlur(bool isTurnedOn)
     {
         motionBlur = profile.GetSetting<MotionBlur>();
-        if(isTurnedOn == true)
+        if (isTurnedOn == true)
         {
             motionBlur.active = true;
             PlayerPrefs.SetInt("motionBlurOn", 1);
@@ -690,10 +689,10 @@ public class SettingsMenu : MonoBehaviour
         }
         PlayerPrefs.Save();
     }
-        public void SetFilmGrain(bool lmao)
+    public void SetFilmGrain(bool lmao)
     {
         grain = profile.GetSetting<Grain>();
-        if(lmao == true)
+        if (lmao == true)
         {
             grain.intensity.value = 0.5f;
             PlayerPrefs.SetFloat("filmGrain", 0.5f);
@@ -708,9 +707,9 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetSensitivity(float sens)
     {
-        
+
         PlayerPrefs.SetFloat("sens", sens);
-        if(Fps_Script.instance)
+        if (Fps_Script.instance)
             Fps_Script.instance.mouseLook.XSensitivity = Fps_Script.instance.mouseLook.YSensitivity = sens;
         //Fps_Script.instance.lookSpeed = sens;
         PlayerPrefs.Save();
@@ -718,10 +717,10 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetSubtitles(bool subtitles)
     {
-        if(subtitles == true)
-        { 
-        PlayerPrefs.SetInt("subtitles", 1);
-        //if(Subtitles.instance)
+        if (subtitles == true)
+        {
+            PlayerPrefs.SetInt("subtitles", 1);
+            //if(Subtitles.instance)
             //{
             subDec = true;
             subtitleText.enabled = true;
@@ -730,7 +729,7 @@ public class SettingsMenu : MonoBehaviour
         }
         else
         {
-        PlayerPrefs.SetInt("subtitles", 0);
+            PlayerPrefs.SetInt("subtitles", 0);
             //if(Subtitles.instance)
             //{
             subDec = false;

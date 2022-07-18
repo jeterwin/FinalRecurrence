@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 using TMPro;
 using UnityEngine.UI;
@@ -73,6 +74,8 @@ public class NoteSystem : MonoBehaviour
     [Space]
     [SerializeField] AudioSource closeTabSound;
     [SerializeField] AudioClip[] closeTabSounds;
+
+    public UnityEvent closeEvent, openEvent;
     #endregion
 
     #region Properties and Private
@@ -116,6 +119,7 @@ public class NoteSystem : MonoBehaviour
             {
                 case true:
                     Open();
+                    openEvent.Invoke();
                     openTabSound.clip = openTabSounds[UnityEngine.Random.Range(0, openTabSounds.Length)];
                     openTabSound.Play();
                     if(SaveManager.instance.activeSave.hasReachedSanity == true)
@@ -123,6 +127,7 @@ public class NoteSystem : MonoBehaviour
                     break;
                 case false:
                     Close(activeNote != null);
+                    closeEvent.Invoke();
                     closeTabSound.clip = closeTabSounds[UnityEngine.Random.Range(0, closeTabSounds.Length)];
                     closeTabSound.Play();
                     if (SaveManager.instance.activeSave.hasReachedSanity == true)

@@ -19,7 +19,8 @@ MonoBehaviour:
     such as mansions, houses and sheds spread throughout the forest, make sure to
     search all of them thoroughly since there might be clues or items that could
     help you later on. Our next destination is a mansion on the top of the hill,
-    I'll make sure to call and keep you updated with everything going on."
+    I'll make sure to call and keep you updated with everything going on. Mansion
+    2: 8855."
   texture: {fileID: 0}
   useSubscript: 1
   displayLines: 1

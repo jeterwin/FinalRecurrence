@@ -12,12 +12,15 @@ public class passedStory : MonoBehaviour
     public Animator animator;
     public GameObject changeAmbientGroup;
     public string batteryCanvas;
+    public BatteryScript1 battery1;
     private void Start()
     {
         if(SaveManager.instance.activeSave.passedStory == false)
         {
             //If the player didn't already see the story, play the story animation.
             director.Play();
+            if (battery1.tookBattery == true)
+                Flashlight_PRO.instance.batteries += 1;
         }
         else
         {

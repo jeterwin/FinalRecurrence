@@ -19,4 +19,12 @@ public class InvokeActionOnce : MonoBehaviour
     {
         @event.Invoke();
     }
+    public void callFunctionOnce()
+    {
+        if(hasPlayed == false)
+        {
+            @event.Invoke();
+            hasPlayed = true;
+        }
+    }
 }
