@@ -5,20 +5,18 @@ using UnityEngine.Events;
 public class ChangeEnding : MonoBehaviour
 {
     public int GoodEnding;
-    public int BadEnding = 5;
+    public int BadEnding;
     public UnityEvent GoodEndingEvents;
     public UnityEvent BadEndingEvents;
     public void GoodEndingIncrease()
     {
         GoodEnding++;
-        BadEnding--;
-        PlayerPrefs.SetInt("Good", GoodEnding);
-        PlayerPrefs.SetInt("Bad", BadEnding);
+        GameManager.instance.activeSave.goodEndings++;
     }
     public void CheckEndingStatus()
     {
-        GoodEnding = PlayerPrefs.GetInt("Good");
-        BadEnding = PlayerPrefs.GetInt("Bad");
+        GoodEnding = GameManager.instance.activeSave.goodEndings; //Or SaveManager
+        BadEnding = 5 - GoodEnding;
         if (GoodEnding > BadEnding)
         {
             GoodEndingEvents.Invoke();

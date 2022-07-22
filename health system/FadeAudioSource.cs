@@ -28,12 +28,12 @@ public class FadeAudioSource : MonoBehaviour
         if (randomSound == true)
             PlayRandomClip();
     }
-    void toBeInvoked()
+    public void toBeInvoked()
     {
         //This will call the function every timeToRepeat seconds to play a random sound
         Invoke("PlayRandomClip", timeToRepeat);
-    }    
-    void PlayRandomClip()
+    }
+    public void PlayRandomClip()
     {
         //The function to play a random sound
         whispers.clip = differentWhispers[Random.Range(0, differentWhispers.Length)];

@@ -83,6 +83,7 @@ public class SaveManager : MonoBehaviour
 [System.Serializable]
 public class SaveData
 {
+    public int goodEndings;
     public string saveName;
     public int level;
     public int chapter;

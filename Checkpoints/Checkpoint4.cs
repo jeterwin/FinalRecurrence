@@ -30,6 +30,8 @@ public class Checkpoint4 : MonoBehaviour
                 SaveManager.instance.activeSave.placedFuse = GameManager.instance.activeSave.placedFuse;
                 SaveManager.instance.activeSave.currentObjective = GameManager.instance.activeSave.currentObjective;
                 SaveManager.instance.activeSave.batteries = Flashlight_PRO.instance.batteries;
+                SaveManager.instance.activeSave.goodEndings = GameManager.instance.activeSave.goodEndings;
+                SaveManager.instance.activeSave.chapter = 3;
                 //Medicine
                 SaveManager.instance.activeSave.medicines = HealthSystem.instance.DrugsAmount;
                 SaveManager.instance.activeSave.sanitySystemSaved = HealthSystem.instance.sanityValue;

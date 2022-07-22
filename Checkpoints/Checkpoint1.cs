@@ -29,6 +29,7 @@ public class Checkpoint1 : MonoBehaviour
                 SaveManager.instance.activeSave.checkpoint2 = true;
                 SaveManager.instance.activeSave.currentObjective = GameManager.instance.activeSave.currentObjective;
                 SaveManager.instance.activeSave.batteries = Flashlight_PRO.instance.batteries;
+                SaveManager.instance.activeSave.goodEndings = GameManager.instance.activeSave.goodEndings;
                 //Medicine
                 SaveManager.instance.activeSave.medicines = HealthSystem.instance.DrugsAmount;
                 SaveManager.instance.activeSave.sanitySystemSaved = HealthSystem.instance.sanityValue;
