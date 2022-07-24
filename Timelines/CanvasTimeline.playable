@@ -363,7 +363,7 @@ MonoBehaviour:
     m_Start: 20.983333333333334
     m_ClipIn: 0
     m_Asset: {fileID: 7997117671739590292}
-    m_Duration: 5.398809537136305
+    m_Duration: 5.399999999999999
     m_TimeScale: 1
     m_ParentTrack: {fileID: -7032210079822608179}
     m_EaseInDuration: 0
@@ -466,8 +466,8 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 9
     m_ClipIn: 0
-    m_Asset: {fileID: 4773248950661383144}
-    m_Duration: 16.431
+    m_Asset: {fileID: 5402664350901230990}
+    m_Duration: 16.718354166666668
     m_TimeScale: 1
     m_ParentTrack: {fileID: -5973166496559467396}
     m_EaseInDuration: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: MainStory
+    m_DisplayName: MainStory 1
   m_Markers:
     m_Objects: []
   m_TrackProperties:
@@ -568,8 +568,8 @@ MonoBehaviour:
   m_Name: SubtitleData
   m_EditorClassIdentifier: 
   subtitleData:
-    text: Steven Brook, Charley Rolland and Elias Otto, aged 6 through 8, have been
-      missing for several weeks.
+    text: 'Steven Brook, Charley Rolland, and Elias Otto, aged 6 through 8, have
+      been missing for several weeks. '
     color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-3583613488570835336
 MonoBehaviour:
@@ -944,23 +944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset
   m_EditorClassIdentifier: 
---- !u!114 &4773248950661383144
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
-  m_Name: AudioPlayableAsset
-  m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: 451026557c252d3488bd36fecccef7bb, type: 3}
-  m_Loop: 0
-  m_bufferingTime: 0.1
-  m_ClipProperties:
-    volume: 1
 --- !u!114 &5076773743205579867
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1081,6 +1064,23 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 3
+--- !u!114 &5402664350901230990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f10dd60657c6004587f237a7e90f8e4, type: 3}
+  m_Name: AudioPlayableAsset
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 8300000, guid: 9f1cb17ecb074164ea47396c823360f6, type: 3}
+  m_Loop: 0
+  m_bufferingTime: 0.1
+  m_ClipProperties:
+    volume: 0.9
 --- !u!114 &5862490301927415292
 MonoBehaviour:
   m_ObjectHideFlags: 1
